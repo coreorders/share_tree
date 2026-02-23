@@ -58,6 +58,8 @@ jobs:
   build-and-deploy:
     needs: update-data
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_GAS_URL: ${{ secrets.NEXT_PUBLIC_GAS_URL }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -79,11 +81,14 @@ jobs:
         working-directory: ./web
         run: npm ci
 
+      - name: Create .env.local for Build
+        working-directory: ./web
+        run: |
+          echo "NEXT_PUBLIC_GAS_URL=${{ secrets.NEXT_PUBLIC_GAS_URL }}" > .env.local
+
       - name: Build Next.js
         working-directory: ./web
         run: npm run build
-        env:
-          NEXT_PUBLIC_GAS_URL: ${{ secrets.NEXT_PUBLIC_GAS_URL }}
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

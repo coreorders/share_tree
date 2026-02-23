@@ -43,10 +43,14 @@ def export_to_json():
     overrides = get_overrides()
     
     # Pre-process overrides for quick lookup: (Type, SourceLabel, TargetLabel)
+    # Normalize labels in rules as well
     delete_rules = set()
     for o in overrides:
         if len(o) >= 4 and o[1] == 'DELETE_LINK':
-            delete_rules.add((o[2].strip(), o[3].strip()))
+            # Remove spaces for matching
+            src = o[2].replace(' ', '').strip()
+            tgt = o[3].replace(' ', '').strip()
+            delete_rules.add((src, tgt))
 
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
@@ -61,7 +65,8 @@ def export_to_json():
         stock_code = c_dict.get('stock_code')
         corp_name = c_dict.get('corp_name')
         market = market_map.get(stock_code, "UNKNOWN")
-        normalized_name = corp_name.replace('(주)', '').strip()
+        # Stronger normalization: remove ALL spaces
+        normalized_name = corp_name.replace('(주)', '').replace(' ', '').strip()
         
         nodes_dict[normalized_name] = {
             "id": c_dict.get('corp_code'),
@@ -95,13 +100,15 @@ def export_to_json():
         if not share_rate or share_rate <= 0:
             continue
             
-        # Apply DELETE_LINK override
-        # We match using labels (names) as defined in the sheet
-        if (source_name.strip(), target_name.strip()) in delete_rules:
+        # Normalize for override check
+        n_src = source_name.replace(' ', '').strip()
+        n_tgt = target_name.replace(' ', '').strip()
+        
+        if (n_src, n_tgt) in delete_rules:
             print(f"🚫 Removing override link: {source_name} -> {target_name}")
             continue
 
-        normalized_source = source_name.replace('(주)', '').strip()
+        normalized_source = source_name.replace('(주)', '').replace(' ', '').strip()
         if normalized_source not in nodes_dict:
             nodes_dict[normalized_source] = {
                 "id": source_name,
