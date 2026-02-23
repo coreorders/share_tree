@@ -36,6 +36,8 @@ jobs:
 
       - name: Export JSON for Frontend
         run: python export_json.py
+        env:
+          NEXT_PUBLIC_GAS_URL: ${{ secrets.NEXT_PUBLIC_GAS_URL }}
 
       - name: Commit and Push DB and json changes
         continue-on-error: true
@@ -80,6 +82,8 @@ jobs:
       - name: Build Next.js
         working-directory: ./web
         run: npm run build
+        env:
+          NEXT_PUBLIC_GAS_URL: ${{ secrets.NEXT_PUBLIC_GAS_URL }}
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
