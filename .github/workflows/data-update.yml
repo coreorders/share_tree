@@ -2,8 +2,8 @@ name: Daily ShareGraph Data Update & Deploy
 
 on:
   schedule:
-    # Run at 17:18 KST (08:18 UTC) every day
-    - cron: '18 8 * * *'
+    # Run at 18 minutes past every hour
+    - cron: '18 * * * *'
   workflow_dispatch:
 
 permissions:
