@@ -16,11 +16,17 @@ export default function AdminPage() {
     const gasUrl = process.env.NEXT_PUBLIC_GAS_URL;
 
     const fetchAdminData = async () => {
-        if (!gasUrl) return;
+        if (!gasUrl || !password) return;
         setIsLoading(true);
         try {
-            const res = await fetch(`${gasUrl}?action=get_data`);
+            const res = await fetch(`${gasUrl}?action=get_data&password=${password}`);
             const data = await res.json();
+
+            if (data.error) {
+                setError(data.error);
+                return;
+            }
+
             setReports(data.reports || []);
             setOverrides(data.overrides || []);
         } catch (err) {
@@ -31,13 +37,32 @@ export default function AdminPage() {
         }
     };
 
-    const handleLogin = (e: React.FormEvent) => {
+    const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (password === "5") { // 로컬 1차 체크 (어차피 GAS에서 2차 체크함)
-            setIsAuthenticated(true);
-            fetchAdminData();
-        } else {
-            setError("비밀번호가 올바르지 않습니다.");
+        if (!gasUrl) return;
+        setIsLoading(true);
+        setError("");
+        try {
+            const res = await fetch(`${gasUrl}?action=get_data&password=${password}`);
+            const data = await res.json();
+
+            if (data.error === "Invalid password" || data.error === "비밀번호가 틀렸습니다.") {
+                setError("비밀번호가 올바르지 않습니다.");
+                return;
+            }
+
+            if (data.reports || data.overrides) {
+                setReports(data.reports || []);
+                setOverrides(data.overrides || []);
+                setIsAuthenticated(true);
+            } else {
+                setError("데이터를 불러올 수 없습니다. GAS 설정을 확인하세요.");
+            }
+        } catch (err) {
+            console.error(err);
+            setError("접속 실패. 네트워크나 GAS URL을 확인하세요.");
+        } finally {
+            setIsLoading(false);
         }
     };
 
