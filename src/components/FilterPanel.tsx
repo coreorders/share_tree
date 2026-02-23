@@ -191,10 +191,9 @@ export default function FilterPanel({
                     </div>
                 </div>
 
-                <div className="text-[10px] text-slate-500 space-y-0.5 border-t border-slate-700/20 pt-2">
-                    <p>🖱️ <strong>클릭</strong> 정보 보기 · <strong>더블클릭</strong> 중심 전환</p>
-                    <p>🟢 개인  🔵→🔴 기업  🟡 현재 중심</p>
-                    <p>🟢 보유  🟠 피보유  🟡 상호보유</p>
+                <div className="text-[10px] text-slate-500 space-y-1 border-t border-slate-700/20 pt-2">
+                    <p>🔴 상장 🩷 비상장 🟢 개인 🟠 기관/재단 🟡 중심</p>
+                    <p>➡️ 🟢 보유 🟠 피보유 🟡 상호</p>
                 </div>
             </div>
         </div>

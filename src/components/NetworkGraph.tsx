@@ -10,6 +10,7 @@ interface Node {
     market_cap: number;
     depth: number;
     isCompany: boolean;
+    isListed?: boolean;
     isCenter?: boolean;
     x?: number;
     y?: number;
@@ -123,13 +124,18 @@ export default function NetworkGraph({ data, sizeMode, directionFilter, centerNo
         const maxShares = Math.max(...nodesArr.map(n => n.outgoingShares || 0), 1);
 
         nodesArr.forEach(n => {
-            // Center node = yellow, person = green, company = degree-based
+            const isGov = /정부|재단|기금|조합|위원회|공단|학교|학원|대학교|대학/.test(n.label);
+
             if (n.id === centerNodeId) {
-                n.color = "rgb(250, 204, 21)"; // bright yellow
+                n.color = "rgb(250, 204, 21)"; // bright yellow (노란색 - 중심)
             } else if (!n.isCompany) {
-                n.color = "rgb(52, 211, 153)"; // emerald green for persons
+                n.color = "rgb(52, 211, 153)"; // emerald green (초록색 - 개인)
+            } else if (isGov) {
+                n.color = "rgb(251, 146, 60)"; // orange (주황색 - 정부/재단)
+            } else if (n.isListed) {
+                n.color = "rgb(239, 68, 68)"; // red (빨간색 - 상장기업)
             } else {
-                n.color = getColor(n.degree || 0, maxDegree);
+                n.color = "rgb(244, 114, 182)"; // pink (분홍색 - 비상장기업)
             }
 
             if (sizeMode === "market_cap") {
@@ -161,32 +167,15 @@ export default function NetworkGraph({ data, sizeMode, directionFilter, centerNo
         }
     }, [processedNodes, sizeMode]);
 
-    // Handle single click (show info) vs double click (re-center)
-    const lastClickEvent = useRef<MouseEvent | null>(null);
-
     const handleNodeClick = useCallback((node: any, event: MouseEvent) => {
-        lastClickEvent.current = event;
-        if (clickTimerRef.current) {
-            // This is a double click
-            clearTimeout(clickTimerRef.current);
-            clickTimerRef.current = null;
-            if (onNodeDoubleClick) {
-                onNodeDoubleClick(node.id, node.label);
-            }
-        } else {
-            // Wait to see if it's a double click
-            clickedNodeRef.current = node;
-            clickTimerRef.current = setTimeout(() => {
-                clickTimerRef.current = null;
-                if (onNodeClick && lastClickEvent.current) {
-                    onNodeClick(node.id, {
-                        x: lastClickEvent.current.clientX,
-                        y: lastClickEvent.current.clientY
-                    });
-                }
-            }, 300);
+        // 단일 클릭 이벤트 즉시 실행
+        if (onNodeClick) {
+            onNodeClick(node.id, {
+                x: event.clientX,
+                y: event.clientY
+            });
         }
-    }, [onNodeClick, onNodeDoubleClick]);
+    }, [onNodeClick]);
 
     const paintNode = useCallback((node: any, ctx: CanvasRenderingContext2D, globalScale: number) => {
         const { x, y, val, color, label, id } = node;
@@ -321,10 +310,6 @@ export default function NetworkGraph({ data, sizeMode, directionFilter, centerNo
             onNodeClick={handleNodeClick}
             linkDirectionalArrowLength={0}
             backgroundColor="#0f172a"
-            d3AlphaDecay={0.05}
-            d3VelocityDecay={0.4}
-            warmupTicks={100}
-            cooldownTime={2000}
         />
     );
 }

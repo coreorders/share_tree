@@ -16,7 +16,7 @@ export async function GET(request: Request) {
     }
 
     try {
-        const allCompanies = await queryDb('SELECT corp_code, corp_name, market_cap, close_price FROM companies');
+        const allCompanies = await queryDb('SELECT corp_code, corp_name, market_cap, close_price, stock_code FROM companies');
         const corpCodeToCompany = new Map<string, any>();
         const normalizedNameToCorpCode = new Map<string, string>();
         const originalNameToCorpCode = new Map<string, string>();
@@ -42,6 +42,7 @@ export async function GET(request: Request) {
                 market_cap: c.market_cap,
                 depth: 0,
                 isCompany: true,
+                isListed: !!(c.stock_code && c.close_price > 0),
                 isCenter: true
             });
         } else {
@@ -140,6 +141,7 @@ export async function GET(request: Request) {
                                         : (personalAssetMap.get(rel.targetId) || 0),
                                     depth,
                                     isCompany,
+                                    isListed: isCompany ? !!(corpCodeToCompany.get(rel.targetId)?.stock_code && corpCodeToCompany.get(rel.targetId)?.close_price > 0) : false,
                                     isCenter: false
                                 });
                             }
@@ -170,6 +172,7 @@ export async function GET(request: Request) {
                                         : (personalAssetMap.get(rel.ownerId) || 0),
                                     depth,
                                     isCompany,
+                                    isListed: isCompany ? !!(corpCodeToCompany.get(rel.ownerId)?.stock_code && corpCodeToCompany.get(rel.ownerId)?.close_price > 0) : false,
                                     isCenter: false
                                 });
                             }
