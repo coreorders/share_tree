@@ -31,19 +31,8 @@ jobs:
       - name: Initialize DB (if missing)
         run: python execution/init_db.py
 
-      - name: Fetch KOSPI & KOSDAQ Lists
-        run: python execution/fetch_kospi_list.py
-
-      - name: Update Market Cap (KOSPI & KOSDAQ)
+      - name: Update Market Cap & Close Price (KOSPI & KOSDAQ)
         run: python execution/update_market_cap.py
-
-      - name: Fetch Shareholder Data (DART)
-        env:
-          DART_API_KEY: ${{ secrets.DART_API_KEY }}
-        run: python execution/fetch_all_shareholders.py
-
-      - name: Update NPS Data
-        run: python update_nps.py
 
       - name: Export JSON for Frontend
         run: python export_json.py
