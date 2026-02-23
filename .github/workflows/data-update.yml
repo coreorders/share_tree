@@ -43,7 +43,7 @@ jobs:
         run: python execution/fetch_all_shareholders.py
 
       - name: Update NPS Data
-        run: python execution/update_nps.py
+        run: python update_nps.py
 
       - name: Export JSON for Frontend
         run: python export_json.py
