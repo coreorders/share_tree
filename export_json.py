@@ -60,17 +60,26 @@ def export_to_json():
     companies = cursor.fetchall()
     
     nodes_dict = {}
+    # Helper to clean names: remove (주) and all spaces
+    def clean_name(name):
+        return name.replace('(주)', '').replace(' ', '').strip()
+
     for c in companies:
         c_dict = dict(c)
         stock_code = c_dict.get('stock_code')
         corp_name = c_dict.get('corp_name')
         market = market_map.get(stock_code, "UNKNOWN")
-        # Stronger normalization: remove ALL spaces
-        normalized_name = corp_name.replace('(주)', '').replace(' ', '').strip()
+        
+        # Aggressive normalization
+        normalized_name = clean_name(corp_name)
+        
+        # We use the normalized name as the ID for everything to ensure merging
+        # Unless it's a listed company where we might prefer the corp_code
+        node_id = c_dict.get('corp_code') or normalized_name
         
         nodes_dict[normalized_name] = {
-            "id": c_dict.get('corp_code'),
-            "label": corp_name,
+            "id": node_id,
+            "label": corp_name.replace(' ', '').strip(), # Clean label too
             "stock_code": stock_code,
             "market_cap": c_dict.get('market_cap', 0),
             "close_price": c_dict.get('close_price', 0),
@@ -101,26 +110,33 @@ def export_to_json():
             continue
             
         # Normalize for override check
-        n_src = source_name.replace(' ', '').strip()
-        n_tgt = target_name.replace(' ', '').strip()
+        n_src = clean_name(source_name)
+        n_tgt = clean_name(target_name)
         
         if (n_src, n_tgt) in delete_rules:
             print(f"🚫 Removing override link: {source_name} -> {target_name}")
             continue
 
-        normalized_source = source_name.replace('(주)', '').replace(' ', '').strip()
+        normalized_source = clean_name(source_name)
         if normalized_source not in nodes_dict:
             nodes_dict[normalized_source] = {
-                "id": source_name,
-                "label": source_name,
+                "id": normalized_source, # Use normalized as ID
+                "label": source_name.replace(' ', '').strip(),
                 "isCompany": False,
                 "isListed": False,
                 "market": "NONE"
             }
-            
+        
+        # Get the canonical ID from nodes_dict
+        source_node_id = nodes_dict[normalized_source]["id"]
+        
+        # Find the target node ID (it might have been normalized too)
+        normalized_target = clean_name(target_name)
+        target_node_id = nodes_dict.get(normalized_target, {}).get("id", target_code)
+
         links.append({
-            "source": nodes_dict[normalized_source]["id"],
-            "target": target_code,
+            "source": source_node_id,
+            "target": target_node_id,
             "value": share_rate,
             "shares_count": s_dict.get('shares_count', 0),
             "label": f"{share_rate}%"

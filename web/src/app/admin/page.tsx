@@ -150,6 +150,8 @@ export default function AdminPage() {
                             <span className="text-sm font-bold uppercase tracking-wider">Authenticated</span>
                         </div>
                         <h1 className="text-3xl font-bold text-white">Admin Dashboard</h1>
+                        {!gasUrl && <p className="text-red-500 text-[10px] mt-1 uppercase font-bold tracking-widest animate-pulse">GAS URL NOT CONFIGURED</p>}
+                        {gasUrl && <p className="text-slate-600 text-[8px] mt-1 truncate max-w-[200px]">GAS: {gasUrl.substring(0, 30)}...</p>}
                     </div>
                     <div className="flex items-center gap-2">
                         <button
