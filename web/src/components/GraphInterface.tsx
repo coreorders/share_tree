@@ -53,8 +53,8 @@ export default function GraphInterface() {
     useEffect(() => {
         const fetchStaticData = async () => {
             try {
-                // public/data.json is loaded
-                const res = await fetch('/data.json');
+                // public/data.json is loaded (Using relative path to support GitHub Pages basePath)
+                const res = await fetch('data.json');
                 const data = await res.json();
 
                 const nodesMap = new Map<string, Node>();
