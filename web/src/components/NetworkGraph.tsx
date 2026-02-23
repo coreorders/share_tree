@@ -34,6 +34,7 @@ interface NetworkGraphProps {
     data: { nodes: Node[]; links: Link[] };
     sizeMode: "share" | "market_cap";
     directionFilter: "all" | "outgoing" | "incoming";
+    nodeTypeFilter: "all" | "person" | "company";
     centerNodeId: string;
     onNodeClick?: (nodeId: string, event: { x: number; y: number }) => void;
     onNodeDoubleClick?: (nodeId: string, nodeLabel: string) => void;
@@ -49,7 +50,7 @@ function getColor(degree: number, maxDegree: number) {
     return `rgb(${r}, ${g}, ${b})`;
 }
 
-export default function NetworkGraph({ data, sizeMode, directionFilter, centerNodeId, onNodeClick, onNodeDoubleClick, onBackgroundClick }: NetworkGraphProps) {
+export default function NetworkGraph({ data, sizeMode, directionFilter, nodeTypeFilter, centerNodeId, onNodeClick, onNodeDoubleClick, onBackgroundClick }: NetworkGraphProps) {
     const fgRef = useRef<any>(null);
     const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
     const clickTimerRef = useRef<number>(0);
@@ -64,13 +65,27 @@ export default function NetworkGraph({ data, sizeMode, directionFilter, centerNo
     }, []);
 
     const { processedNodes, processedLinks } = useMemo(() => {
-        let filteredLinks = data.links;
-        if (directionFilter === "outgoing") {
-            filteredLinks = data.links.filter(l => l.direction === 'outgoing');
-        } else if (directionFilter === "incoming") {
-            filteredLinks = data.links.filter(l => l.direction === 'incoming');
+        // First, apply nodeTypeFilter to data.nodes
+        let typeFilteredNodes = data.nodes;
+        if (nodeTypeFilter === "person") {
+            typeFilteredNodes = data.nodes.filter(n => !n.isCompany || n.id === centerNodeId);
+        } else if (nodeTypeFilter === "company") {
+            typeFilteredNodes = data.nodes.filter(n => n.isCompany || n.id === centerNodeId);
         }
+        const typeFilteredNodeIds = new Set(typeFilteredNodes.map(n => n.id));
 
+        // Filter links to only include those between visible nodes
+        let filteredLinks = data.links.filter(l => {
+            const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
+            const targetId = typeof l.target === 'object' ? l.target.id : l.target;
+            return typeFilteredNodeIds.has(sourceId) && typeFilteredNodeIds.has(targetId);
+        });
+
+        if (directionFilter === "outgoing") {
+            filteredLinks = filteredLinks.filter(l => l.direction === 'outgoing');
+        } else if (directionFilter === "incoming") {
+            filteredLinks = filteredLinks.filter(l => l.direction === 'incoming');
+        }
         const nodesMap = new Map<string, Node>();
         data.nodes.forEach(n => {
             nodesMap.set(n.id, { ...n, degree: 0, outgoingShares: 0 });
@@ -149,7 +164,7 @@ export default function NetworkGraph({ data, sizeMode, directionFilter, centerNo
         });
 
         return { processedNodes: nodesArr, processedLinks: processedLinksList };
-    }, [data, sizeMode, directionFilter, centerNodeId]);
+    }, [data, sizeMode, directionFilter, nodeTypeFilter, centerNodeId]);
 
     useEffect(() => {
         const fg = fgRef.current;

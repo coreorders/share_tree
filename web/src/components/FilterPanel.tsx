@@ -17,6 +17,8 @@ interface FilterPanelProps {
     setDirectionFilter: (val: "all" | "outgoing" | "incoming") => void;
     hideNps: boolean;
     setHideNps: (val: boolean) => void;
+    nodeTypeFilter: "all" | "person" | "company";
+    setNodeTypeFilter: (val: "all" | "person" | "company") => void;
     currentCenterName: string;
     allNodesMap: Map<string, any>;
 }
@@ -34,6 +36,8 @@ export default function FilterPanel({
     setDirectionFilter,
     hideNps,
     setHideNps,
+    nodeTypeFilter,
+    setNodeTypeFilter,
     currentCenterName,
     allNodesMap,
 }: FilterPanelProps) {
@@ -189,6 +193,15 @@ export default function FilterPanel({
                     <div className="flex rounded-lg overflow-hidden border border-slate-700/50">
                         <button onClick={() => setSizeMode("share")} className={classNames("flex-1 py-1.5 text-xs transition-colors", sizeMode === "share" ? "bg-blue-600 font-medium" : "bg-slate-800/50 hover:bg-slate-700/50")}>지분율</button>
                         <button onClick={() => setSizeMode("market_cap")} className={classNames("flex-1 py-1.5 text-xs transition-colors", sizeMode === "market_cap" ? "bg-blue-600 font-medium" : "bg-slate-800/50 hover:bg-slate-700/50")}>시가총액</button>
+                    </div>
+                </div>
+
+                <div className="flex flex-col gap-1">
+                    <label className="text-slate-300 font-medium text-xs">노드 유형</label>
+                    <div className="grid grid-cols-3 rounded-lg overflow-hidden border border-slate-700/50">
+                        <button onClick={() => setNodeTypeFilter("all")} className={classNames("py-1.5 text-xs transition-colors", nodeTypeFilter === "all" ? "bg-blue-600 font-medium" : "bg-slate-800/50 hover:bg-slate-700/50")}>전체</button>
+                        <button onClick={() => setNodeTypeFilter("person")} className={classNames("py-1.5 text-xs transition-colors border-x border-slate-700/50", nodeTypeFilter === "person" ? "bg-emerald-600 font-medium" : "bg-slate-800/50 hover:bg-slate-700/50")}>개인</button>
+                        <button onClick={() => setNodeTypeFilter("company")} className={classNames("py-1.5 text-xs transition-colors", nodeTypeFilter === "company" ? "bg-red-600 font-medium" : "bg-slate-800/50 hover:bg-slate-700/50")}>기업</button>
                     </div>
                 </div>
 

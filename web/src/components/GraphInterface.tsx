@@ -8,7 +8,7 @@ import { Loader2 } from "lucide-react";
 
 // Types
 type Link = { source: string; target: string; value: number; label?: string };
-type Node = { id: string; label: string; stock_code?: string; market_cap?: number; close_price?: number; isCompany: boolean; isListed: boolean; market?: string; depth?: number; isCenter?: boolean };
+type Node = { id: string; label: string; stock_code?: string; market_cap?: number; close_price?: number; price_change?: number; change_rate?: number; isCompany: boolean; isListed: boolean; market?: string; depth?: number; isCenter?: boolean };
 
 const DynamicNetworkGraph = dynamic(() => import("./NetworkGraph"), {
     ssr: false,
@@ -37,6 +37,7 @@ export default function GraphInterface() {
     const [sizeMode, setSizeMode] = useState<"share" | "market_cap">("share");
     const [directionFilter, setDirectionFilter] = useState<"all" | "outgoing" | "incoming">("all");
     const [hideNps, setHideNps] = useState<boolean>(true);
+    const [nodeTypeFilter, setNodeTypeFilter] = useState<"all" | "person" | "company">("all");
 
     const [centerCorpCode, setCenterCorpCode] = useState<string>("");
     const [centerName, setCenterName] = useState<string>("");
@@ -305,6 +306,7 @@ export default function GraphInterface() {
                     data={graphData}
                     sizeMode={sizeMode}
                     directionFilter={directionFilter}
+                    nodeTypeFilter={nodeTypeFilter}
                     centerNodeId={centerNodeId}
                     onNodeClick={handleNodeClick}
                     onNodeDoubleClick={handleNodeDoubleClick}
@@ -325,6 +327,8 @@ export default function GraphInterface() {
                 setDirectionFilter={setDirectionFilter}
                 hideNps={hideNps}
                 setHideNps={setHideNps}
+                nodeTypeFilter={nodeTypeFilter}
+                setNodeTypeFilter={setNodeTypeFilter}
                 currentCenterName={centerName}
                 allNodesMap={allNodesMap}
             />

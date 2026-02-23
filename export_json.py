@@ -17,8 +17,12 @@ def get_overrides():
         return []
     try:
         print(f"Fetching overrides from Google Sheets...")
-        res = requests.get(f"{GAS_URL}?action=get_data", timeout=10)
+        # Use 'get_overrides' action which is public (no password needed)
+        res = requests.get(f"{GAS_URL}?action=get_overrides", timeout=10)
         data = res.json()
+        if data.get('error'):
+            print(f"⚠️ GAS returned error: {data['error']}. Overrides will be skipped.")
+            return []
         return data.get('overrides', [])
     except Exception as e:
         print(f"❌ Failed to fetch overrides: {e}")
