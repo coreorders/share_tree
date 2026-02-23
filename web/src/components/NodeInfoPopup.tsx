@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import { X, ExternalLink, TrendingUp, TrendingDown, Users, Building2, User, Banknote, GripHorizontal, RefreshCw } from "lucide-react";
+import { X, ExternalLink, TrendingUp, TrendingDown, Users, Building2, User, Banknote, GripHorizontal, RefreshCw, AlertTriangle, Send } from "lucide-react";
 
 interface NodeInfoPopupProps {
     data: any;
@@ -43,6 +43,9 @@ export default function NodeInfoPopup({ data, position, onClose, onNavigate }: N
     const [pos, setPos] = useState({ x: 0, y: 0 });
     const [isDragging, setIsDragging] = useState(false);
     const dragOffset = useRef({ x: 0, y: 0 });
+    const [isReporting, setIsReporting] = useState(false);
+    const [reportMsg, setReportMsg] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     // Center on screen
     useEffect(() => {
@@ -104,6 +107,36 @@ export default function NodeInfoPopup({ data, position, onClose, onNavigate }: N
     const effectivePrice = data.close_price;
     const totalValue = data.totalListedValue + data.totalEstimatedValue;
 
+    const handleReport = async () => {
+        if (!reportMsg.trim()) return;
+        setIsSubmitting(true);
+        try {
+            const url = process.env.NEXT_PUBLIC_GAS_URL;
+            if (!url) {
+                alert("구글 서비스 URL이 설정되지 않았습니다.");
+                return;
+            }
+            await fetch(url, {
+                method: "POST",
+                mode: "no-cors", // Required for GAS
+                body: JSON.stringify({
+                    action: "report",
+                    nodeName: data.name,
+                    nodeId: data.id,
+                    message: reportMsg
+                })
+            });
+            alert("신고가 접수되었습니다. 감사합니다!");
+            setIsReporting(false);
+            setReportMsg("");
+        } catch (err) {
+            console.error(err);
+            alert("전송 중 오류가 발생했습니다.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <>
             <div
@@ -139,13 +172,65 @@ export default function NodeInfoPopup({ data, position, onClose, onNavigate }: N
                             )}
                         </h2>
                     </div>
-                    <button onClick={(e) => { e.stopPropagation(); onClose(); }} className="p-1 hover:bg-white/10 rounded-lg transition-colors flex-shrink-0">
-                        <X className="w-5 h-5" />
-                    </button>
+                    <div className="flex items-center gap-1 flex-shrink-0">
+                        <button
+                            onClick={(e) => { e.stopPropagation(); setIsReporting(!isReporting); }}
+                            className={`p-1.5 rounded-lg transition-colors ${isReporting ? 'bg-red-500/20 text-red-400' : 'hover:bg-white/10 text-slate-400'}`}
+                            title="오류 신고"
+                        >
+                            <AlertTriangle className="w-5 h-5" />
+                        </button>
+                        <button
+                            onClick={(e) => { e.stopPropagation(); onClose(); }}
+                            className="p-1.5 hover:bg-white/10 text-slate-400 rounded-lg transition-colors"
+                        >
+                            <X className="w-5 h-5" />
+                        </button>
+                    </div>
                 </div >
 
                 {/* Content */}
-                < div className="p-3 sm:p-4 overflow-y-auto flex-1 space-y-3 text-sm" >
+                <div className="p-3 sm:p-4 overflow-y-auto flex-1 space-y-3 text-sm relative">
+                    {isReporting && (
+                        <div className="absolute inset-0 bg-slate-900/95 z-20 p-4 flex flex-col animate-in fade-in slide-in-from-top-2 duration-200">
+                            <div className="flex items-center gap-2 mb-3 text-red-400">
+                                <AlertTriangle className="w-4 h-4" />
+                                <span className="font-bold">데이터 분석 오류 신고</span>
+                            </div>
+                            <p className="text-slate-300 text-xs mb-3 leading-relaxed">
+                                {data.name} 노드의 동명이인 꼬임, 잘못된 지분 정보 등을 적어주시면 확인 후 수정하겠습니다.
+                            </p>
+                            <textarea
+                                autoFocus
+                                value={reportMsg}
+                                onChange={(e) => setReportMsg(e.target.value)}
+                                placeholder="예: 삼성물산 이재용 회장이 아니라 동명이인입니다. / 지분율 10%가 아니라 5%입니다."
+                                className="flex-1 bg-slate-800 border border-slate-700 rounded-xl p-3 text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-red-500/50 resize-none mb-3"
+                            />
+                            <div className="flex gap-2">
+                                <button
+                                    onClick={() => { setIsReporting(false); setReportMsg(""); }}
+                                    className="flex-1 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium transition-colors"
+                                >
+                                    취소
+                                </button>
+                                <button
+                                    onClick={handleReport}
+                                    disabled={isSubmitting || !reportMsg.trim()}
+                                    className="flex-[2] py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                                >
+                                    {isSubmitting ? (
+                                        <RefreshCw className="w-4 h-4 animate-spin" />
+                                    ) : (
+                                        <>
+                                            <Send className="w-4 h-4" />
+                                            신고 보내기
+                                        </>
+                                    )}
+                                </button>
+                            </div>
+                        </div>
+                    )}
                     {
                         isCompany ? (
                             <>

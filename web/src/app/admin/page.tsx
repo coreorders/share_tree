@@ -1,0 +1,221 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { Lock, ShieldCheck, AlertCircle, Trash2, CheckCircle2, RefreshCw, LogOut, ChevronRight, MessageSquare, Link2Off, Link2 } from "lucide-react";
+
+export default function AdminPage() {
+    const [password, setPassword] = useState("");
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [reports, setReports] = useState<any[]>([]);
+    const [overrides, setOverrides] = useState<any[]>([]);
+    const [error, setError] = useState("");
+
+    const gasUrl = process.env.NEXT_PUBLIC_GAS_URL;
+
+    const fetchAdminData = async () => {
+        if (!gasUrl) return;
+        setIsLoading(true);
+        try {
+            const res = await fetch(`${gasUrl}?action=get_data`);
+            const data = await res.json();
+            setReports(data.reports || []);
+            setOverrides(data.overrides || []);
+        } catch (err) {
+            console.error(err);
+            setError("데이터를 불러오는 데 실패했습니다.");
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleLogin = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (password === "5") { // 로컬 1차 체크 (어차피 GAS에서 2차 체크함)
+            setIsAuthenticated(true);
+            fetchAdminData();
+        } else {
+            setError("비밀번호가 올바르지 않습니다.");
+        }
+    };
+
+    const handleProcessReport = async (report: any) => {
+        if (!window.confirm(`'${report[1]}'에 대한 신고를 처리하시겠습니까? (Overrides에 등록됩니다)`)) return;
+        setIsLoading(true);
+        try {
+            await fetch(gasUrl!, {
+                method: "POST",
+                mode: "no-cors",
+                body: JSON.stringify({
+                    action: "fix_report",
+                    password: password,
+                    reportId: report[2], // nodeId
+                    type: "DELETE_LINK", // 기본적으로 연결 끊기 제안
+                    source: report[1],
+                    target: "Unknown",
+                    reason: `User Report: ${report[3]}`
+                })
+            });
+            alert("처리되었습니다. (시트 반영 완료)");
+            fetchAdminData();
+        } catch (err) {
+            alert("처리 중 에러가 발생했습니다.");
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    if (!isAuthenticated) {
+        return (
+            <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4">
+                <div className="w-full max-w-md bg-slate-900/60 backdrop-blur-xl border border-slate-800 p-8 rounded-3xl shadow-2xl">
+                    <div className="flex flex-col items-center mb-8">
+                        <div className="w-16 h-16 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-4">
+                            <Lock className="w-8 h-8 text-blue-400" />
+                        </div>
+                        <h1 className="text-2xl font-bold text-white">ShareGraph Admin</h1>
+                        <p className="text-slate-400 text-sm mt-2 text-center leading-relaxed">
+                            지분나무 관리자 페이지입니다.<br />비밀번호 1자를 입력하세요.
+                        </p>
+                    </div>
+
+                    <form onSubmit={handleLogin} className="space-y-4">
+                        <div className="relative">
+                            <input
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="•"
+                                className="w-full bg-slate-800 border border-slate-700 rounded-2xl p-4 text-center text-2xl text-white tracking-widest focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all font-mono"
+                                autoFocus
+                            />
+                        </div>
+                        <button
+                            type="submit"
+                            className="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl transition-all active:scale-95 shadow-lg shadow-blue-500/20"
+                        >
+                            접속하기
+                        </button>
+                        {error && <p className="text-red-400 text-center text-sm">{error}</p>}
+                    </form>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="min-h-screen bg-slate-950 text-slate-200 p-4 sm:p-8">
+            <div className="max-w-6xl mx-auto">
+                {/* Header */}
+                <div className="flex items-center justify-between mb-8">
+                    <div>
+                        <div className="flex items-center gap-2 text-blue-400 mb-1">
+                            <ShieldCheck className="w-5 h-5" />
+                            <span className="text-sm font-bold uppercase tracking-wider">Authenticated</span>
+                        </div>
+                        <h1 className="text-3xl font-bold text-white">Admin Dashboard</h1>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <button
+                            onClick={fetchAdminData}
+                            className="p-3 bg-slate-900 hover:bg-slate-800 rounded-xl border border-slate-800 transition-all"
+                            title="새로고침"
+                        >
+                            <RefreshCw className={`w-5 h-5 ${isLoading ? 'animate-spin' : ''}`} />
+                        </button>
+                        <button
+                            onClick={() => setIsAuthenticated(false)}
+                            className="p-3 bg-slate-900 hover:bg-slate-800 rounded-xl border border-slate-800 text-red-400 transition-all"
+                            title="로그아웃"
+                        >
+                            <LogOut className="w-5 h-5" />
+                        </button>
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {/* Reports Section */}
+                    <div className="space-y-4">
+                        <div className="flex items-center gap-2 mb-2 px-1">
+                            <MessageSquare className="w-5 h-5 text-amber-400" />
+                            <h2 className="text-xl font-bold">오류 신고 내역 ({reports.length})</h2>
+                        </div>
+                        {reports.length === 0 ? (
+                            <div className="bg-slate-900/40 border border-slate-800/50 border-dashed rounded-3xl p-12 text-center text-slate-500">
+                                접수된 신고가 없습니다.
+                            </div>
+                        ) : (
+                            <div className="grid gap-4">
+                                {reports.map((r, i) => (
+                                    <div key={i} className="bg-slate-900 border border-slate-800 p-5 rounded-3xl hover:border-slate-700 transition-all">
+                                        <div className="flex items-start justify-between mb-3">
+                                            <div className="min-w-0">
+                                                <h3 className="font-bold text-white text-lg truncate flex items-center gap-2">
+                                                    {r[1]}
+                                                    <span className="text-[10px] bg-slate-800 text-slate-500 px-1.5 py-0.5 rounded uppercase font-mono">{r[2]}</span>
+                                                </h3>
+                                                <p className="text-xs text-slate-500 mt-1">{new Date(r[0]).toLocaleString()}</p>
+                                            </div>
+                                            <div className={`px-2 py-1 rounded text-xs font-bold ${r[4] === 'Resolved' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-amber-500/20 text-amber-400'}`}>
+                                                {r[4]}
+                                            </div>
+                                        </div>
+                                        <p className="bg-slate-950/50 rounded-2xl p-4 text-sm text-slate-300 mb-4 whitespace-pre-wrap italic">
+                                            "{r[3]}"
+                                        </p>
+                                        <div className="flex gap-2">
+                                            <button
+                                                onClick={() => handleProcessReport(r)}
+                                                disabled={r[4] === 'Resolved'}
+                                                className="flex-1 py-3 bg-blue-600 hover:bg-blue-500 disabled:opacity-30 disabled:hover:bg-blue-600 text-white rounded-2xl text-xs font-bold flex items-center justify-center gap-2 transition-all"
+                                            >
+                                                <CheckCircle2 className="w-4 h-4" />
+                                                처리 완료 (연결 해제 등록)
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Overrides Section */}
+                    <div className="space-y-4">
+                        <div className="flex items-center gap-2 mb-2 px-1">
+                            <ShieldCheck className="w-5 h-5 text-emerald-400" />
+                            <h2 className="text-xl font-bold">적용된 보정 규칙 ({overrides.length})</h2>
+                        </div>
+                        {overrides.length === 0 ? (
+                            <div className="bg-slate-900/40 border border-slate-800/50 border-dashed rounded-3xl p-12 text-center text-slate-500">
+                                적용된 규칙이 없습니다.
+                            </div>
+                        ) : (
+                            <div className="grid gap-3">
+                                {overrides.map((o, i) => (
+                                    <div key={i} className="bg-slate-900/60 border border-slate-800/50 p-4 rounded-2xl flex items-center justify-between group">
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-10 h-10 bg-slate-800 rounded-xl flex items-center justify-center flex-shrink-0">
+                                                {o[1] === 'DELETE_LINK' ? <Link2Off className="w-5 h-5 text-red-400" /> : <Link2 className="w-5 h-5 text-blue-400" />}
+                                            </div>
+                                            <div>
+                                                <div className="flex items-center gap-2">
+                                                    <span className="font-bold text-white">{o[2]}</span>
+                                                    <ChevronRight className="w-3 h-3 text-slate-600" />
+                                                    <span className="text-slate-400 text-sm">{o[3]}</span>
+                                                </div>
+                                                <p className="text-[10px] text-slate-500 mt-0.5">{o[4]}</p>
+                                            </div>
+                                        </div>
+                                        <button className="p-2 text-slate-700 hover:text-red-400 transition-colors opacity-0 group-hover:opacity-100">
+                                            <Trash2 className="w-5 h-5" />
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}

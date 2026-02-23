@@ -1,23 +1,36 @@
 import sqlite3
 import json
 import os
+import requests
 from pykrx import stock
+from dotenv import load_dotenv
+
+load_dotenv()
 
 DB_PATH = "web/stocks.db"
 OUTPUT_PATH = "web/public/data.json"
+GAS_URL = os.environ.get("NEXT_PUBLIC_GAS_URL")
+
+def get_overrides():
+    if not GAS_URL:
+        print("⚠️ GAS_URL not found. Skipping overrides.")
+        return []
+    try:
+        print(f"Fetching overrides from Google Sheets...")
+        res = requests.get(f"{GAS_URL}?action=get_data", timeout=10)
+        data = res.json()
+        return data.get('overrides', [])
+    except Exception as e:
+        print(f"❌ Failed to fetch overrides: {e}")
+        return []
 
 def get_market_map():
     print("Fetching KOSPI/KOSDAQ ticker list to determine market type...")
     market_map = {}
-    
-    # KOSPI
     for ticker in stock.get_market_ticker_list(market="KOSPI"):
         market_map[ticker] = "KOSPI"
-        
-    # KOSDAQ
     for ticker in stock.get_market_ticker_list(market="KOSDAQ"):
         market_map[ticker] = "KOSDAQ"
-        
     return market_map
 
 def export_to_json():
@@ -27,26 +40,27 @@ def export_to_json():
         return
 
     market_map = get_market_map()
+    overrides = get_overrides()
     
+    # Pre-process overrides for quick lookup: (Type, SourceLabel, TargetLabel)
+    delete_rules = set()
+    for o in overrides:
+        if len(o) >= 4 and o[1] == 'DELETE_LINK':
+            delete_rules.add((o[2].strip(), o[3].strip()))
+
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
-    # 1. 기업 정보 가져오기
     cursor.execute("SELECT * FROM companies")
     companies = cursor.fetchall()
     
     nodes_dict = {}
-    
     for c in companies:
         c_dict = dict(c)
         stock_code = c_dict.get('stock_code')
         corp_name = c_dict.get('corp_name')
-        
-        # Set market type (KOSPI/KOSDAQ)
         market = market_map.get(stock_code, "UNKNOWN")
-        
-        # Normalize corp name (remove (주) etc) for matching
         normalized_name = corp_name.replace('(주)', '').strip()
         
         nodes_dict[normalized_name] = {
@@ -62,8 +76,6 @@ def export_to_json():
             "market": market
         }
 
-    # 2. 주주 정보 (링크) 가져오기
-    # 국민연금 필터링 등은 프론트엔드에서 처리하도록 모든 데이터를 Export 함
     cursor.execute("""
         SELECT s.*, c.corp_name as target_corp_name 
         FROM shareholders s
@@ -73,7 +85,6 @@ def export_to_json():
     shareholders = cursor.fetchall()
     
     links = []
-    
     for s in shareholders:
         s_dict = dict(s)
         source_name = s_dict['shareholder_name']
@@ -84,11 +95,16 @@ def export_to_json():
         if not share_rate or share_rate <= 0:
             continue
             
-        # Add source node if it doesn't exist (e.g. individuals, unlisted companies)
+        # Apply DELETE_LINK override
+        # We match using labels (names) as defined in the sheet
+        if (source_name.strip(), target_name.strip()) in delete_rules:
+            print(f"🚫 Removing override link: {source_name} -> {target_name}")
+            continue
+
         normalized_source = source_name.replace('(주)', '').strip()
         if normalized_source not in nodes_dict:
             nodes_dict[normalized_source] = {
-                "id": source_name, # Use name as ID for unlisted
+                "id": source_name,
                 "label": source_name,
                 "isCompany": False,
                 "isListed": False,
