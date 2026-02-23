@@ -16,7 +16,9 @@ def init_db():
         last_updated DATETIME,
         close_price INTEGER,
         shares_outstanding INTEGER,
-        market_cap INTEGER
+        market_cap INTEGER,
+        price_change INTEGER,
+        change_rate REAL
     )
     ''')
 

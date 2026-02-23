@@ -138,6 +138,13 @@ export default function AdminPage() {
                         <p className="text-slate-400 text-sm mt-2 text-center leading-relaxed">
                             지분나무 관리자 페이지입니다.<br />비밀번호(10자)를 입력하세요.
                         </p>
+                        <div className="mt-4 text-[10px] font-mono text-center">
+                            {!gasUrl ? (
+                                <span className="text-red-500 font-bold animate-pulse">⚠️ GAS URL 미설정 (Secrets 확인 필요)</span>
+                            ) : (
+                                <span className="text-slate-600 truncate inline-block max-w-[200px]">GAS: {gasUrl.substring(0, 30)}...</span>
+                            )}
+                        </div>
                     </div>
 
                     <form onSubmit={handleLogin} className="space-y-4">

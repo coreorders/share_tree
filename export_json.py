@@ -83,6 +83,8 @@ def export_to_json():
             "stock_code": stock_code,
             "market_cap": c_dict.get('market_cap', 0),
             "close_price": c_dict.get('close_price', 0),
+            "price_change": c_dict.get('price_change', 0),
+            "change_rate": c_dict.get('change_rate', 0),
             "shares_outstanding": c_dict.get('shares_outstanding', 0),
             "last_updated": c_dict.get('last_updated', ''),
             "isCompany": True,

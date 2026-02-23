@@ -198,13 +198,13 @@ export default function NodeInfoPopup({ data, position, onClose, onNavigate }: N
                                 <span className="font-bold">데이터 분석 오류 신고</span>
                             </div>
                             <p className="text-slate-300 text-xs mb-3 leading-relaxed">
-                                {data.name} 노드의 동명이인 꼬임, 잘못된 지분 정보 등을 적어주시면 확인 후 수정하겠습니다.
+                                노드의 동명이인 꼬임, 잘못된 지분 정보 등을 적어주시면 확인 후 수정하겠습니다.
                             </p>
                             <textarea
                                 autoFocus
                                 value={reportMsg}
                                 onChange={(e) => setReportMsg(e.target.value)}
-                                placeholder="예: 삼성물산 이재용 회장이 아니라 동명이인입니다. / 지분율 10%가 아니라 5%입니다."
+                                placeholder="신고 내용을 적어주세요. (예: 지분율 오류, 동명이인 등)"
                                 className="flex-1 bg-slate-800 border border-slate-700 rounded-xl p-3 text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-red-500/50 resize-none mb-3"
                             />
                             <div className="flex gap-2">
@@ -238,14 +238,23 @@ export default function NodeInfoPopup({ data, position, onClose, onNavigate }: N
                                 {
                                     data.stock_code && (
                                         <div className="bg-slate-800/60 rounded-lg p-3 mb-3 flex items-center justify-between border border-slate-600/30">
-                                            <div className="flex items-center gap-2">
+                                            <div className="flex items-center gap-3">
                                                 <div>
                                                     <p className="text-[10px] text-slate-400 mb-0.5">
                                                         당일 종가 (업데이트 기준)
                                                     </p>
-                                                    <p className="font-bold text-lg text-white">
-                                                        ₩{(data.close_price || 0).toLocaleString()}
-                                                    </p>
+                                                    <div className="flex items-center gap-2">
+                                                        <p className="font-bold text-lg text-white">
+                                                            ₩{(data.close_price || 0).toLocaleString()}
+                                                        </p>
+                                                        {data.price_change !== undefined && (
+                                                            <div className={`flex items-center text-xs font-bold px-1.5 py-0.5 rounded ${data.price_change > 0 ? 'text-red-400 bg-red-400/10' : data.price_change < 0 ? 'text-blue-400 bg-blue-400/10' : 'text-slate-400 bg-slate-400/10'}`}>
+                                                                {data.price_change > 0 ? <TrendingUp className="w-3 h-3 mr-1" /> : data.price_change < 0 ? <TrendingDown className="w-3 h-3 mr-1" /> : null}
+                                                                {data.price_change > 0 && "+"}
+                                                                {data.price_change.toLocaleString()} ({data.change_rate > 0 && "+"}{data.change_rate}%)
+                                                            </div>
+                                                        )}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

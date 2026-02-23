@@ -279,7 +279,7 @@ export default function NetworkGraph({ data, sizeMode, directionFilter, centerNo
         }
 
         // Arrow
-        const arrowLen = 5 / globalScale;
+        const arrowLen = 10 / globalScale;
         const angle = Math.atan2(end.y - start.y, end.x - start.x);
         const endNodeR = Math.sqrt(end.val || 1) * 4;
         const arrowX = end.x - Math.cos(angle) * endNodeR;
