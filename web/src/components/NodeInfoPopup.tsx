@@ -251,7 +251,7 @@ export default function NodeInfoPopup({ data, position, onClose, onNavigate }: N
                                                             <div className={`flex items-center text-xs font-bold px-1.5 py-0.5 rounded ${data.price_change > 0 ? 'text-red-400 bg-red-400/10' : data.price_change < 0 ? 'text-blue-400 bg-blue-400/10' : 'text-slate-400 bg-slate-400/10'}`}>
                                                                 {data.price_change > 0 ? <TrendingUp className="w-3 h-3 mr-1" /> : data.price_change < 0 ? <TrendingDown className="w-3 h-3 mr-1" /> : null}
                                                                 {data.price_change > 0 && "+"}
-                                                                {data.price_change.toLocaleString()} ({data.change_rate > 0 && "+"}{data.change_rate}%)
+                                                                {data.price_change.toLocaleString()} ({data.change_rate > 0 && "+"}{data.change_rate.toFixed(1)}%)
                                                             </div>
                                                         )}
                                                     </div>
