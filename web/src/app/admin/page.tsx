@@ -10,6 +10,8 @@ export default function AdminPage() {
     const [reports, setReports] = useState<any[]>([]);
     const [overrides, setOverrides] = useState<any[]>([]);
     const [error, setError] = useState("");
+    const [manualSource, setManualSource] = useState("");
+    const [manualTarget, setManualTarget] = useState("");
 
     const gasUrl = process.env.NEXT_PUBLIC_GAS_URL;
 
@@ -65,6 +67,40 @@ export default function AdminPage() {
         }
     };
 
+    const handleAddOverride = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!manualSource || !manualTarget) return;
+        setIsLoading(true);
+        try {
+            await fetch(gasUrl!, {
+                method: "POST",
+                mode: "no-cors",
+                body: JSON.stringify({
+                    action: "add_override",
+                    password: password,
+                    type: "DELETE_LINK",
+                    source: manualSource,
+                    target: manualTarget,
+                    reason: "Manual correction"
+                })
+            });
+            alert("규칙이 추가되었습니다.");
+            setManualSource("");
+            setManualTarget("");
+            fetchAdminData();
+        } catch (err) {
+            alert("추가 중 오류 발생");
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleDeleteOverride = async (index: number) => {
+        // GAS URL에 index 정보를 보내서 삭제하거나, 사용자에게 시트를 안내
+        if (!window.confirm("이 규칙을 관리하시겠습니까?")) return;
+        alert("구글 시트의 'Overrides' 탭에서 해당 행을 직접 관리하거나 삭제해 주세요.\n(데이터 안전을 위해 현재 UI에서의 삭제는 지원되지 않으며 시트에서 직접 삭제하면 다음 업데이트 때 반영됩니다)");
+    };
+
     if (!isAuthenticated) {
         return (
             <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4">
@@ -75,7 +111,7 @@ export default function AdminPage() {
                         </div>
                         <h1 className="text-2xl font-bold text-white">ShareGraph Admin</h1>
                         <p className="text-slate-400 text-sm mt-2 text-center leading-relaxed">
-                            지분나무 관리자 페이지입니다.<br />비밀번호 1자를 입력하세요.
+                            지분나무 관리자 페이지입니다.<br />비밀번호(10자)를 입력하세요.
                         </p>
                     </div>
 
@@ -85,8 +121,8 @@ export default function AdminPage() {
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                placeholder="•"
-                                className="w-full bg-slate-800 border border-slate-700 rounded-2xl p-4 text-center text-2xl text-white tracking-widest focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all font-mono"
+                                placeholder="••••••••••"
+                                className="w-full bg-slate-800 border border-slate-700 rounded-2xl p-4 text-center text-2xl text-white tracking-[0.5em] focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all font-mono"
                                 autoFocus
                             />
                         </div>
@@ -185,6 +221,34 @@ export default function AdminPage() {
                             <ShieldCheck className="w-5 h-5 text-emerald-400" />
                             <h2 className="text-xl font-bold">적용된 보정 규칙 ({overrides.length})</h2>
                         </div>
+                        {/* Manual Add Form */}
+                        <form onSubmit={handleAddOverride} className="bg-slate-900 border border-slate-800 p-5 rounded-3xl space-y-3 mb-6">
+                            <p className="text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">수동 연결 끊기 규칙 추가</p>
+                            <div className="grid grid-cols-2 gap-2">
+                                <input
+                                    placeholder="인물/기업명 (Source)"
+                                    value={manualSource}
+                                    onChange={(e) => setManualSource(e.target.value)}
+                                    className="bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                />
+                                <input
+                                    placeholder="대상 기업명 (Target)"
+                                    value={manualTarget}
+                                    onChange={(e) => setManualTarget(e.target.value)}
+                                    className="bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                disabled={isLoading || !manualSource || !manualTarget}
+                                className="w-full py-3 bg-slate-800 hover:bg-slate-700 text-blue-400 font-bold rounded-xl text-xs transition-all flex items-center justify-center gap-2"
+                            >
+                                <Link2Off className="w-4 h-4" />
+                                이 연결 끊기 규칙 추가
+                            </button>
+                            <p className="text-[10px] text-slate-500 text-center uppercase">주의: 이름이 공시 데이터와 정확히 일치해야 합니다.</p>
+                        </form>
+
                         {overrides.length === 0 ? (
                             <div className="bg-slate-900/40 border border-slate-800/50 border-dashed rounded-3xl p-12 text-center text-slate-500">
                                 적용된 규칙이 없습니다.
@@ -206,7 +270,10 @@ export default function AdminPage() {
                                                 <p className="text-[10px] text-slate-500 mt-0.5">{o[4]}</p>
                                             </div>
                                         </div>
-                                        <button className="p-2 text-slate-700 hover:text-red-400 transition-colors opacity-0 group-hover:opacity-100">
+                                        <button
+                                            onClick={() => handleDeleteOverride(i)}
+                                            className="p-2 text-slate-700 hover:text-red-400 transition-colors opacity-0 group-hover:opacity-100"
+                                        >
                                             <Trash2 className="w-5 h-5" />
                                         </button>
                                     </div>
