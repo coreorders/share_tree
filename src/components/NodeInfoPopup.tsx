@@ -253,10 +253,14 @@ export default function NodeInfoPopup({ data, position, onClose, onNavigate }: N
                                     </h3>
                                     <div className="space-y-0.5 max-h-28 overflow-y-auto">
                                         {data.shareholders.map((s: any, i: number) => (
-                                            <div key={i} className="flex justify-between items-center px-2 py-1 hover:bg-white/5 rounded text-xs">
-                                                <span className="truncate flex-1">{s.shareholder_name}</span>
+                                            <button
+                                                key={i}
+                                                className="flex w-full justify-between items-center px-2 py-1 hover:bg-white/10 rounded text-xs transition-colors"
+                                                onClick={() => onNavigate(s.shareholder_name, s.shareholder_name)}
+                                            >
+                                                <span className="truncate flex-1 text-left">{s.shareholder_name}</span>
                                                 <span className="text-blue-300 font-mono ml-2">{s.share_rate}%</span>
-                                            </div>
+                                            </button>
                                         ))}
                                     </div>
                                 </div>

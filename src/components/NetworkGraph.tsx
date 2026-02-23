@@ -50,7 +50,7 @@ function getColor(degree: number, maxDegree: number) {
 export default function NetworkGraph({ data, sizeMode, directionFilter, centerNodeId, onNodeClick, onNodeDoubleClick }: NetworkGraphProps) {
     const fgRef = useRef<any>(null);
     const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
-    const clickTimerRef = useRef<NodeJS.Timeout | null>(null);
+    const clickTimerRef = useRef<number>(0);
     const clickedNodeRef = useRef<any>(null);
 
     useEffect(() => {
@@ -168,14 +168,25 @@ export default function NetworkGraph({ data, sizeMode, directionFilter, centerNo
     }, [processedNodes, sizeMode]);
 
     const handleNodeClick = useCallback((node: any, event: MouseEvent) => {
-        // 단일 클릭 이벤트 즉시 실행
-        if (onNodeClick) {
-            onNodeClick(node.id, {
-                x: event.clientX,
-                y: event.clientY
-            });
+        const now = Date.now();
+        if (clickedNodeRef.current?.id === node.id && now - clickTimerRef.current < 400) {
+            // 더블클릭 발생 (같은 노드를 400ms 내에 다시 클릭)
+            clickTimerRef.current = 0;
+            if (onNodeDoubleClick) {
+                onNodeDoubleClick(node.id, node.label);
+            }
+        } else {
+            // 단일 클릭 처리 (지연 없이 즉시 실행)
+            clickedNodeRef.current = node;
+            clickTimerRef.current = now;
+            if (onNodeClick) {
+                onNodeClick(node.id, {
+                    x: event.clientX,
+                    y: event.clientY
+                });
+            }
         }
-    }, [onNodeClick]);
+    }, [onNodeClick, onNodeDoubleClick]);
 
     const paintNode = useCallback((node: any, ctx: CanvasRenderingContext2D, globalScale: number) => {
         const { x, y, val, color, label, id } = node;
