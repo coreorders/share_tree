@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import classNames from "classnames";
-import { Search, Loader2, Building2, User, ChevronDown, ChevronUp, Dice5 } from "lucide-react";
+import { Search, Loader2, Building2, User, ChevronDown, ChevronUp, Shuffle } from "lucide-react";
 
 interface FilterPanelProps {
     onSearch: (id: string, name: string, type: string) => void;
@@ -139,7 +139,7 @@ export default function FilterPanel({
                     className="px-3 py-2 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:bg-purple-600/50 hover:border-purple-500/50 transition-all flex-shrink-0"
                     title="랜덤 기업"
                 >
-                    <Dice5 className="w-4 h-4" />
+                    <Shuffle className="w-4 h-4" />
                 </button>
             </div>
 

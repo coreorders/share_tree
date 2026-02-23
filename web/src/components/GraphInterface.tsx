@@ -343,7 +343,7 @@ export default function GraphInterface() {
             )}
 
             {/* Footer */}
-            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10 text-[10px] text-slate-600 flex items-center gap-1">
+            <div className="fixed bottom-3 left-1/2 -translate-x-1/2 z-50 text-[10px] text-slate-500/80 flex items-center gap-1.5 pointer-events-auto bg-slate-900/40 px-3 py-1.5 rounded-full backdrop-blur-sm border border-slate-700/30">
                 <span>제작자 :</span>
                 <a href="https://mindaesik.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-200 transition-colors underline">민대식</a>
                 <span>|</span>

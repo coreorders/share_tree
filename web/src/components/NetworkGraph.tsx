@@ -256,6 +256,15 @@ export default function NetworkGraph({ data, sizeMode, directionFilter, nodeType
         }
     }, [centerNodeId]);
 
+    const nodePointerAreaPaint = useCallback((node: any, color: string, ctx: CanvasRenderingContext2D) => {
+        const { x, y, val } = node;
+        const r = Math.sqrt(val) * 4;
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(x, y, Math.max(r * 2.5, 15), 0, 2 * Math.PI, false);
+        ctx.fill();
+    }, []);
+
     const paintLink = useCallback((link: any, ctx: CanvasRenderingContext2D, globalScale: number) => {
         const start = link.source;
         const end = link.target;
@@ -356,6 +365,7 @@ export default function NetworkGraph({ data, sizeMode, directionFilter, nodeType
             height={dimensions.height}
             graphData={{ nodes: processedNodes, links: processedLinks }}
             nodeCanvasObject={paintNode}
+            nodePointerAreaPaint={nodePointerAreaPaint}
             linkCanvasObject={paintLink}
             onNodeClick={handleNodeClick}
             onBackgroundClick={onBackgroundClick}
