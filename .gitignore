@@ -5,3 +5,17 @@ web/.next/
 __pycache__/
 *.pyc
 web/out/
+
+# Unnecessary files
+*.ini
+*.xlsx
+*.db.backup
+stocks_new.db
+stocks.db
+Antigravity Template/
+analyze_*.py
+check_db.py
+fix_*.py
+scrape_dart.py
+update_nps.py
+web/test_data.py
