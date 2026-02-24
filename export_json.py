@@ -246,9 +246,16 @@ def export_to_json():
                 "responsibilities": e_dict['responsibilities']
             })
             
-            # Also track position for the person node
+            # Also track position for the person node - store ALL positions with company context
             n_name = clean_name(e_dict['name'])
             if n_name in nodes_dict and not nodes_dict[n_name]['isCompany']:
+                if 'positions' not in nodes_dict[n_name]:
+                    nodes_dict[n_name]['positions'] = []
+                nodes_dict[n_name]['positions'].append({
+                    "company": e_dict['corp_name'],
+                    "position": e_dict['position']
+                })
+                # Set the primary position only if not already set
                 if 'position' not in nodes_dict[n_name]:
                     nodes_dict[n_name]['position'] = e_dict['position']
 

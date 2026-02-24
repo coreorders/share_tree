@@ -8,7 +8,7 @@ import { Loader2 } from "lucide-react";
 
 // Types
 type Link = { source: string; target: string; value: number; label?: string; isSubsidiary?: boolean; direction?: string; isMutual?: boolean; edgeColor?: string };
-type Node = { id: string; label: string; stock_code?: string; market_cap?: number; close_price?: number; price_change?: number; change_rate?: number; isCompany: boolean; isListed: boolean; market?: string; depth?: number; isCenter?: boolean; position?: string; executives?: any[]; insiderTrades?: any[]; companyPosition?: string };
+type Node = { id: string; label: string; stock_code?: string; market_cap?: number; close_price?: number; price_change?: number; change_rate?: number; isCompany: boolean; isListed: boolean; market?: string; depth?: number; isCenter?: boolean; position?: string; executives?: any[]; insiderTrades?: any[]; companyPosition?: string; positions?: Array<{ company: string; position: string }> };
 
 const DynamicNetworkGraph = dynamic(() => import("./NetworkGraph"), {
     ssr: false,
@@ -232,7 +232,7 @@ export default function GraphInterface() {
                 setIsLoading(false);
             }
         }, 0);
-    }, [isDataLoaded, centerCorpCode, minShare, maxDepth, hideNps, unlistedFilter, allNodesMap, allLinks, resolveId, centerName]);
+    }, [isDataLoaded, centerCorpCode, minShare, maxDepth, hideNps, hidePerson, unlistedFilter, allNodesMap, allLinks, resolveId, centerName]);
 
     useEffect(() => {
         computeGraphData();
@@ -293,16 +293,15 @@ export default function GraphInterface() {
                 totalListedValue,
                 totalEstimatedValue: 0,
                 hasUnlisted,
-                // Improved context for person nodes: Find the specific company and their position in it
+                // Use positions array from node data for accurate position display
                 companyPosition: !nodeData.isCompany ? (
                     (() => {
-                        // Find a link where this person is the source (owner/insider)
-                        const primaryHolding = holdings.find(h => h.share_rate > 0);
-                        const companyName = primaryHolding ? primaryHolding.corp_name : "";
-                        const position = nodeData.position || "";
-
-                        if (companyName && position) return `${companyName} ${position}`;
-                        return companyName || position;
+                        const positions = nodeData.positions as Array<{ company: string; position: string }> | undefined;
+                        if (positions && positions.length > 0) {
+                            // Show all company+position pairs
+                            return positions.map((p: { company: string; position: string }) => `${p.company} ${p.position}`).join(', ');
+                        }
+                        return nodeData.position || "";
                     })()
                 ) : undefined
             };
