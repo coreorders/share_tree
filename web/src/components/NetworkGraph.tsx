@@ -186,8 +186,8 @@ export default function NetworkGraph({
     useEffect(() => {
         const fg = fgRef.current;
         if (fg) {
-            // Increase centering force and reduce collision explosion
-            fg.d3Force('charge', d3.forceManyBody().strength(-250).distanceMax(500));
+            // Reverted: Increase centering force and reduce collision explosion
+            fg.d3Force('charge', d3.forceManyBody().strength(-200).distanceMax(500));
             fg.d3Force('link', d3.forceLink().distance(70).strength(0.5));
             fg.d3Force('center', d3.forceCenter(0, 0).strength(0.1));
             fg.d3Force('collide', d3.forceCollide().radius((d: any) => Math.sqrt(d.val || 1) * 4 + 2).iterations(2));
@@ -304,12 +304,8 @@ export default function NetworkGraph({
         ctx.textBaseline = "middle";
         ctx.fillStyle = isCenterNode ? "#facc15" : "#ffffff";
 
-        // Enhancement: Show "Company Position" for person nodes
-        let displayLabel = label;
-        if (!node.isCompany && node.companyPosition) {
-            displayLabel = `${displayLabel} (${node.companyPosition})`;
-        }
-        ctx.fillText(displayLabel, x, y + r + fontSize);
+        // Reverted: Only show label, no position context on canvas
+        ctx.fillText(label, x, y + r + fontSize);
 
         // KOSPI / KOSDAQ Badge (Centered on node)
         if (node.isCompany && node.isListed && node.market) {

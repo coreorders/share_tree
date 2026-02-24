@@ -39,7 +39,8 @@ export default function GraphInterface() {
     const [showSubsidiaries, setShowSubsidiaries] = useState<boolean>(true);
     const [unlistedFilter, setUnlistedFilter] = useState<"hide" | "1-degree" | "2-degree">("hide");
     const [nodeTypeFilter, setNodeTypeFilter] = useState<"all" | "person" | "company">("all");
-    const [cohesion, setCohesion] = useState<number>(50); // New: 0 to 100
+    const [cohesion, setCohesion] = useState<number>(30); // Default to 30
+    const [hidePerson, setHidePerson] = useState<boolean>(false); // New: Hide personal nodes
 
     const [centerCorpCode, setCenterCorpCode] = useState<string>("");
     const [centerName, setCenterName] = useState<string>("");
@@ -215,22 +216,12 @@ export default function GraphInterface() {
 
                 const finalNodes = Array.from(resultNodes.values()).map(n => {
                     if (!n.isCompany) {
-                        // Find a company this person is related to to show context in label
-                        const personLinks = allLinks.filter(l => resolveId(l.source) === n.id || l.target === n.id);
-                        const companyLink = personLinks.find(l => {
-                            const otherId = resolveId(l.source) === n.id ? l.target : resolveId(l.source);
-                            return allNodesMap.get(otherId)?.isCompany;
-                        });
-
-                        if (companyLink) {
-                            const otherId = resolveId(companyLink.source) === n.id ? companyLink.target : resolveId(companyLink.source);
-                            const companyNode = allNodesMap.get(otherId);
-                            if (companyNode) {
-                                return { ...n, companyPosition: `${companyNode.label} ${n.position || ""}`.trim() };
-                            }
-                        }
+                        return { ...n, companyPosition: undefined };
                     }
                     return n;
+                }).filter(n => {
+                    if (hidePerson && !n.isCompany) return false;
+                    return true;
                 });
 
                 setGraphData({ nodes: finalNodes, links: resultEdges });
@@ -371,8 +362,8 @@ export default function GraphInterface() {
                 setUnlistedFilter={setUnlistedFilter}
                 nodeTypeFilter={nodeTypeFilter}
                 setNodeTypeFilter={setNodeTypeFilter}
-                cohesion={cohesion}
-                setCohesion={setCohesion}
+                hidePerson={hidePerson}
+                setHidePerson={setHidePerson}
                 currentCenterName={centerName}
                 allNodesMap={allNodesMap}
             />
