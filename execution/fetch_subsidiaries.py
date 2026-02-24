@@ -9,7 +9,7 @@ load_dotenv()
 
 DB_PATH = "web/stocks.db"
 API_KEY = os.getenv("DART_API_KEY")
-BASE_URL = "https://opendart.fss.or.kr/api/odsnCbhsSttus.json" # 타법인출자현황
+BASE_URL = "https://opendart.fss.or.kr/api/otrCprInvstmntSttus.json" # 타법인출자현황
 
 def fetch_subsidiaries(corp_code):
     """특정 기업의 타법인출자현황(종속기업 등) 데이터를 DART에서 가져옵니다."""
@@ -54,18 +54,21 @@ def run_bulk_collection():
         
         valid_count = 0
         for sub in subsidiaries:
-            sub_name = sub.get('corp_nm')
-            reason = sub.get('invt_purps', '').strip()
+            # 타법인출자현황 필드는 nm, invt_cpr_nm, corp_nm 등 유동적일 수 있음
+            sub_name = sub.get('nm') or sub.get('invt_cpr_nm') or sub.get('corp_nm')
+            # 출자 사유/관계는 relate, invt_purps, rm 등에 있을 수 있음
+            reason = sub.get('relate') or sub.get('invt_purps') or sub.get('rm', '')
+            reason = str(reason).strip()
             
             if not sub_name:
                 continue
 
-            # 지분율 및 주식수 클렌징
+            # 지분율 및 주식수 (응답 포맷에 따라 bsis_ 또는 trmend_ 접두어가 붙을 수 있음)
             try:
-                rate_str = sub.get('trmend_posesn_stock_rt', '0')
+                rate_str = sub.get('trmend_posesn_stock_qota_rt') or sub.get('trmend_posesn_stock_rt') or sub.get('bsis_posesn_stock_qota_rt') or '0'
                 rate = float(rate_str) if rate_str and rate_str != '-' else 0.0
                 
-                count_str = sub.get('trmend_posesn_stock_co', '0')
+                count_str = sub.get('trmend_posesn_stock_co') or sub.get('bsis_posesn_stock_co') or '0'
                 count = int(count_str.replace(',', '')) if count_str and count_str != '-' else 0
             except Exception as e:
                 rate, count = 0.0, 0

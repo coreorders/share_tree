@@ -34,9 +34,6 @@ jobs:
       - name: Update Market Cap & Close Price (KOSPI & KOSDAQ)
         run: python execution/update_market_cap.py
 
-      - name: Fetch Subsidiaries Data
-        run: python execution/fetch_subsidiaries.py
-
       - name: Export JSON for Frontend
         run: python export_json.py
         env:
