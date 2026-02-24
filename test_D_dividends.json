@@ -1,0 +1,179 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20240312000736",
+      "corp_cls": "Y",
+      "corp_code": "00126380",
+      "corp_name": "삼성전자",
+      "se": "주당액면가액(원)",
+      "thstrm": "100",
+      "frmtrm": "100",
+      "lwfr": "100",
+      "stlm_dt": "2023-12-31"
+    },
+    {
+      "rcept_no": "20240312000736",
+      "corp_cls": "Y",
+      "corp_code": "00126380",
+      "corp_name": "삼성전자",
+      "se": "(연결)당기순이익(백만원)",
+      "thstrm": "14,473,401",
+      "frmtrm": "54,730,018",
+      "lwfr": "39,243,791",
+      "stlm_dt": "2023-12-31"
+    },
+    {
+      "rcept_no": "20240312000736",
+      "corp_cls": "Y",
+      "corp_code": "00126380",
+      "corp_name": "삼성전자",
+      "se": "(별도)당기순이익(백만원)",
+      "thstrm": "25,397,099",
+      "frmtrm": "25,418,778",
+      "lwfr": "30,970,954",
+      "stlm_dt": "2023-12-31"
+    },
+    {
+      "rcept_no": "20240312000736",
+      "corp_cls": "Y",
+      "corp_code": "00126380",
+      "corp_name": "삼성전자",
+      "se": "(연결)주당순이익(원)",
+      "thstrm": "2,131",
+      "frmtrm": "8,057",
+      "lwfr": "5,777",
+      "stlm_dt": "2023-12-31"
+    },
+    {
+      "rcept_no": "20240312000736",
+      "corp_cls": "Y",
+      "corp_code": "00126380",
+      "corp_name": "삼성전자",
+      "se": "현금배당금총액(백만원)",
+      "thstrm": "9,809,438",
+      "frmtrm": "9,809,438",
+      "lwfr": "9,809,438",
+      "stlm_dt": "2023-12-31"
+    },
+    {
+      "rcept_no": "20240312000736",
+      "corp_cls": "Y",
+      "corp_code": "00126380",
+      "corp_name": "삼성전자",
+      "se": "주식배당금총액(백만원)",
+      "thstrm": "-",
+      "frmtrm": "-",
+      "lwfr": "-",
+      "stlm_dt": "2023-12-31"
+    },
+    {
+      "rcept_no": "20240312000736",
+      "corp_cls": "Y",
+      "corp_code": "00126380",
+      "corp_name": "삼성전자",
+      "se": "(연결)현금배당성향(%)",
+      "thstrm": "67.80",
+      "frmtrm": "17.90",
+      "lwfr": "25.00",
+      "stlm_dt": "2023-12-31"
+    },
+    {
+      "rcept_no": "20240312000736",
+      "corp_cls": "Y",
+      "corp_code": "00126380",
+      "corp_name": "삼성전자",
+      "se": "현금배당수익률(%)",
+      "stock_knd": "보통주",
+      "thstrm": "1.90",
+      "frmtrm": "2.50",
+      "lwfr": "1.80",
+      "stlm_dt": "2023-12-31"
+    },
+    {
+      "rcept_no": "20240312000736",
+      "corp_cls": "Y",
+      "corp_code": "00126380",
+      "corp_name": "삼성전자",
+      "se": "현금배당수익률(%)",
+      "stock_knd": "우선주",
+      "thstrm": "2.40",
+      "frmtrm": "2.70",
+      "lwfr": "2.00",
+      "stlm_dt": "2023-12-31"
+    },
+    {
+      "rcept_no": "20240312000736",
+      "corp_cls": "Y",
+      "corp_code": "00126380",
+      "corp_name": "삼성전자",
+      "se": "주식배당수익률(%)",
+      "stock_knd": "보통주",
+      "thstrm": "-",
+      "frmtrm": "-",
+      "lwfr": "-",
+      "stlm_dt": "2023-12-31"
+    },
+    {
+      "rcept_no": "20240312000736",
+      "corp_cls": "Y",
+      "corp_code": "00126380",
+      "corp_name": "삼성전자",
+      "se": "주식배당수익률(%)",
+      "stock_knd": "우선주",
+      "thstrm": "-",
+      "frmtrm": "-",
+      "lwfr": "-",
+      "stlm_dt": "2023-12-31"
+    },
+    {
+      "rcept_no": "20240312000736",
+      "corp_cls": "Y",
+      "corp_code": "00126380",
+      "corp_name": "삼성전자",
+      "se": "주당 현금배당금(원)",
+      "stock_knd": "보통주",
+      "thstrm": "1,444",
+      "frmtrm": "1,444",
+      "lwfr": "1,444",
+      "stlm_dt": "2023-12-31"
+    },
+    {
+      "rcept_no": "20240312000736",
+      "corp_cls": "Y",
+      "corp_code": "00126380",
+      "corp_name": "삼성전자",
+      "se": "주당 현금배당금(원)",
+      "stock_knd": "우선주",
+      "thstrm": "1,445",
+      "frmtrm": "1,445",
+      "lwfr": "1,445",
+      "stlm_dt": "2023-12-31"
+    },
+    {
+      "rcept_no": "20240312000736",
+      "corp_cls": "Y",
+      "corp_code": "00126380",
+      "corp_name": "삼성전자",
+      "se": "주당 주식배당(주)",
+      "stock_knd": "보통주",
+      "thstrm": "-",
+      "frmtrm": "-",
+      "lwfr": "-",
+      "stlm_dt": "2023-12-31"
+    },
+    {
+      "rcept_no": "20240312000736",
+      "corp_cls": "Y",
+      "corp_code": "00126380",
+      "corp_name": "삼성전자",
+      "se": "주당 주식배당(주)",
+      "stock_knd": "우선주",
+      "thstrm": "-",
+      "frmtrm": "-",
+      "lwfr": "-",
+      "stlm_dt": "2023-12-31"
+    }
+  ]
+}

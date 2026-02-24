@@ -13,12 +13,12 @@ interface FilterPanelProps {
     setMaxDepth: (val: number) => void;
     sizeMode: "share" | "market_cap";
     setSizeMode: (val: "share" | "market_cap") => void;
-    directionFilter: "all" | "outgoing" | "incoming";
-    setDirectionFilter: (val: "all" | "outgoing" | "incoming") => void;
     hideNps: boolean;
     setHideNps: (val: boolean) => void;
     showSubsidiaries: boolean;
     setShowSubsidiaries: (val: boolean) => void;
+    unlistedFilter: "hide" | "1-degree" | "2-degree";
+    setUnlistedFilter: (val: "hide" | "1-degree" | "2-degree") => void;
     nodeTypeFilter: "all" | "person" | "company";
     setNodeTypeFilter: (val: "all" | "person" | "company") => void;
     currentCenterName: string;
@@ -34,12 +34,12 @@ export default function FilterPanel({
     setMaxDepth,
     sizeMode,
     setSizeMode,
-    directionFilter,
-    setDirectionFilter,
     hideNps,
     setHideNps,
     showSubsidiaries,
     setShowSubsidiaries,
+    unlistedFilter,
+    setUnlistedFilter,
     nodeTypeFilter,
     setNodeTypeFilter,
     currentCenterName,
@@ -160,15 +160,6 @@ export default function FilterPanel({
                 "flex flex-col gap-3 overflow-hidden transition-all duration-300",
                 isExpanded ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0 sm:max-h-[600px] sm:opacity-100"
             )}>
-                <div className="flex flex-col gap-1.5">
-                    <label className="text-slate-300 font-medium text-xs">지분 방향</label>
-                    <div className="grid grid-cols-3 rounded-lg overflow-hidden border border-slate-700/50">
-                        <button onClick={() => setDirectionFilter("all")} className={classNames("py-1.5 text-xs transition-colors", directionFilter === "all" ? "bg-blue-600 font-medium" : "bg-slate-800/50 hover:bg-slate-700/50")}>전체</button>
-                        <button onClick={() => setDirectionFilter("outgoing")} className={classNames("py-1.5 text-xs transition-colors border-x border-slate-700/50", directionFilter === "outgoing" ? "bg-emerald-600 font-medium" : "bg-slate-800/50 hover:bg-slate-700/50")}>보유 지분</button>
-                        <button onClick={() => setDirectionFilter("incoming")} className={classNames("py-1.5 text-xs transition-colors", directionFilter === "incoming" ? "bg-orange-600 font-medium" : "bg-slate-800/50 hover:bg-slate-700/50")}>피보유 지분</button>
-                    </div>
-                </div>
-
                 <div className="grid grid-cols-2 gap-2">
                     <div className="flex flex-col gap-1">
                         <label className="text-slate-300 font-medium text-xs">최소 지분%</label>
@@ -201,11 +192,11 @@ export default function FilterPanel({
                 </div>
 
                 <div className="flex flex-col gap-1">
-                    <label className="text-slate-300 font-medium text-xs">노드 유형</label>
+                    <label className="text-slate-300 font-medium text-xs">비상장 기업</label>
                     <div className="grid grid-cols-3 rounded-lg overflow-hidden border border-slate-700/50">
-                        <button onClick={() => setNodeTypeFilter("all")} className={classNames("py-1.5 text-xs transition-colors", nodeTypeFilter === "all" ? "bg-blue-600 font-medium" : "bg-slate-800/50 hover:bg-slate-700/50")}>전체</button>
-                        <button onClick={() => setNodeTypeFilter("person")} className={classNames("py-1.5 text-xs transition-colors border-x border-slate-700/50", nodeTypeFilter === "person" ? "bg-emerald-600 font-medium" : "bg-slate-800/50 hover:bg-slate-700/50")}>개인</button>
-                        <button onClick={() => setNodeTypeFilter("company")} className={classNames("py-1.5 text-xs transition-colors", nodeTypeFilter === "company" ? "bg-red-600 font-medium" : "bg-slate-800/50 hover:bg-slate-700/50")}>기업</button>
+                        <button onClick={() => setUnlistedFilter("hide")} className={classNames("py-1.5 text-xs transition-colors", unlistedFilter === "hide" ? "bg-pink-700 font-medium" : "bg-slate-800/50 hover:bg-slate-700/50")}>숨기기</button>
+                        <button onClick={() => setUnlistedFilter("1-degree")} className={classNames("py-1.5 text-xs transition-colors border-x border-slate-700/50", unlistedFilter === "1-degree" ? "bg-pink-600 font-medium" : "bg-slate-800/50 hover:bg-slate-700/50")}>1촌</button>
+                        <button onClick={() => setUnlistedFilter("2-degree")} className={classNames("py-1.5 text-xs transition-colors", unlistedFilter === "2-degree" ? "bg-pink-500 font-medium" : "bg-slate-800/50 hover:bg-slate-700/50")}>2촌</button>
                     </div>
                 </div>
 

@@ -245,6 +245,12 @@ def export_to_json():
                 "career": e_dict['career'],
                 "responsibilities": e_dict['responsibilities']
             })
+            
+            # Also track position for the person node
+            n_name = clean_name(e_dict['name'])
+            if n_name in nodes_dict and not nodes_dict[n_name]['isCompany']:
+                if 'position' not in nodes_dict[n_name]:
+                    nodes_dict[n_name]['position'] = e_dict['position']
 
     # Fetch dividends and attach to nodes
     cursor.execute("""
@@ -301,6 +307,11 @@ def export_to_json():
                 "holdCnt": d['sp_stock_lmp_cnt'], "changeCnt": d['sp_stock_lmp_irds_cnt'],
                 "date": d['rcept_dt']
             })
+            # Also track position for the person node
+            n_name = clean_name(d['repror'])
+            if n_name in nodes_dict and not nodes_dict[n_name]['isCompany']:
+                if 'position' not in nodes_dict[n_name]:
+                    nodes_dict[n_name]['position'] = d['isu_exctv_ofcps']
 
     # Fetch treasury shares and attach to nodes
     cursor.execute("""

@@ -171,6 +171,11 @@ export default function NodeInfoPopup({ data, position, onClose, onNavigate }: N
                                     {data.market}
                                 </span>
                             )}
+                            {!isCompany && (data.position || data.title) && (
+                                <span className="ml-2 text-xs font-medium text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                                    {data.position || data.title}
+                                </span>
+                            )}
                         </h2>
                     </div>
                     <div className="flex items-center gap-1 flex-shrink-0">

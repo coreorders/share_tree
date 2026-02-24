@@ -35,9 +35,9 @@ export default function GraphInterface() {
     const [minShare, setMinShare] = useState<number>(1);
     const [maxDepth, setMaxDepth] = useState<number>(3);
     const [sizeMode, setSizeMode] = useState<"share" | "market_cap">("share");
-    const [directionFilter, setDirectionFilter] = useState<"all" | "outgoing" | "incoming">("all");
     const [hideNps, setHideNps] = useState<boolean>(true);
     const [showSubsidiaries, setShowSubsidiaries] = useState<boolean>(true);
+    const [unlistedFilter, setUnlistedFilter] = useState<"hide" | "1-degree" | "2-degree">("hide");
     const [nodeTypeFilter, setNodeTypeFilter] = useState<"all" | "person" | "company">("all");
 
     const [centerCorpCode, setCenterCorpCode] = useState<string>("");
@@ -55,7 +55,6 @@ export default function GraphInterface() {
     useEffect(() => {
         const fetchStaticData = async () => {
             try {
-                // public/data.json is loaded (Using relative path to support GitHub Pages basePath)
                 const res = await fetch('data.json');
                 const data = await res.json();
 
@@ -75,7 +74,6 @@ export default function GraphInterface() {
                 setNameToCorpCode(nameMap);
                 setIsDataLoaded(true);
 
-                // Set initial random center (e.g. Samsung Electronics '00126380' if available, or first available)
                 if (nodesMap.has('00126380')) {
                     setCenterCorpCode('00126380');
                     setCenterName('삼성전자');
@@ -91,11 +89,8 @@ export default function GraphInterface() {
         fetchStaticData();
     }, []);
 
-    // Load random company when data is ready
     const loadRandomCompany = useCallback(() => {
         if (!isDataLoaded || allNodesMap.size === 0) return;
-
-        // Pick a random listed company
         const listedCompanies = Array.from(allNodesMap.values()).filter(n => n.isListed && n.market_cap && n.market_cap > 0);
         if (listedCompanies.length > 0) {
             const randomNode = listedCompanies[Math.floor(Math.random() * listedCompanies.length)];
@@ -117,18 +112,15 @@ export default function GraphInterface() {
         if (!isDataLoaded || !centerCorpCode) return;
         setIsLoading(true);
 
-        // Run heavy computation in a setTimeout block to allow UI to show loader
         setTimeout(() => {
             try {
                 const resolvedCenter = resolveId(centerCorpCode);
-
                 const visitedEdges = new Set<string>();
                 const resultNodes = new Map<string, Node>();
                 const resultEdges: Link[] = [];
 
                 let currentDepthNodes = new Set<string>([resolvedCenter]);
 
-                // Initialize center node
                 if (allNodesMap.has(resolvedCenter)) {
                     const c = allNodesMap.get(resolvedCenter)!;
                     resultNodes.set(resolvedCenter, { ...c, depth: 0, isCenter: true });
@@ -136,31 +128,25 @@ export default function GraphInterface() {
                     resultNodes.set(resolvedCenter, { id: resolvedCenter, label: centerName || centerCorpCode, isCompany: false, isListed: false, depth: 0, isCenter: true });
                 }
 
-                // Filter links based on hideNps flag
                 let activeLinks = allLinks;
                 if (hideNps) {
                     const npsNameId = resolveId('국민연금공단');
                     activeLinks = activeLinks.filter(l => resolveId(l.source) !== npsNameId);
                 }
 
-                // Build adjacency maps
                 const outgoing = new Map<string, Link[]>();
                 const incoming = new Map<string, Link[]>();
 
                 for (const link of activeLinks) {
                     if (link.value < minShare) continue;
-
                     const ownerId = resolveId(link.source);
                     const targetId = link.target;
-
                     if (!outgoing.has(ownerId)) outgoing.set(ownerId, []);
                     outgoing.get(ownerId)!.push(link);
-
                     if (!incoming.has(targetId)) incoming.set(targetId, []);
                     incoming.get(targetId)!.push(link);
                 }
 
-                // BFS loop
                 for (let depth = 1; depth <= maxDepth; depth++) {
                     const nextDepthNodes = new Set<string>();
 
@@ -171,13 +157,24 @@ export default function GraphInterface() {
                                 const relTargetId = rel.target;
                                 const edgeKey = `${currId}_${relTargetId}`;
                                 if (!visitedEdges.has(edgeKey)) {
-                                    visitedEdges.add(edgeKey);
-                                    resultEdges.push({ source: currId, target: relTargetId, value: rel.value, label: rel.label });
-                                    nextDepthNodes.add(relTargetId);
+                                    const nodeData = allNodesMap.get(relTargetId) || { id: relTargetId, label: relTargetId, isCompany: false, isListed: false };
 
-                                    if (!resultNodes.has(relTargetId)) {
-                                        const nodeData = allNodesMap.get(relTargetId) || { id: relTargetId, label: relTargetId, isCompany: false, isListed: false };
-                                        resultNodes.set(relTargetId, { ...nodeData, depth, isCenter: false });
+                                    // Unlisted filter logic
+                                    const isUnlisted = nodeData.isCompany && !nodeData.isListed;
+                                    let shouldAdd = true;
+                                    if (isUnlisted) {
+                                        if (unlistedFilter === "hide") shouldAdd = false;
+                                        else if (unlistedFilter === "1-degree" && depth > 1) shouldAdd = false;
+                                        else if (unlistedFilter === "2-degree" && depth > 2) shouldAdd = false;
+                                    }
+
+                                    if (shouldAdd) {
+                                        visitedEdges.add(edgeKey);
+                                        resultEdges.push({ source: currId, target: relTargetId, value: rel.value, label: rel.label });
+                                        if (!resultNodes.has(relTargetId)) {
+                                            resultNodes.set(relTargetId, { ...nodeData, depth, isCenter: false });
+                                        }
+                                        nextDepthNodes.add(relTargetId);
                                     }
                                 }
                             }
@@ -189,19 +186,29 @@ export default function GraphInterface() {
                                 const relOwnerId = resolveId(rel.source);
                                 const edgeKey = `${relOwnerId}_${currId}`;
                                 if (!visitedEdges.has(edgeKey)) {
-                                    visitedEdges.add(edgeKey);
-                                    resultEdges.push({ source: relOwnerId, target: currId, value: rel.value, label: rel.label });
-                                    nextDepthNodes.add(relOwnerId);
+                                    const nodeData = allNodesMap.get(relOwnerId) || { id: relOwnerId, label: relOwnerId, isCompany: false, isListed: false };
 
-                                    if (!resultNodes.has(relOwnerId)) {
-                                        const nodeData = allNodesMap.get(relOwnerId) || { id: relOwnerId, label: relOwnerId, isCompany: false, isListed: false };
-                                        resultNodes.set(relOwnerId, { ...nodeData, depth, isCenter: false });
+                                    // Unlisted filter logic
+                                    const isUnlisted = nodeData.isCompany && !nodeData.isListed;
+                                    let shouldAdd = true;
+                                    if (isUnlisted) {
+                                        if (unlistedFilter === "hide") shouldAdd = false;
+                                        else if (unlistedFilter === "1-degree" && depth > 1) shouldAdd = false;
+                                        else if (unlistedFilter === "2-degree" && depth > 2) shouldAdd = false;
+                                    }
+
+                                    if (shouldAdd) {
+                                        visitedEdges.add(edgeKey);
+                                        resultEdges.push({ source: relOwnerId, target: currId, value: rel.value, label: rel.label });
+                                        if (!resultNodes.has(relOwnerId)) {
+                                            resultNodes.set(relOwnerId, { ...nodeData, depth, isCenter: false });
+                                        }
+                                        nextDepthNodes.add(relOwnerId);
                                     }
                                 }
                             }
                         }
                     }
-
                     currentDepthNodes = nextDepthNodes;
                 }
 
@@ -213,9 +220,8 @@ export default function GraphInterface() {
                 setIsLoading(false);
             }
         }, 0);
-    }, [isDataLoaded, centerCorpCode, minShare, maxDepth, hideNps, allNodesMap, allLinks, resolveId, centerName]);
+    }, [isDataLoaded, centerCorpCode, minShare, maxDepth, hideNps, unlistedFilter, allNodesMap, allLinks, resolveId, centerName]);
 
-    // Triggers graph computation when filters change
     useEffect(() => {
         computeGraphData();
     }, [computeGraphData]);
@@ -226,7 +232,6 @@ export default function GraphInterface() {
         setPopupData(null);
     };
 
-    // Client-side popup handling
     const handleNodeClick = useCallback((nodeId: string, event: { x: number; y: number }) => {
         const resolvedId = resolveId(nodeId);
         const nodeData = allNodesMap.get(resolvedId);
@@ -306,7 +311,6 @@ export default function GraphInterface() {
                 <DynamicNetworkGraph
                     data={graphData}
                     sizeMode={sizeMode}
-                    directionFilter={directionFilter}
                     nodeTypeFilter={nodeTypeFilter}
                     showSubsidiaries={showSubsidiaries}
                     centerNodeId={centerNodeId}
@@ -325,12 +329,12 @@ export default function GraphInterface() {
                 setMaxDepth={setMaxDepth}
                 sizeMode={sizeMode}
                 setSizeMode={setSizeMode}
-                directionFilter={directionFilter}
-                setDirectionFilter={setDirectionFilter}
                 hideNps={hideNps}
                 setHideNps={setHideNps}
                 showSubsidiaries={showSubsidiaries}
                 setShowSubsidiaries={setShowSubsidiaries}
+                unlistedFilter={unlistedFilter}
+                setUnlistedFilter={setUnlistedFilter}
                 nodeTypeFilter={nodeTypeFilter}
                 setNodeTypeFilter={setNodeTypeFilter}
                 currentCenterName={centerName}
@@ -346,7 +350,6 @@ export default function GraphInterface() {
                 />
             )}
 
-            {/* Footer */}
             <div className="fixed bottom-3 left-1/2 -translate-x-1/2 z-50 text-[10px] text-slate-500/80 flex items-center gap-1.5 w-max pointer-events-auto">
                 <span>제작자 :</span>
                 <a href="https://mindaesik.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-200 transition-colors underline">민대식</a>
