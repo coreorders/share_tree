@@ -239,7 +239,7 @@ export default function NetworkGraph({ data, sizeMode, directionFilter, nodeType
 
         // Ink bleed effect for insider trading signals (drawn BEFORE main circle for layering)
         const signal = node.insiderSignal;
-        if (signal && r > 2) {
+        if (signal && r > 2 && isFinite(x) && isFinite(y) && isFinite(r)) {
             const t = Date.now() / 3000; // slow rotation
             const inkR = r * 0.6;
             const inkDist = r * 0.55;
@@ -248,14 +248,21 @@ export default function NetworkGraph({ data, sizeMode, directionFilter, nodeType
                 const angle = t + angleOffset;
                 const ix = x + Math.cos(angle) * inkDist;
                 const iy = y + Math.sin(angle) * inkDist;
-                const grad = ctx.createRadialGradient(ix, iy, 0, ix, iy, inkR);
-                grad.addColorStop(0, rgba);
-                grad.addColorStop(0.4, rgba.replace(/[\d.]+\)$/, "0.15)"));
-                grad.addColorStop(1, rgba.replace(/[\d.]+\)$/, "0)"));
-                ctx.beginPath();
-                ctx.arc(ix, iy, inkR, 0, 2 * Math.PI);
-                ctx.fillStyle = grad;
-                ctx.fill();
+
+                if (!isFinite(ix) || !isFinite(iy) || !isFinite(inkR) || inkR <= 0) return;
+
+                try {
+                    const grad = ctx.createRadialGradient(ix, iy, 0, ix, iy, inkR);
+                    grad.addColorStop(0, rgba);
+                    grad.addColorStop(0.4, rgba.replace(/[\d.]+\)$/, "0.15)"));
+                    grad.addColorStop(1, rgba.replace(/[\d.]+\)$/, "0)"));
+                    ctx.beginPath();
+                    ctx.arc(ix, iy, inkR, 0, 2 * Math.PI);
+                    ctx.fillStyle = grad;
+                    ctx.fill();
+                } catch (e) {
+                    console.error("Radial gradient error:", e);
+                }
             };
 
             if (signal === "buy" || signal === "both") {
