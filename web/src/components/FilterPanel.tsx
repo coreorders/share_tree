@@ -232,8 +232,20 @@ export default function FilterPanel({
                 </div>
 
                 <div className="text-[10px] text-slate-500 space-y-1 border-t border-slate-700/20 pt-2">
-                    <p>🔴 상장 🩷 비상장 🟢 개인 🟠 기관/재단 🟡 중심</p>
-                    <p>➡️ 🟢 보유 🟠 피보유 🟡 상호</p>
+                    <div className="flex flex-wrap gap-x-2">
+                        <span>🔴 상장</span>
+                        <span>🩷 비상장</span>
+                        <span>🟢 개인</span>
+                        <span>🟠 기관/재단</span>
+                        <span>🟡 중심</span>
+                    </div>
+                    <div className="flex flex-wrap gap-x-2">
+                        <span>➡️ 🔵 1촌(보유)</span>
+                        <span>🟡 2촌</span>
+                        <span>🟠 3촌+</span>
+                        <span>🟢 종속/출자</span>
+                        <span>➰ 상호</span>
+                    </div>
                 </div>
             </div>
         </div>

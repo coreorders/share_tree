@@ -131,8 +131,10 @@ export default function NetworkGraph({
             const tDepth = nodesMap.get(targetId)?.depth ?? 0;
             const linkDepth = Math.max(sDepth, tDepth);
 
-            if (linkDepth <= 1) {
-                edgeColor = "rgba(34, 197, 94, 0.6)"; // Green for 1-depth (1촌)
+            if (l.isSubsidiary) {
+                edgeColor = "rgba(34, 197, 94, 0.6)"; // Green for subsidiaries/sub-investment
+            } else if (linkDepth <= 1) {
+                edgeColor = "rgba(96, 165, 250, 0.6)"; // Blue for direct ownership (1촌)
             } else if (linkDepth === 2) {
                 edgeColor = "rgba(250, 204, 21, 0.6)"; // Yellow for 2-depth (2촌)
             } else {
