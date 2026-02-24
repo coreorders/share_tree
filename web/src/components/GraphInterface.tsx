@@ -8,7 +8,7 @@ import { Loader2 } from "lucide-react";
 
 // Types
 type Link = { source: string; target: string; value: number; label?: string; isSubsidiary?: boolean; direction?: string; isMutual?: boolean; edgeColor?: string };
-type Node = { id: string; label: string; stock_code?: string; market_cap?: number; close_price?: number; price_change?: number; change_rate?: number; isCompany: boolean; isListed: boolean; market?: string; depth?: number; isCenter?: boolean };
+type Node = { id: string; label: string; stock_code?: string; market_cap?: number; close_price?: number; price_change?: number; change_rate?: number; isCompany: boolean; isListed: boolean; market?: string; depth?: number; isCenter?: boolean; position?: string; executives?: any[]; insiderTrades?: any[]; companyPosition?: string };
 
 const DynamicNetworkGraph = dynamic(() => import("./NetworkGraph"), {
     ssr: false,
@@ -280,7 +280,18 @@ export default function GraphInterface() {
                 totalShares,
                 totalListedValue,
                 totalEstimatedValue: 0,
-                hasUnlisted
+                hasUnlisted,
+                // Add context for person nodes: Find the company they are associated with in the current view
+                companyPosition: !nodeData.isCompany ? (
+                    (() => {
+                        const execReport = nodeData.executives || nodeData.insiderTrades || [];
+                        if (execReport.length > 0) {
+                            // This might need better logic if multiple companies, but for now take first
+                            return nodeData.position || "";
+                        }
+                        return "";
+                    })()
+                ) : undefined
             };
 
             setPopupData(enrichedData);

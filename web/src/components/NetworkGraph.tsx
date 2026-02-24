@@ -115,12 +115,17 @@ export default function NetworkGraph({ data, sizeMode, nodeTypeFilter, showSubsi
             const isMutual = edgePairs.has(reverseKey);
 
             let edgeColor: string;
-            if (isMutual) {
-                edgeColor = "rgba(250, 204, 21, 0.8)";
-            } else if (l.direction === 'outgoing') {
-                edgeColor = "rgba(52, 211, 153, 0.6)";
+            // Determine max depth between source and target for link coloring
+            const sDepth = nodesMap.get(sourceId)?.depth ?? 0;
+            const tDepth = nodesMap.get(targetId)?.depth ?? 0;
+            const linkDepth = Math.max(sDepth, tDepth);
+
+            if (linkDepth <= 1) {
+                edgeColor = "rgba(34, 197, 94, 0.6)"; // Green for 1-depth (1촌)
+            } else if (linkDepth === 2) {
+                edgeColor = "rgba(250, 204, 21, 0.6)"; // Yellow for 2-depth (2촌)
             } else {
-                edgeColor = "rgba(251, 146, 60, 0.6)";
+                edgeColor = "rgba(251, 146, 60, 0.6)"; // Orange for 3-depth+ (3촌 이상)
             }
 
             return { ...l, isMutual, edgeColor };
@@ -170,14 +175,19 @@ export default function NetworkGraph({ data, sizeMode, nodeTypeFilter, showSubsi
     useEffect(() => {
         const fg = fgRef.current;
         if (fg) {
-            fg.d3Force('charge', d3.forceManyBody().strength(-200));
-            fg.d3Force('link', d3.forceLink().distance(60));
-            fg.d3Force('center', d3.forceCenter(0, 0));
+            // Increase centering force and reduce collision explosion
+            fg.d3Force('charge', d3.forceManyBody().strength(-250).distanceMax(500));
+            fg.d3Force('link', d3.forceLink().distance(70).strength(0.5));
+            fg.d3Force('center', d3.forceCenter(0, 0).strength(0.1));
+            fg.d3Force('collide', d3.forceCollide().radius((d: any) => Math.sqrt(d.val || 1) * 4 + 2).iterations(2));
+
+            // Strongly pull everything to center to prevent "scattering"
+            fg.d3Force('radial', d3.forceRadial(0, 0, 0).strength(0.15));
 
             if (sizeMode === "market_cap") {
                 const maxMarketCap = Math.max(1, ...processedNodes.map((n: any) => n.market_cap || 0));
                 fg.d3Force('capGravity', d3.forceRadial(0, 0, 0).strength((d: any) => {
-                    return ((d.market_cap || 0) / maxMarketCap) * 0.1;
+                    return ((d.market_cap || 0) / maxMarketCap) * 0.2;
                 }));
             } else {
                 fg.d3Force('capGravity', null);
@@ -280,7 +290,13 @@ export default function NetworkGraph({ data, sizeMode, nodeTypeFilter, showSubsi
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         ctx.fillStyle = isCenterNode ? "#facc15" : "#ffffff";
-        ctx.fillText(label, x, y + r + fontSize);
+
+        // Enhancement: Show "Company Position" for person nodes
+        let displayLabel = label;
+        if (!node.isCompany && node.companyPosition) {
+            displayLabel = `${displayLabel} (${node.companyPosition})`;
+        }
+        ctx.fillText(displayLabel, x, y + r + fontSize);
 
         // KOSPI / KOSDAQ Badge (Centered on node)
         if (node.isCompany && node.isListed && node.market) {
