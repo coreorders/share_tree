@@ -202,7 +202,138 @@ def export_to_json():
             "isSubsidiary": True
         })
 
-    # Prepare final JSON
+    # Fetch compensations and attach to nodes
+    cursor.execute("""
+        SELECT c.*, cp.corp_name 
+        FROM compensations c
+        JOIN companies cp ON c.corp_code = cp.corp_code
+    """)
+    comps = cursor.fetchall()
+    
+    for c in comps:
+        c_dict = dict(c)
+        corp_name = clean_name(c_dict['corp_name'])
+        if corp_name in nodes_dict:
+            if 'compensations' not in nodes_dict[corp_name]:
+                nodes_dict[corp_name]['compensations'] = []
+            nodes_dict[corp_name]['compensations'].append({
+                "name": c_dict['name'],
+                "position": c_dict['position'],
+                "amount_str": c_dict['amount_str'],
+                "amount_num": c_dict['amount_num']
+            })
+
+    # Fetch executives and attach to nodes
+    cursor.execute("""
+        SELECT e.*, cp.corp_name 
+        FROM executives e
+        JOIN companies cp ON e.corp_code = cp.corp_code
+    """)
+    execs = cursor.fetchall()
+    
+    for e in execs:
+        e_dict = dict(e)
+        corp_name = clean_name(e_dict['corp_name'])
+        if corp_name in nodes_dict:
+            if 'executives' not in nodes_dict[corp_name]:
+                nodes_dict[corp_name]['executives'] = []
+            nodes_dict[corp_name]['executives'].append({
+                "name": e_dict['name'],
+                "position": e_dict['position'],
+                "birth_ym": e_dict['birth_ym'],
+                "is_registered": e_dict['is_registered'],
+                "career": e_dict['career'],
+                "responsibilities": e_dict['responsibilities']
+            })
+
+    # Fetch dividends and attach to nodes
+    cursor.execute("""
+        SELECT d.*, cp.corp_name 
+        FROM dividends d
+        JOIN companies cp ON d.corp_code = cp.corp_code
+    """)
+    for row in cursor.fetchall():
+        d = dict(row)
+        cn = clean_name(d['corp_name'])
+        if cn in nodes_dict:
+            if 'dividends' not in nodes_dict[cn]:
+                nodes_dict[cn]['dividends'] = []
+            nodes_dict[cn]['dividends'].append({
+                "se": d['se'], "stock_knd": d.get('stock_knd', ''),
+                "thstrm": d['thstrm'], "frmtrm": d['frmtrm'], "lwfr": d['lwfr']
+            })
+
+    # Fetch major shareholder changes and attach to nodes
+    cursor.execute("""
+        SELECT m.*, cp.corp_name 
+        FROM major_shareholder_changes m
+        JOIN companies cp ON m.corp_code = cp.corp_code
+        ORDER BY m.change_on DESC
+    """)
+    for row in cursor.fetchall():
+        d = dict(row)
+        cn = clean_name(d['corp_name'])
+        if cn in nodes_dict:
+            if 'majorChanges' not in nodes_dict[cn]:
+                nodes_dict[cn]['majorChanges'] = []
+            nodes_dict[cn]['majorChanges'].append({
+                "name": d['mxmm_shrholdr_nm'], "date": d['change_on'],
+                "shares": d['posesn_stock_co'], "rate": d['qota_rt'],
+                "cause": d['change_cause']
+            })
+
+    # Fetch insider trades (exec_shareholder_reports) and attach to nodes
+    cursor.execute("""
+        SELECT r.*, cp.corp_name 
+        FROM exec_shareholder_reports r
+        JOIN companies cp ON r.corp_code = cp.corp_code
+        ORDER BY r.rcept_dt DESC
+    """)
+    for row in cursor.fetchall():
+        d = dict(row)
+        cn = clean_name(d['corp_name'])
+        if cn in nodes_dict:
+            if 'insiderTrades' not in nodes_dict[cn]:
+                nodes_dict[cn]['insiderTrades'] = []
+            nodes_dict[cn]['insiderTrades'].append({
+                "name": d['repror'], "position": d['isu_exctv_ofcps'],
+                "regType": d['isu_exctv_rgist_at'],
+                "holdCnt": d['sp_stock_lmp_cnt'], "changeCnt": d['sp_stock_lmp_irds_cnt'],
+                "date": d['rcept_dt']
+            })
+
+    # Fetch treasury shares and attach to nodes
+    cursor.execute("""
+        SELECT t.*, cp.corp_name 
+        FROM treasury_shares t
+        JOIN companies cp ON t.corp_code = cp.corp_code
+    """)
+    for row in cursor.fetchall():
+        d = dict(row)
+        cn = clean_name(d['corp_name'])
+        if cn in nodes_dict:
+            if 'treasuryShares' not in nodes_dict[cn]:
+                nodes_dict[cn]['treasuryShares'] = []
+            nodes_dict[cn]['treasuryShares'].append({
+                "stockKnd": d['stock_knd'], "bsisQy": d['bsis_qy'],
+                "acqs": d['change_qy_acqs'], "dsps": d['change_qy_dsps'],
+                "trmendQy": d['trmend_qy']
+            })
+
+    # Compute insiderSignal for ink bleed effect
+    for cn, node in nodes_dict.items():
+        trades = node.get('insiderTrades', [])
+        if not trades:
+            continue
+        has_buy = any(t.get('changeCnt', 0) > 0 for t in trades)
+        has_sell = any(t.get('changeCnt', 0) < 0 for t in trades)
+        if has_buy and has_sell:
+            node['insiderSignal'] = 'both'
+        elif has_buy:
+            node['insiderSignal'] = 'buy'
+        elif has_sell:
+            node['insiderSignal'] = 'sell'
+
     export_data = {
         "nodes": list(nodes_dict.values()),
         "links": links,

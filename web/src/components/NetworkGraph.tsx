@@ -237,6 +237,35 @@ export default function NetworkGraph({ data, sizeMode, directionFilter, nodeType
             ctx.fill();
         }
 
+        // Ink bleed effect for insider trading signals (drawn BEFORE main circle for layering)
+        const signal = node.insiderSignal;
+        if (signal && r > 2) {
+            const t = Date.now() / 3000; // slow rotation
+            const inkR = r * 0.6;
+            const inkDist = r * 0.55;
+
+            const drawInk = (angleOffset: number, rgba: string) => {
+                const angle = t + angleOffset;
+                const ix = x + Math.cos(angle) * inkDist;
+                const iy = y + Math.sin(angle) * inkDist;
+                const grad = ctx.createRadialGradient(ix, iy, 0, ix, iy, inkR);
+                grad.addColorStop(0, rgba);
+                grad.addColorStop(0.4, rgba.replace(/[\d.]+\)$/, "0.15)"));
+                grad.addColorStop(1, rgba.replace(/[\d.]+\)$/, "0)"));
+                ctx.beginPath();
+                ctx.arc(ix, iy, inkR, 0, 2 * Math.PI);
+                ctx.fillStyle = grad;
+                ctx.fill();
+            };
+
+            if (signal === "buy" || signal === "both") {
+                drawInk(0, "rgba(239, 68, 68, 0.35)"); // red ink
+            }
+            if (signal === "sell" || signal === "both") {
+                drawInk(Math.PI, "rgba(59, 130, 246, 0.35)"); // blue ink
+            }
+        }
+
         ctx.beginPath();
         ctx.arc(x, y, r, 0, 2 * Math.PI, false);
         ctx.fillStyle = color;

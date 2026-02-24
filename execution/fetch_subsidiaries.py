@@ -54,10 +54,10 @@ def run_bulk_collection():
         
         valid_count = 0
         for sub in subsidiaries:
-            # 타법인출자현황 필드는 nm, invt_cpr_nm, corp_nm 등 유동적일 수 있음
-            sub_name = sub.get('nm') or sub.get('invt_cpr_nm') or sub.get('corp_nm')
-            # 출자 사유/관계는 relate, invt_purps, rm 등에 있을 수 있음
-            reason = sub.get('relate') or sub.get('invt_purps') or sub.get('rm', '')
+            # 타법인출자현황 필드는 inv_prm, nm, invt_cpr_nm, corp_nm 등 유동적
+            sub_name = sub.get('inv_prm') or sub.get('nm') or sub.get('invt_cpr_nm') or sub.get('corp_nm')
+            # 출자 사유/관계는 invstmnt_purps, relate, invt_purps, rm 등에 있을 수 있음
+            reason = sub.get('invstmnt_purps') or sub.get('relate') or sub.get('invt_purps') or sub.get('rm', '')
             reason = str(reason).strip()
             
             if not sub_name:
@@ -65,10 +65,10 @@ def run_bulk_collection():
 
             # 지분율 및 주식수 (응답 포맷에 따라 bsis_ 또는 trmend_ 접두어가 붙을 수 있음)
             try:
-                rate_str = sub.get('trmend_posesn_stock_qota_rt') or sub.get('trmend_posesn_stock_rt') or sub.get('bsis_posesn_stock_qota_rt') or '0'
+                rate_str = sub.get('trmend_blce_qota_rt') or sub.get('trmend_posesn_stock_qota_rt') or sub.get('trmend_posesn_stock_rt') or sub.get('bsis_blce_qota_rt') or sub.get('bsis_posesn_stock_qota_rt') or '0'
                 rate = float(rate_str) if rate_str and rate_str != '-' else 0.0
                 
-                count_str = sub.get('trmend_posesn_stock_co') or sub.get('bsis_posesn_stock_co') or '0'
+                count_str = sub.get('trmend_blce_qy') or sub.get('trmend_posesn_stock_co') or sub.get('bsis_blce_qy') or sub.get('bsis_posesn_stock_co') or '0'
                 count = int(count_str.replace(',', '')) if count_str and count_str != '-' else 0
             except Exception as e:
                 rate, count = 0.0, 0
