@@ -17,6 +17,8 @@ interface FilterPanelProps {
     setDirectionFilter: (val: "all" | "outgoing" | "incoming") => void;
     hideNps: boolean;
     setHideNps: (val: boolean) => void;
+    showSubsidiaries: boolean;
+    setShowSubsidiaries: (val: boolean) => void;
     nodeTypeFilter: "all" | "person" | "company";
     setNodeTypeFilter: (val: "all" | "person" | "company") => void;
     currentCenterName: string;
@@ -36,6 +38,8 @@ export default function FilterPanel({
     setDirectionFilter,
     hideNps,
     setHideNps,
+    showSubsidiaries,
+    setShowSubsidiaries,
     nodeTypeFilter,
     setNodeTypeFilter,
     currentCenterName,
@@ -205,14 +209,22 @@ export default function FilterPanel({
                     </div>
                 </div>
 
-                <div className="flex items-center gap-2 pt-1 border-t border-slate-700/20 mt-1">
+                <div className="flex flex-col gap-2 pt-1 border-t border-slate-700/20 mt-1">
                     <label className="flex items-center gap-2 text-[11px] text-slate-300 cursor-pointer w-full hover:text-white transition-colors">
                         <div className="relative flex items-center">
                             <input type="checkbox" className="sr-only" checked={hideNps} onChange={(e) => setHideNps(e.target.checked)} />
                             <div className={classNames("block w-7 h-4 rounded-full transition-colors", hideNps ? "bg-emerald-500" : "bg-slate-700")}></div>
                             <div className={classNames("absolute left-[2px] bg-white w-3 h-3 rounded-full transition-transform", hideNps ? "transform translate-x-3" : "")}></div>
                         </div>
-                        <span className="flex-1">국민연금 숨기기 (너무 거대한 노드)</span>
+                        <span className="flex-1">국민연금 등 초대형 노드 숨기기</span>
+                    </label>
+                    <label className="flex items-center gap-2 text-[11px] text-slate-300 cursor-pointer w-full hover:text-white transition-colors">
+                        <div className="relative flex items-center">
+                            <input type="checkbox" className="sr-only" checked={showSubsidiaries} onChange={(e) => setShowSubsidiaries(e.target.checked)} />
+                            <div className={classNames("block w-7 h-4 rounded-full transition-colors", showSubsidiaries ? "bg-violet-500" : "bg-slate-700")}></div>
+                            <div className={classNames("absolute left-[2px] bg-white w-3 h-3 rounded-full transition-transform", showSubsidiaries ? "transform translate-x-3" : "")}></div>
+                        </div>
+                        <span className="flex-1">종속/타법인출자 관계 표시</span>
                     </label>
                 </div>
 

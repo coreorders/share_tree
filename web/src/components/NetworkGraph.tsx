@@ -28,6 +28,8 @@ interface Link {
     direction?: string;
     isMutual?: boolean;
     edgeColor?: string;
+    isSubsidiary?: boolean;
+    label?: string;
 }
 
 interface NetworkGraphProps {
@@ -35,6 +37,7 @@ interface NetworkGraphProps {
     sizeMode: "share" | "market_cap";
     directionFilter: "all" | "outgoing" | "incoming";
     nodeTypeFilter: "all" | "person" | "company";
+    showSubsidiaries: boolean;
     centerNodeId: string;
     onNodeClick?: (nodeId: string, event: { x: number; y: number }) => void;
     onNodeDoubleClick?: (nodeId: string, nodeLabel: string) => void;
@@ -50,7 +53,7 @@ function getColor(degree: number, maxDegree: number) {
     return `rgb(${r}, ${g}, ${b})`;
 }
 
-export default function NetworkGraph({ data, sizeMode, directionFilter, nodeTypeFilter, centerNodeId, onNodeClick, onNodeDoubleClick, onBackgroundClick }: NetworkGraphProps) {
+export default function NetworkGraph({ data, sizeMode, directionFilter, nodeTypeFilter, showSubsidiaries, centerNodeId, onNodeClick, onNodeDoubleClick, onBackgroundClick }: NetworkGraphProps) {
     const fgRef = useRef<any>(null);
     const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
     const clickTimerRef = useRef<number>(0);
@@ -80,6 +83,10 @@ export default function NetworkGraph({ data, sizeMode, directionFilter, nodeType
             const targetId = typeof l.target === 'object' ? l.target.id : l.target;
             return typeFilteredNodeIds.has(sourceId) && typeFilteredNodeIds.has(targetId);
         });
+
+        if (!showSubsidiaries) {
+            filteredLinks = filteredLinks.filter(l => !l.isSubsidiary);
+        }
 
         if (directionFilter === "outgoing") {
             filteredLinks = filteredLinks.filter(l => l.direction === 'outgoing');
@@ -164,7 +171,7 @@ export default function NetworkGraph({ data, sizeMode, directionFilter, nodeType
         });
 
         return { processedNodes: nodesArr, processedLinks: processedLinksList };
-    }, [data, sizeMode, directionFilter, nodeTypeFilter, centerNodeId]);
+    }, [data, sizeMode, directionFilter, nodeTypeFilter, showSubsidiaries, centerNodeId]);
 
     useEffect(() => {
         const fg = fgRef.current;
@@ -268,11 +275,16 @@ export default function NetworkGraph({ data, sizeMode, directionFilter, nodeType
     const paintLink = useCallback((link: any, ctx: CanvasRenderingContext2D, globalScale: number) => {
         const start = link.source;
         const end = link.target;
-        const linkColor = link.edgeColor || "rgba(96, 165, 250, 0.4)";
+
+        let linkColor = link.edgeColor || "rgba(96, 165, 250, 0.4)";
+        if (link.isSubsidiary) {
+            linkColor = "rgba(34, 197, 94, 0.6)"; // Green for subsidiaries
+        }
 
         const baseThickness = link.isMutual
             ? Math.max(1.5, (link.value / 100) * 12)
             : Math.max(0.5, (link.value / 100) * 8);
+
         const thickness = baseThickness / globalScale;
 
         if (link.isMutual) {
@@ -346,6 +358,27 @@ export default function NetworkGraph({ data, sizeMode, directionFilter, nodeType
             ctx.textBaseline = "bottom";
             ctx.fillText(`${link.value.toFixed(1)}%`, 0, -2 / globalScale);
             ctx.restore();
+
+            // Subsidiary reason logic
+            if (link.isSubsidiary && link.label && link.label.includes('[')) {
+                ctx.save();
+                ctx.translate(midX, midY);
+                // Adjust text placement below the percentage text
+                ctx.rotate(textAngle > Math.PI / 2 || textAngle < -Math.PI / 2 ? textAngle + Math.PI : textAngle);
+
+                const reasonFontSize = Math.max(2, 7 / globalScale);
+                ctx.font = `${reasonFontSize}px Pretendard, sans-serif`;
+                ctx.fillStyle = "rgba(167, 243, 208, 0.9)"; // light green
+                ctx.textAlign = "center";
+                ctx.textBaseline = "top";
+
+                // Extract reason from label, assuming format: [Reason] 40.0%
+                const reasonMatch = link.label.match(/\[(.*?)\]/);
+                if (reasonMatch && reasonMatch[1]) {
+                    ctx.fillText(reasonMatch[1], 0, 2 / globalScale);
+                }
+                ctx.restore();
+            }
         }
     }, []);
 

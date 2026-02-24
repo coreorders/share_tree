@@ -35,6 +35,20 @@ def init_db():
     )
     ''')
 
+    # 종속기업/타법인출자 정보 테이블
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS subsidiaries (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        corp_code TEXT,
+        subsidiary_name TEXT,
+        share_rate REAL,
+        shares_count INTEGER,
+        reason TEXT,
+        collected_at DATETIME,
+        FOREIGN KEY (corp_code) REFERENCES companies (corp_code)
+    )
+    ''')
+
     conn.commit()
     conn.close()
     print(f"Database initialized at {os.path.abspath(DB_PATH)}")

@@ -148,6 +148,60 @@ def export_to_json():
             "label": f"{share_rate}%"
         })
 
+    # Fetch and add subsidiaries
+    cursor.execute("""
+        SELECT s.*, c.corp_name as source_corp_name 
+        FROM subsidiaries s
+        JOIN companies c ON s.corp_code = c.corp_code
+    """)
+    subsidiaries = cursor.fetchall()
+
+    for s in subsidiaries:
+        s_dict = dict(s)
+        source_code = s_dict['corp_code']
+        source_name = s_dict['source_corp_name']
+        target_name = s_dict['subsidiary_name']
+        share_rate = s_dict['share_rate']
+        reason = s_dict.get('reason', '')
+        
+        if not share_rate or share_rate <= 0:
+            continue
+            
+        # Check override delete rules (direction is source -> target)
+        n_src = clean_name(source_name)
+        n_tgt = clean_name(target_name)
+        
+        if (n_src, n_tgt) in delete_rules:
+            print(f"🚫 Removing override subsidiary link: {source_name} -> {target_name}")
+            continue
+
+        normalized_target = clean_name(target_name)
+        if normalized_target not in nodes_dict:
+            nodes_dict[normalized_target] = {
+                "id": normalized_target, # Use normalized as ID
+                "label": target_name.replace(' ', '').strip(),
+                "isCompany": True, # Subsidiaries are companies
+                "isListed": False,
+                "market": "NONE"
+            }
+        
+        target_node_id = nodes_dict[normalized_target]["id"]
+        
+        # Source must be the listed company already in nodes_dict
+        normalized_source = clean_name(source_name)
+        source_node_id = nodes_dict.get(normalized_source, {}).get("id", source_code)
+
+        label_text = f"[{reason}] {share_rate}%" if reason else f"{share_rate}%"
+
+        links.append({
+            "source": source_node_id,
+            "target": target_node_id,
+            "value": share_rate,
+            "shares_count": s_dict.get('shares_count', 0),
+            "label": label_text,
+            "isSubsidiary": True
+        })
+
     # Prepare final JSON
     export_data = {
         "nodes": list(nodes_dict.values()),

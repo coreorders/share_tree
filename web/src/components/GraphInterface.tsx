@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 import { Loader2 } from "lucide-react";
 
 // Types
-type Link = { source: string; target: string; value: number; label?: string };
+type Link = { source: string; target: string; value: number; label?: string; isSubsidiary?: boolean; direction?: string; isMutual?: boolean; edgeColor?: string };
 type Node = { id: string; label: string; stock_code?: string; market_cap?: number; close_price?: number; price_change?: number; change_rate?: number; isCompany: boolean; isListed: boolean; market?: string; depth?: number; isCenter?: boolean };
 
 const DynamicNetworkGraph = dynamic(() => import("./NetworkGraph"), {
@@ -37,6 +37,7 @@ export default function GraphInterface() {
     const [sizeMode, setSizeMode] = useState<"share" | "market_cap">("share");
     const [directionFilter, setDirectionFilter] = useState<"all" | "outgoing" | "incoming">("all");
     const [hideNps, setHideNps] = useState<boolean>(true);
+    const [showSubsidiaries, setShowSubsidiaries] = useState<boolean>(true);
     const [nodeTypeFilter, setNodeTypeFilter] = useState<"all" | "person" | "company">("all");
 
     const [centerCorpCode, setCenterCorpCode] = useState<string>("");
@@ -307,6 +308,7 @@ export default function GraphInterface() {
                     sizeMode={sizeMode}
                     directionFilter={directionFilter}
                     nodeTypeFilter={nodeTypeFilter}
+                    showSubsidiaries={showSubsidiaries}
                     centerNodeId={centerNodeId}
                     onNodeClick={handleNodeClick}
                     onNodeDoubleClick={handleNodeDoubleClick}
@@ -327,6 +329,8 @@ export default function GraphInterface() {
                 setDirectionFilter={setDirectionFilter}
                 hideNps={hideNps}
                 setHideNps={setHideNps}
+                showSubsidiaries={showSubsidiaries}
+                setShowSubsidiaries={setShowSubsidiaries}
                 nodeTypeFilter={nodeTypeFilter}
                 setNodeTypeFilter={setNodeTypeFilter}
                 currentCenterName={centerName}
