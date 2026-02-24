@@ -39,6 +39,7 @@ export default function GraphInterface() {
     const [showSubsidiaries, setShowSubsidiaries] = useState<boolean>(true);
     const [unlistedFilter, setUnlistedFilter] = useState<"hide" | "1-degree" | "2-degree">("hide");
     const [nodeTypeFilter, setNodeTypeFilter] = useState<"all" | "person" | "company">("all");
+    const [cohesion, setCohesion] = useState<number>(50); // New: 0 to 100
 
     const [centerCorpCode, setCenterCorpCode] = useState<string>("");
     const [centerName, setCenterName] = useState<string>("");
@@ -212,7 +213,27 @@ export default function GraphInterface() {
                     currentDepthNodes = nextDepthNodes;
                 }
 
-                setGraphData({ nodes: Array.from(resultNodes.values()), links: resultEdges });
+                const finalNodes = Array.from(resultNodes.values()).map(n => {
+                    if (!n.isCompany) {
+                        // Find a company this person is related to to show context in label
+                        const personLinks = allLinks.filter(l => resolveId(l.source) === n.id || l.target === n.id);
+                        const companyLink = personLinks.find(l => {
+                            const otherId = resolveId(l.source) === n.id ? l.target : resolveId(l.source);
+                            return allNodesMap.get(otherId)?.isCompany;
+                        });
+
+                        if (companyLink) {
+                            const otherId = resolveId(companyLink.source) === n.id ? companyLink.target : resolveId(companyLink.source);
+                            const companyNode = allNodesMap.get(otherId);
+                            if (companyNode) {
+                                return { ...n, companyPosition: `${companyNode.label} ${n.position || ""}`.trim() };
+                            }
+                        }
+                    }
+                    return n;
+                });
+
+                setGraphData({ nodes: finalNodes, links: resultEdges });
                 setCenterNodeId(resolvedCenter);
             } catch (err) {
                 console.error("BFS computation error:", err);
@@ -281,15 +302,16 @@ export default function GraphInterface() {
                 totalListedValue,
                 totalEstimatedValue: 0,
                 hasUnlisted,
-                // Add context for person nodes: Find the company they are associated with in the current view
+                // Improved context for person nodes: Find the specific company and their position in it
                 companyPosition: !nodeData.isCompany ? (
                     (() => {
-                        const execReport = nodeData.executives || nodeData.insiderTrades || [];
-                        if (execReport.length > 0) {
-                            // This might need better logic if multiple companies, but for now take first
-                            return nodeData.position || "";
-                        }
-                        return "";
+                        // Find a link where this person is the source (owner/insider)
+                        const primaryHolding = holdings.find(h => h.share_rate > 0);
+                        const companyName = primaryHolding ? primaryHolding.corp_name : "";
+                        const position = nodeData.position || "";
+
+                        if (companyName && position) return `${companyName} ${position}`;
+                        return companyName || position;
                     })()
                 ) : undefined
             };
@@ -325,6 +347,7 @@ export default function GraphInterface() {
                     nodeTypeFilter={nodeTypeFilter}
                     showSubsidiaries={showSubsidiaries}
                     centerNodeId={centerNodeId}
+                    cohesion={cohesion}
                     onNodeClick={handleNodeClick}
                     onNodeDoubleClick={handleNodeDoubleClick}
                     onBackgroundClick={() => setPopupData(null)}
@@ -348,6 +371,8 @@ export default function GraphInterface() {
                 setUnlistedFilter={setUnlistedFilter}
                 nodeTypeFilter={nodeTypeFilter}
                 setNodeTypeFilter={setNodeTypeFilter}
+                cohesion={cohesion}
+                setCohesion={setCohesion}
                 currentCenterName={centerName}
                 allNodesMap={allNodesMap}
             />

@@ -38,6 +38,7 @@ interface NetworkGraphProps {
     nodeTypeFilter: "all" | "person" | "company";
     showSubsidiaries: boolean;
     centerNodeId: string;
+    cohesion?: number;
     onNodeClick?: (nodeId: string, event: { x: number; y: number }) => void;
     onNodeDoubleClick?: (nodeId: string, nodeLabel: string) => void;
     onBackgroundClick?: () => void;
@@ -52,7 +53,17 @@ function getColor(degree: number, maxDegree: number) {
     return `rgb(${r}, ${g}, ${b})`;
 }
 
-export default function NetworkGraph({ data, sizeMode, nodeTypeFilter, showSubsidiaries, centerNodeId, onNodeClick, onNodeDoubleClick, onBackgroundClick }: NetworkGraphProps) {
+export default function NetworkGraph({
+    data,
+    sizeMode,
+    nodeTypeFilter,
+    showSubsidiaries,
+    centerNodeId,
+    cohesion = 50,
+    onNodeClick,
+    onNodeDoubleClick,
+    onBackgroundClick
+}: NetworkGraphProps) {
     const fgRef = useRef<any>(null);
     const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
     const clickTimerRef = useRef<number>(0);
@@ -182,7 +193,9 @@ export default function NetworkGraph({ data, sizeMode, nodeTypeFilter, showSubsi
             fg.d3Force('collide', d3.forceCollide().radius((d: any) => Math.sqrt(d.val || 1) * 4 + 2).iterations(2));
 
             // Strongly pull everything to center to prevent "scattering"
-            fg.d3Force('radial', d3.forceRadial(0, 0, 0).strength(0.15));
+            // Use cohesion prop (0-100) to adjust radial force (0 to 0.3)
+            const cohesionStrength = (cohesion / 100) * 0.3;
+            fg.d3Force('radial', d3.forceRadial(0, 0, 0).strength(cohesionStrength));
 
             if (sizeMode === "market_cap") {
                 const maxMarketCap = Math.max(1, ...processedNodes.map((n: any) => n.market_cap || 0));

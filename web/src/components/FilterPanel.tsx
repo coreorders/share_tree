@@ -21,6 +21,8 @@ interface FilterPanelProps {
     setUnlistedFilter: (val: "hide" | "1-degree" | "2-degree") => void;
     nodeTypeFilter: "all" | "person" | "company";
     setNodeTypeFilter: (val: "all" | "person" | "company") => void;
+    cohesion: number;
+    setCohesion: (val: number) => void;
     currentCenterName: string;
     allNodesMap: Map<string, any>;
 }
@@ -42,6 +44,8 @@ export default function FilterPanel({
     setUnlistedFilter,
     nodeTypeFilter,
     setNodeTypeFilter,
+    cohesion,
+    setCohesion,
     currentCenterName,
     allNodesMap,
 }: FilterPanelProps) {
@@ -198,6 +202,21 @@ export default function FilterPanel({
                         <button onClick={() => setUnlistedFilter("1-degree")} className={classNames("py-1.5 text-xs transition-colors border-x border-slate-700/50", unlistedFilter === "1-degree" ? "bg-pink-600 font-medium" : "bg-slate-800/50 hover:bg-slate-700/50")}>1촌</button>
                         <button onClick={() => setUnlistedFilter("2-degree")} className={classNames("py-1.5 text-xs transition-colors", unlistedFilter === "2-degree" ? "bg-pink-500 font-medium" : "bg-slate-800/50 hover:bg-slate-700/50")}>2촌</button>
                     </div>
+                </div>
+
+                <div className="flex flex-col gap-1 pt-1 border-t border-slate-700/20">
+                    <label className="text-slate-300 font-medium text-[11px] flex justify-between">
+                        <span>중앙 응집력</span>
+                        <span className="text-blue-400 font-mono">{cohesion}%</span>
+                    </label>
+                    <input
+                        type="range"
+                        min="0"
+                        max="100"
+                        value={cohesion}
+                        onChange={(e) => setCohesion(Number(e.target.value))}
+                        className="w-full h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-500"
+                    />
                 </div>
 
                 <div className="flex flex-col gap-2 pt-1 border-t border-slate-700/20 mt-1">
