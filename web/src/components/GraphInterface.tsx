@@ -5,8 +5,6 @@ import FilterPanel from "./FilterPanel";
 import NodeInfoPopup from "./NodeInfoPopup";
 import dynamic from "next/dynamic";
 import { Loader2 } from "lucide-react";
-import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { Suspense } from "react";
 
 // Types
 type Link = { source: string; target: string; value: number; label?: string; isSubsidiary?: boolean; direction?: string; isMutual?: boolean; edgeColor?: string };
@@ -28,24 +26,6 @@ function normalizeName(name: string) {
 }
 
 export default function GraphInterface() {
-    return (
-        <Suspense fallback={
-            <div className="w-full h-full flex items-center justify-center flex-col gap-4 text-slate-400">
-                <Loader2 className="w-8 h-8 animate-spin text-blue-500" />
-                <p>로딩 중...</p>
-            </div>
-        }>
-            <GraphContent />
-        </Suspense>
-    );
-}
-
-function GraphContent() {
-    // Navigation hooks
-    const router = useRouter();
-    const pathname = usePathname();
-    const searchParams = useSearchParams();
-
     // Top-level Static Data state
     const [allNodesMap, setAllNodesMap] = useState<Map<string, Node>>(new Map());
     const [allLinks, setAllLinks] = useState<Link[]>([]);
@@ -95,7 +75,8 @@ function GraphContent() {
                 setAllLinks(data.links || []);
                 setNameToCorpCode(nameMap);
 
-                // Initial setup from URL or default
+                // Initial setup from URL or default using raw window.location
+                const searchParams = new URLSearchParams(window.location.search);
                 const urlCorp = searchParams.get('corp');
                 const urlMin = searchParams.get('min');
                 const urlDepth = searchParams.get('depth');
@@ -131,7 +112,8 @@ function GraphContent() {
             }
         };
         fetchStaticData();
-    }, []); // Dependency is EMPTY, so it only runs once!
+    }, []);
+    // Dependency is EMPTY, so it only runs once!
 
     // 2. Update URL when states change (Silent Update)
     useEffect(() => {
