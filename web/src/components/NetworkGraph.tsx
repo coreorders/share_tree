@@ -176,7 +176,9 @@ export default function NetworkGraph({
             }
 
             if (sizeMode === "market_cap") {
-                n.val = Math.max(1, ((n.market_cap || 0) / maxMarketCap) * 30 + 1);
+                // If company has market_cap, use it. If not (person/unlisted), use totalListedValue if available.
+                const baseVal = n.market_cap || (n as any).totalListedValue || 0;
+                n.val = Math.max(1, (baseVal / maxMarketCap) * 30 + 1);
             } else {
                 n.val = Math.max(1, ((n.outgoingShares || 0) / maxShares) * 20 + 2);
             }

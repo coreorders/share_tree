@@ -266,10 +266,22 @@ export default function GraphInterface() {
                 }
 
                 const finalNodes = Array.from(resultNodes.values()).map(n => {
-                    if (!n.isCompany) {
-                        return { ...n, companyPosition: undefined };
+                    // Pre-calculate total value for sizing (even for people)
+                    let totalVal = 0;
+                    if (n.market_cap) {
+                        totalVal = n.market_cap;
+                    } else {
+                        // For people/unlisted, sum up their listed holdings
+                        const nodeHoldings = allLinks.filter(l => l.source === n.id);
+                        nodeHoldings.forEach(l => {
+                            const targetNode = allNodesMap.get(l.target);
+                            if (targetNode && targetNode.isListed && targetNode.market_cap) {
+                                totalVal += (targetNode.market_cap * l.value) / 100;
+                            }
+                        });
                     }
-                    return n;
+
+                    return { ...n, totalListedValue: totalVal };
                 }).filter(n => {
                     if (hidePerson && !n.isCompany) return false;
                     return true;

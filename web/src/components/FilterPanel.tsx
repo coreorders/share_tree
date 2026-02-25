@@ -107,6 +107,14 @@ export default function FilterPanel({
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                         onFocus={() => setIsExpanded(true)}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter" && results.length > 0) {
+                                const r = results[0];
+                                onSearch(r.id, r.label, r.type);
+                                setQuery("");
+                                setResults([]);
+                            }
+                        }}
                     />
                     {results.length > 0 && (
                         <div
