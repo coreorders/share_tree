@@ -29,23 +29,8 @@ jobs:
       - name: Initialize DB (if missing)
         run: python execution/init_db.py
 
-      - name: Run Weekly Extra Collection (Insider/Treasury/Dividends)
-        run: python execution/fetch_weekly_extra.py
-        env:
-          DART_API_KEY: ${{ secrets.DART_API_KEY }}
-
-      - name: Run Major Shareholder Changes Collection
-        run: python execution/fetch_major_shareholder_changes.py
-        env:
-          DART_API_KEY: ${{ secrets.DART_API_KEY }}
-
-      - name: Run Subsidiaries Collection
-        run: python execution/fetch_subsidiaries.py
-        env:
-          DART_API_KEY: ${{ secrets.DART_API_KEY }}
-
-      - name: Run Executives Collection
-        run: python execution/fetch_executives.py
+      - name: Run Unified Weekly Data Collection
+        run: python execution/fetch_weekly_all.py
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
 
