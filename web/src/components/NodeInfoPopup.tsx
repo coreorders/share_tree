@@ -54,7 +54,7 @@ export default function NodeInfoPopup({ data, position, onClose, onNavigate }: N
             const w = Math.min(384, window.innerWidth - 32);
             setPos({
                 x: (window.innerWidth - w) / 2,
-                y: Math.max(16, (window.innerHeight - 500) / 2),
+                y: window.innerHeight * 0.1,
             });
         }
     }, [data]);
@@ -579,32 +579,32 @@ export default function NodeInfoPopup({ data, position, onClose, onNavigate }: N
                 </div >
 
                 {/* Footer Links */}
-                < div className="p-2.5 sm:p-3 border-t border-slate-700/50 flex gap-2 flex-shrink-0 flex-wrap" >
+                <div className="p-2 sm:p-2.5 border-t border-slate-700/50 flex gap-1 flex-shrink-0 justify-center" >
                     <a href={naverSearchUrl} target="_blank" rel="noopener noreferrer"
-                        className="flex items-center gap-1.5 px-3 py-1.5 bg-green-600/80 hover:bg-green-600 rounded-lg text-xs font-medium transition-colors">
-                        <ExternalLink className="w-3 h-3" /> 네이버 검색
+                        className="flex items-center gap-1 px-2 py-1.5 bg-green-600/80 hover:bg-green-600 rounded-lg text-[10px] sm:text-xs font-medium transition-colors whitespace-nowrap">
+                        <ExternalLink className="w-3 h-3" /> 네이버
                     </a>
                     {
                         naverFinanceUrl && (
                             <a href={naverFinanceUrl} target="_blank" rel="noopener noreferrer"
-                                className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-600/80 hover:bg-blue-600 rounded-lg text-xs font-medium transition-colors">
-                                <TrendingUp className="w-3 h-3" /> 네이버 금융
+                                className="flex items-center gap-1 px-2 py-1.5 bg-blue-600/80 hover:bg-blue-600 rounded-lg text-[10px] sm:text-xs font-medium transition-colors whitespace-nowrap">
+                                <TrendingUp className="w-3 h-3" /> 금융
                             </a>
                         )
                     }
                     {
                         naverDiscussionUrl && (
                             <a href={naverDiscussionUrl} target="_blank" rel="noopener noreferrer"
-                                className="flex items-center gap-1.5 px-3 py-1.5 bg-orange-600/80 hover:bg-orange-600 rounded-lg text-xs font-medium transition-colors">
-                                <MessageSquare className="w-3 h-3" /> 종목토론
+                                className="flex items-center gap-1 px-2 py-1.5 bg-orange-600/80 hover:bg-orange-600 rounded-lg text-[10px] sm:text-xs font-medium transition-colors whitespace-nowrap">
+                                <MessageSquare className="w-3 h-3" /> 종토방
                             </a>
                         )
                     }
                     {
                         dartUrl && (
                             <a href={dartUrl} target="_blank" rel="noopener noreferrer"
-                                className="flex items-center gap-1.5 px-3 py-1.5 bg-purple-600/80 hover:bg-purple-600 rounded-lg text-xs font-medium transition-colors">
-                                <ExternalLink className="w-3 h-3" /> DART 공시
+                                className="flex items-center gap-1 px-2 py-1.5 bg-purple-600/80 hover:bg-purple-600 rounded-lg text-[10px] sm:text-xs font-medium transition-colors whitespace-nowrap">
+                                <ExternalLink className="w-3 h-3" /> DART
                             </a>
                         )
                     }

@@ -68,6 +68,9 @@ export default function GraphInterface() {
                         nodesMap.set(n.id, n);
                         nameMap.set(normalizeName(n.label), n.id);
                         nameMap.set(n.label, n.id);
+                        if (n.stock_code) {
+                            nameMap.set(n.stock_code, n.id);
+                        }
                     });
                 }
 
