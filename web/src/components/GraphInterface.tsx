@@ -5,6 +5,8 @@ import FilterPanel from "./FilterPanel";
 import NodeInfoPopup from "./NodeInfoPopup";
 import dynamic from "next/dynamic";
 import { Loader2 } from "lucide-react";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { Suspense } from "react";
 
 // Types
 type Link = { source: string; target: string; value: number; label?: string; isSubsidiary?: boolean; direction?: string; isMutual?: boolean; edgeColor?: string };
@@ -26,6 +28,24 @@ function normalizeName(name: string) {
 }
 
 export default function GraphInterface() {
+    return (
+        <Suspense fallback={
+            <div className="w-full h-full flex items-center justify-center flex-col gap-4 text-slate-400">
+                <Loader2 className="w-8 h-8 animate-spin text-blue-500" />
+                <p>로딩 중...</p>
+            </div>
+        }>
+            <GraphContent />
+        </Suspense>
+    );
+}
+
+function GraphContent() {
+    // Navigation hooks
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+
     // Top-level Static Data state
     const [allNodesMap, setAllNodesMap] = useState<Map<string, Node>>(new Map());
     const [allLinks, setAllLinks] = useState<Link[]>([]);
@@ -74,9 +94,29 @@ export default function GraphInterface() {
                 setAllNodesMap(nodesMap);
                 setAllLinks(data.links || []);
                 setNameToCorpCode(nameMap);
-                setIsDataLoaded(true);
 
-                if (nodesMap.has('00126380')) {
+                // Initial setup from URL or default
+                const urlCorp = searchParams.get('corp');
+                const urlMin = searchParams.get('min');
+                const urlDepth = searchParams.get('depth');
+                const urlSize = searchParams.get('size');
+                const urlUnlisted = searchParams.get('unlisted');
+                const urlHidePerson = searchParams.get('hidePerson');
+                const urlHideNps = searchParams.get('hideNps');
+                const urlSub = searchParams.get('subsidiaries');
+
+                if (urlMin) setMinShare(Number(urlMin));
+                if (urlDepth) setMaxDepth(Number(urlDepth));
+                if (urlSize === 'share' || urlSize === 'market_cap') setSizeMode(urlSize);
+                if (urlUnlisted === 'hide' || urlUnlisted === '1-degree' || urlUnlisted === '2-degree') setUnlistedFilter(urlUnlisted);
+                if (urlHidePerson !== null) setHidePerson(urlHidePerson === 'true');
+                if (urlHideNps !== null) setHideNps(urlHideNps === 'true');
+                if (urlSub !== null) setShowSubsidiaries(urlSub === 'true');
+
+                if (urlCorp && nodesMap.has(urlCorp)) {
+                    setCenterCorpCode(urlCorp);
+                    setCenterName(nodesMap.get(urlCorp)?.label || "");
+                } else if (nodesMap.has('00126380')) {
                     setCenterCorpCode('00126380');
                     setCenterName('삼성전자');
                 } else if (data.nodes.length > 0) {
@@ -84,12 +124,31 @@ export default function GraphInterface() {
                     setCenterName(data.nodes[0].label);
                 }
 
+                setIsDataLoaded(true);
+
             } catch (err) {
                 console.error("Failed to load static data:", err);
             }
         };
         fetchStaticData();
-    }, []);
+    }, [searchParams]);
+
+    // 2. Update URL when states change
+    useEffect(() => {
+        if (!isDataLoaded) return;
+
+        const params = new URLSearchParams();
+        if (centerCorpCode) params.set('corp', centerCorpCode);
+        params.set('min', minShare.toString());
+        params.set('depth', maxDepth.toString());
+        params.set('size', sizeMode);
+        params.set('unlisted', unlistedFilter);
+        params.set('hidePerson', hidePerson.toString());
+        params.set('hideNps', hideNps.toString());
+        params.set('subsidiaries', showSubsidiaries.toString());
+
+        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    }, [centerCorpCode, minShare, maxDepth, sizeMode, unlistedFilter, hidePerson, hideNps, showSubsidiaries, isDataLoaded, pathname, router]);
 
     const loadRandomCompany = useCallback(() => {
         if (!isDataLoaded || allNodesMap.size === 0) return;
