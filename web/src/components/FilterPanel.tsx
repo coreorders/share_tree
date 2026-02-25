@@ -60,7 +60,9 @@ export default function FilterPanel({
 
             // Search locally in memory
             const matched = nodesArray.filter(n =>
-                n.label.toLowerCase().includes(q) || n.id.includes(q)
+                n.label.toLowerCase().includes(q) ||
+                n.id.includes(q) ||
+                (n.stock_code && n.stock_code.includes(q))
             ).slice(0, 50); // Limit to top 50 results
 
             setResults(matched);
