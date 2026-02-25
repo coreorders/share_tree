@@ -73,7 +73,7 @@ function GraphContent() {
     const [popupData, setPopupData] = useState<any>(null);
     const [popupPosition, setPopupPosition] = useState({ x: 0, y: 0 });
 
-    // 1. Initial Data Fetch (data.json)
+    // 1. Initial Data Fetch (data.json) - Runs ONLY ONCE on mount
     useEffect(() => {
         const fetchStaticData = async () => {
             try {
@@ -131,7 +131,7 @@ function GraphContent() {
             }
         };
         fetchStaticData();
-    }, [searchParams]);
+    }, []); // Dependency is EMPTY, so it only runs once!
 
     // 2. Update URL when states change
     useEffect(() => {
