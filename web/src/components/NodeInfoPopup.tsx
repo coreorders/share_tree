@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import { X, ExternalLink, TrendingUp, TrendingDown, Users, Building2, User, Banknote, GripHorizontal, RefreshCw, AlertTriangle, Send } from "lucide-react";
+import { X, ExternalLink, TrendingUp, TrendingDown, Users, Building2, User, Banknote, GripHorizontal, RefreshCw, AlertTriangle, Send, MessageSquare } from "lucide-react";
 
 interface NodeInfoPopupProps {
     data: any;
@@ -103,6 +103,9 @@ export default function NodeInfoPopup({ data, position, onClose, onNavigate }: N
         : null;
     const naverFinanceUrl = isCompany && data.stock_code
         ? `https://finance.naver.com/item/main.naver?code=${data.stock_code}`
+        : null;
+    const naverDiscussionUrl = isCompany && data.stock_code
+        ? `https://finance.naver.com/item/board.naver?code=${data.stock_code}`
         : null;
 
     const effectivePrice = data.close_price;
@@ -586,6 +589,14 @@ export default function NodeInfoPopup({ data, position, onClose, onNavigate }: N
                             <a href={naverFinanceUrl} target="_blank" rel="noopener noreferrer"
                                 className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-600/80 hover:bg-blue-600 rounded-lg text-xs font-medium transition-colors">
                                 <TrendingUp className="w-3 h-3" /> 네이버 금융
+                            </a>
+                        )
+                    }
+                    {
+                        naverDiscussionUrl && (
+                            <a href={naverDiscussionUrl} target="_blank" rel="noopener noreferrer"
+                                className="flex items-center gap-1.5 px-3 py-1.5 bg-orange-600/80 hover:bg-orange-600 rounded-lg text-xs font-medium transition-colors">
+                                <MessageSquare className="w-3 h-3" /> 종목토론
                             </a>
                         )
                     }
