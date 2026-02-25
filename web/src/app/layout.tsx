@@ -22,6 +22,7 @@ export default function RootLayout({
     <html lang="ko">
       <head>
         <link rel="stylesheet" as="style" crossOrigin="anonymous" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="40dd6713-3832-4771-8a28-b6da265fa5e1"></script>
       </head>
       <body>
         {children}
