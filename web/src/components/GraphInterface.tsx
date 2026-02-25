@@ -133,7 +133,7 @@ function GraphContent() {
         fetchStaticData();
     }, []); // Dependency is EMPTY, so it only runs once!
 
-    // 2. Update URL when states change
+    // 2. Update URL when states change (Silent Update)
     useEffect(() => {
         if (!isDataLoaded) return;
 
@@ -147,8 +147,15 @@ function GraphContent() {
         params.set('hideNps', hideNps.toString());
         params.set('subsidiaries', showSubsidiaries.toString());
 
-        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-    }, [centerCorpCode, minShare, maxDepth, sizeMode, unlistedFilter, hidePerson, hideNps, showSubsidiaries, isDataLoaded, pathname, router]);
+        const newSearch = params.toString();
+        const currentSearch = window.location.search.replace(/^\?/, '');
+
+        // Only update if something actually changed to avoid overhead
+        if (newSearch !== currentSearch) {
+            const newUrl = `${window.location.pathname}?${newSearch}`;
+            window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
+        }
+    }, [centerCorpCode, minShare, maxDepth, sizeMode, unlistedFilter, hidePerson, hideNps, showSubsidiaries, isDataLoaded]);
 
     const loadRandomCompany = useCallback(() => {
         if (!isDataLoaded || allNodesMap.size === 0) return;
