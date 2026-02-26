@@ -70,9 +70,9 @@ def export_to_json():
     companies = cursor.fetchall()
     
     nodes_dict = {}
-    # Helper to clean names: remove (주) and all spaces, then apply alias mapping
+    # Helper to clean names: remove (주), ㈜ and all spaces, then apply alias mapping
     def clean_name(name):
-        n = name.replace('(주)', '').replace(' ', '').strip()
+        n = name.replace('(주)', '').replace('㈜', '').replace(' ', '').strip()
         return alias_map.get(n, n)
 
     for c in companies:
@@ -127,7 +127,7 @@ def export_to_json():
         n_tgt = clean_name(target_name)
         
         if (n_src, n_tgt) in delete_rules:
-            print(f"🚫 Removing override link: {source_name} -> {target_name}")
+            print(f"[REMOVED] Override link: {source_name} -> {target_name}")
             continue
 
         normalized_source = clean_name(source_name)
@@ -179,7 +179,7 @@ def export_to_json():
         n_tgt = clean_name(target_name)
         
         if (n_src, n_tgt) in delete_rules:
-            print(f"🚫 Removing override subsidiary link: {source_name} -> {target_name}")
+            print(f"[REMOVED] Override subsidiary link: {source_name} -> {target_name}")
             continue
 
         normalized_target = clean_name(target_name)
@@ -372,7 +372,7 @@ def export_to_json():
     with open(OUTPUT_PATH, 'w', encoding='utf-8') as f:
         json.dump(export_data, f, ensure_ascii=False, indent=2)
         
-    print(f"✅ Success! Data exported to {OUTPUT_PATH}")
+    print(f"[SUCCESS] Data exported to {OUTPUT_PATH}")
     
     # Calculate file size
     size_mb = os.path.getsize(OUTPUT_PATH) / (1024 * 1024)
