@@ -596,6 +596,22 @@ export default function GraphInterface() {
                 </div>
             )}
 
+            {/* Desktop Keyboard Shortcuts Guide */}
+            {!isScreenshotting && (
+                <div className="hidden sm:flex fixed bottom-6 right-6 z-40 text-[11px] text-slate-500/60 flex-col items-end gap-1 pointer-events-none drop-shadow-md font-medium tracking-wide">
+                    <p>단축키 가이드</p>
+                    <div className="flex gap-3 mt-1">
+                        <span><kbd className="font-sans border border-slate-600/40 rounded px-1 min-w-[18px] inline-block text-center mr-1 pb-0.5">R</kbd>랜덤 기업</span>
+                        <span><kbd className="font-sans border border-slate-600/40 rounded px-1 min-w-[18px] inline-block text-center mr-1 pb-0.5">S</kbd>스크린샷</span>
+                        <span><kbd className="font-sans border border-slate-600/40 rounded px-1 min-w-[18px] inline-block text-center mr-1 pb-0.5">C</kbd>링크 복사</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <span><kbd className="font-sans border border-slate-600/40 rounded px-1 min-w-[18px] inline-block text-center mr-1 pb-0.5">Q</kbd>종토방</span>
+                        <span><kbd className="font-sans border border-slate-600/40 rounded px-1 min-w-[18px] inline-block text-center mr-1 pb-0.5">1-5</kbd>팝업 탭 이동</span>
+                    </div>
+                </div>
+            )}
+
             {!isScreenshotting && (
                 <div className="fixed bottom-3 left-1/2 -translate-x-1/2 z-50 text-[10px] text-slate-500/80 flex items-center gap-1.5 w-max pointer-events-auto">
                     <span>제작자 :</span>
