@@ -1,6 +1,9 @@
 name: Daily ShareGraph Data Update & Deploy
 
 on:
+  push:
+    branches:
+      - main
   schedule:
     # Run at 38 minutes past the hour from 09:00 to 17:00 KST (00:00 to 08:00 UTC)
     - cron: '38 0-8 * * *'
