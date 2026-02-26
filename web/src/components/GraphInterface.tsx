@@ -509,7 +509,7 @@ export default function GraphInterface() {
             } else if (key === 's') {
                 e.preventDefault();
                 handleScreenshot();
-            } else if (key === 'c') {
+            } else if (key === 'w') {
                 e.preventDefault();
                 handleShareLink();
             }
@@ -583,7 +583,7 @@ export default function GraphInterface() {
                     <button
                         onClick={handleShareLink}
                         className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600/90 hover:bg-blue-500 backdrop-blur-md rounded-full flex items-center justify-center text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all group"
-                        title="현재 설정 링크 복사 (단축키: C)"
+                        title="현재 설정 링크 복사 (단축키: W)"
                     >
                         <Share2 className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform" />
                     </button>
@@ -597,7 +597,7 @@ export default function GraphInterface() {
                     <div className="flex gap-3 mt-1">
                         <span><kbd className="font-sans border border-slate-600/40 rounded px-1 min-w-[18px] inline-block text-center mr-1 pb-0.5">R</kbd>랜덤 기업</span>
                         <span><kbd className="font-sans border border-slate-600/40 rounded px-1 min-w-[18px] inline-block text-center mr-1 pb-0.5">S</kbd>스크린샷</span>
-                        <span><kbd className="font-sans border border-slate-600/40 rounded px-1 min-w-[18px] inline-block text-center mr-1 pb-0.5">C</kbd>링크 복사</span>
+                        <span><kbd className="font-sans border border-slate-600/40 rounded px-1 min-w-[18px] inline-block text-center mr-1 pb-0.5">W</kbd>링크 복사</span>
                     </div>
                     <div className="flex gap-2">
                         <span><kbd className="font-sans border border-slate-600/40 rounded px-1 min-w-[18px] inline-block text-center mr-1 pb-0.5">Q</kbd>종토방</span>
