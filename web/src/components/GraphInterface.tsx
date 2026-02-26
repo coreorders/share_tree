@@ -37,7 +37,6 @@ export default function GraphInterface() {
     const [maxDepth, setMaxDepth] = useState<number>(3);
     const [sizeMode, setSizeMode] = useState<"share" | "market_cap">("share");
     const [hideNps, setHideNps] = useState<boolean>(true);
-    const [showSubsidiaries, setShowSubsidiaries] = useState<boolean>(true);
     const [unlistedFilter, setUnlistedFilter] = useState<"hide" | "1-degree" | "2-degree">("hide");
     const [nodeTypeFilter, setNodeTypeFilter] = useState<"all" | "person" | "company">("all");
     const [cohesion, setCohesion] = useState<number>(30); // Default to 30
@@ -97,8 +96,6 @@ export default function GraphInterface() {
                 if (urlUnlisted === 'hide' || urlUnlisted === '1-degree' || urlUnlisted === '2-degree') setUnlistedFilter(urlUnlisted);
                 if (urlHidePerson !== null) setHidePerson(urlHidePerson === 'true');
                 if (urlHideNps !== null) setHideNps(urlHideNps === 'true');
-                if (urlSub !== null) setShowSubsidiaries(urlSub === 'true');
-
                 if (urlCorp && nodesMap.has(urlCorp)) {
                     setCenterCorpCode(urlCorp);
                     setCenterName(nodesMap.get(urlCorp)?.label || "");
@@ -132,7 +129,6 @@ export default function GraphInterface() {
         params.set('unlisted', unlistedFilter);
         params.set('hidePerson', hidePerson.toString());
         params.set('hideNps', hideNps.toString());
-        params.set('subsidiaries', showSubsidiaries.toString());
 
         const newSearch = params.toString();
         const currentSearch = window.location.search.replace(/^\?/, '');
@@ -142,7 +138,7 @@ export default function GraphInterface() {
             const newUrl = `${window.location.pathname}?${newSearch}`;
             window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
         }
-    }, [centerCorpCode, minShare, maxDepth, sizeMode, unlistedFilter, hidePerson, hideNps, showSubsidiaries, isDataLoaded]);
+    }, [centerCorpCode, minShare, maxDepth, sizeMode, unlistedFilter, hidePerson, hideNps, isDataLoaded]);
 
 
 
@@ -534,7 +530,6 @@ export default function GraphInterface() {
                     data={graphData}
                     sizeMode={sizeMode}
                     nodeTypeFilter={nodeTypeFilter}
-                    showSubsidiaries={showSubsidiaries}
                     centerNodeId={centerNodeId}
                     cohesion={cohesion}
                     onNodeClick={handleNodeClick}
@@ -555,8 +550,6 @@ export default function GraphInterface() {
                     setSizeMode={setSizeMode}
                     hideNps={hideNps}
                     setHideNps={setHideNps}
-                    showSubsidiaries={showSubsidiaries}
-                    setShowSubsidiaries={setShowSubsidiaries}
                     unlistedFilter={unlistedFilter}
                     setUnlistedFilter={setUnlistedFilter}
                     nodeTypeFilter={nodeTypeFilter}

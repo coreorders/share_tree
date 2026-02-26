@@ -15,8 +15,6 @@ interface FilterPanelProps {
     setSizeMode: (val: "share" | "market_cap") => void;
     hideNps: boolean;
     setHideNps: (val: boolean) => void;
-    showSubsidiaries: boolean;
-    setShowSubsidiaries: (val: boolean) => void;
     unlistedFilter: "hide" | "1-degree" | "2-degree";
     setUnlistedFilter: (val: "hide" | "1-degree" | "2-degree") => void;
     nodeTypeFilter: "all" | "person" | "company";
@@ -38,8 +36,6 @@ export default function FilterPanel({
     setSizeMode,
     hideNps,
     setHideNps,
-    showSubsidiaries,
-    setShowSubsidiaries,
     unlistedFilter,
     setUnlistedFilter,
     nodeTypeFilter,
@@ -216,11 +212,6 @@ export default function FilterPanel({
 
                 <div className="flex flex-col gap-2 pt-1 border-t border-slate-700/20 mt-1">
                     <label className="flex items-center gap-2 text-[11px] text-slate-300 cursor-pointer w-full hover:text-white transition-colors">
-                        <div className="relative flex items-center">
-                            <input type="checkbox" className="sr-only" checked={hidePerson} onChange={(e) => setHidePerson(e.target.checked)} />
-                            <div className={classNames("block w-7 h-4 rounded-full transition-colors", hidePerson ? "bg-emerald-500" : "bg-slate-700")}></div>
-                            <div className={classNames("absolute left-[2px] bg-white w-3 h-3 rounded-full transition-transform", hidePerson ? "transform translate-x-3" : "")}></div>
-                        </div>
                         <span className="flex-1">개인(초록색 원) 숨기기</span>
                     </label>
                     <label className="flex items-center gap-2 text-[11px] text-slate-300 cursor-pointer w-full hover:text-white transition-colors">
@@ -230,14 +221,6 @@ export default function FilterPanel({
                             <div className={classNames("absolute left-[2px] bg-white w-3 h-3 rounded-full transition-transform", hideNps ? "transform translate-x-3" : "")}></div>
                         </div>
                         <span className="flex-1">국민연금 등 초대형 노드 숨기기</span>
-                    </label>
-                    <label className="flex items-center gap-2 text-[11px] text-slate-300 cursor-pointer w-full hover:text-white transition-colors">
-                        <div className="relative flex items-center">
-                            <input type="checkbox" className="sr-only" checked={showSubsidiaries} onChange={(e) => setShowSubsidiaries(e.target.checked)} />
-                            <div className={classNames("block w-7 h-4 rounded-full transition-colors", showSubsidiaries ? "bg-violet-500" : "bg-slate-700")}></div>
-                            <div className={classNames("absolute left-[2px] bg-white w-3 h-3 rounded-full transition-transform", showSubsidiaries ? "transform translate-x-3" : "")}></div>
-                        </div>
-                        <span className="flex-1">종속/타법인출자 관계 표시</span>
                     </label>
                 </div>
 

@@ -36,7 +36,6 @@ interface NetworkGraphProps {
     data: { nodes: Node[]; links: Link[] };
     sizeMode: "share" | "market_cap";
     nodeTypeFilter: "all" | "person" | "company";
-    showSubsidiaries: boolean;
     centerNodeId: string;
     cohesion?: number;
     onNodeClick?: (nodeId: string, event: { x: number; y: number }) => void;
@@ -57,7 +56,6 @@ export default function NetworkGraph({
     data,
     sizeMode,
     nodeTypeFilter,
-    showSubsidiaries,
     centerNodeId,
     cohesion = 50,
     onNodeClick,
@@ -93,10 +91,6 @@ export default function NetworkGraph({
             const targetId = typeof l.target === 'object' ? l.target.id : l.target;
             return typeFilteredNodeIds.has(sourceId) && typeFilteredNodeIds.has(targetId);
         });
-
-        if (!showSubsidiaries) {
-            filteredLinks = filteredLinks.filter(l => !l.isSubsidiary);
-        }
 
         const nodesMap = new Map<string, Node>();
         data.nodes.forEach(n => {
@@ -185,7 +179,7 @@ export default function NetworkGraph({
         });
 
         return { processedNodes: nodesArr, processedLinks: processedLinksList };
-    }, [data, sizeMode, nodeTypeFilter, showSubsidiaries, centerNodeId]);
+    }, [data, sizeMode, nodeTypeFilter, centerNodeId]);
 
     useEffect(() => {
         const fg = fgRef.current;
