@@ -92,7 +92,7 @@ export default function FilterPanel({
                 </button>
             </div>
 
-            {/* Search + Random */}
+            {/* Search + Random (+ Center on mobile) */}
             <div className="flex gap-2">
                 <div className="relative flex-1">
                     <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
@@ -148,9 +148,9 @@ export default function FilterPanel({
                         </div>
                     )}
                 </div>
+                {/* Center name - mobile only (inline) */}
                 {currentCenterName && (
-                    <div className="px-2 py-2 bg-slate-800/30 rounded-lg flex items-center justify-center border border-slate-700/20 text-xs flex-shrink-0 max-w-[90px] sm:max-w-[140px]">
-                        <span className="text-slate-400 hidden sm:inline mr-1">기준:</span>
+                    <div className="sm:hidden px-2 py-2 bg-slate-800/30 rounded-lg flex items-center justify-center border border-slate-700/20 text-xs flex-shrink-0 max-w-[90px]">
                         <span className="font-bold text-yellow-400 truncate" title={currentCenterName}>{currentCenterName}</span>
                     </div>
                 )}
@@ -162,6 +162,14 @@ export default function FilterPanel({
                     <Shuffle className="w-4 h-4" />
                 </button>
             </div>
+
+            {/* Center name - desktop only (separate row) */}
+            {currentCenterName && (
+                <div className="hidden sm:flex px-3 py-2 bg-slate-800/30 rounded-lg items-center justify-between border border-slate-700/20 text-xs">
+                    <span className="text-slate-400">기준</span>
+                    <span className="font-bold text-yellow-400 truncate ml-2">{currentCenterName}</span>
+                </div>
+            )}
 
             {/* Collapsible filters */}
             <div className={classNames(
