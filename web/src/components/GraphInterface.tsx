@@ -183,8 +183,9 @@ export default function GraphInterface() {
 
                 let activeLinks = allLinks;
                 if (hideNps) {
-                    const npsNameId = resolveId('국민연금공단');
-                    activeLinks = activeLinks.filter(l => resolveId(l.source) !== npsNameId);
+                    const npsNames = ['국민연금', '국민연금공단', '국민연금기금', '대한민국정부', '정부'];
+                    const npsIds = new Set(npsNames.map(n => resolveId(n)));
+                    activeLinks = activeLinks.filter(l => !npsIds.has(resolveId(l.source)));
                 }
 
                 const outgoing = new Map<string, Link[]>();
