@@ -20,16 +20,7 @@ export default function AdminPage() {
 
     const gasUrl = process.env.NEXT_PUBLIC_GAS_URL;
 
-    const fetchAliases = async () => {
-        try {
-            const res = await fetch("/api/admin/aliases");
-            if (res.ok) {
-                setAliases(await res.json());
-            }
-        } catch (err) {
-            console.error("Failed to fetch aliases", err);
-        }
-    };
+    const fetchAliases = async () => { }; // REMOVED (No longer using local API)
 
     const fetchAdminData = async () => {
         if (!gasUrl || !password) return;
@@ -44,8 +35,9 @@ export default function AdminPage() {
             }
 
             setReports(data.reports || []);
-            setOverrides(data.overrides || []);
-            await fetchAliases();
+            const allOverrides = data.overrides || [];
+            setOverrides(allOverrides.filter((o: any) => o[1] !== 'MERGE_ALIAS'));
+            setAliases(allOverrides.filter((o: any) => o[1] === 'MERGE_ALIAS'));
         } catch (err) {
             console.error(err);
             setError("데이터를 불러오는 데 실패했습니다.");
@@ -70,8 +62,9 @@ export default function AdminPage() {
 
             if (data.reports || data.overrides) {
                 setReports(data.reports || []);
-                setOverrides(data.overrides || []);
-                await fetchAliases();
+                const allOverrides = data.overrides || [];
+                setOverrides(allOverrides.filter((o: any) => o[1] !== 'MERGE_ALIAS'));
+                setAliases(allOverrides.filter((o: any) => o[1] === 'MERGE_ALIAS'));
                 setIsAuthenticated(true);
             } else {
                 setError("데이터를 불러올 수 없습니다. GAS 설정을 확인하세요.");
@@ -149,19 +142,22 @@ export default function AdminPage() {
         if (!aliasName || !canonicalId) return;
         setIsLoading(true);
         try {
-            const res = await fetch("/api/admin/aliases", {
+            await fetch(gasUrl!, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ alias_name: aliasName, canonical_id: canonicalId })
+                mode: "no-cors",
+                body: JSON.stringify({
+                    action: "add_override",
+                    password: password,
+                    type: "MERGE_ALIAS",
+                    source: aliasName,
+                    target: canonicalId,
+                    reason: "표기명 병합 (자동 처리)"
+                })
             });
-            if (res.ok) {
-                alert("이름 병합 규칙이 추가되었습니다.");
-                setAliasName("");
-                setCanonicalId("");
-                fetchAliases();
-            } else {
-                alert("추가 중 오류 발생: " + (await res.json()).error);
-            }
+            alert("이름 병합 규칙이 구글 시트에 추가되었습니다.");
+            setAliasName("");
+            setCanonicalId("");
+            fetchAdminData();
         } catch (err) {
             alert("이름 병합 오류");
         } finally {
@@ -169,22 +165,9 @@ export default function AdminPage() {
         }
     };
 
-    const handleDeleteAlias = async (id: number) => {
-        if (!window.confirm("이 병합 규칙을 삭제하시겠습니까?")) return;
-        setIsLoading(true);
-        try {
-            const res = await fetch(`/api/admin/aliases?id=${id}`, { method: "DELETE" });
-            if (res.ok) {
-                alert("병합 규칙이 삭제되었습니다.");
-                fetchAliases();
-            } else {
-                alert("삭제 중 오류 발생");
-            }
-        } catch (err) {
-            alert("삭제 오류");
-        } finally {
-            setIsLoading(false);
-        }
+    const handleDeleteAlias = async (index: number) => {
+        if (!window.confirm("이 병합 규칙을 관리하시겠습니까?")) return;
+        alert("구글 시트의 'Overrides' 탭에서 해당 행을 직접 관리하거나 삭제해 주세요.\n(시트에서 직접 삭제하면 다음 업데이트 때 반영됩니다)");
     };
 
     if (!isAuthenticated) {
@@ -425,15 +408,15 @@ export default function AdminPage() {
                                         </div>
                                         <div>
                                             <div className="flex items-center gap-2">
-                                                <span className="font-bold text-red-400">{o.alias_name}</span>
+                                                <span className="font-bold text-red-400">{o[2]}</span>
                                                 <ChevronRight className="w-3 h-3 text-slate-600" />
-                                                <span className="font-bold text-emerald-400">{o.canonical_id}</span>
+                                                <span className="font-bold text-emerald-400">{o[3]}</span>
                                             </div>
-                                            <p className="text-[10px] text-slate-500 mt-0.5">병합/정규화 처리됨</p>
+                                            <p className="text-[10px] text-slate-500 mt-0.5">병합/정규화 처리됨 (Google 시트)</p>
                                         </div>
                                     </div>
                                     <button
-                                        onClick={() => handleDeleteAlias(o.id)}
+                                        onClick={() => handleDeleteAlias(i)}
                                         className="p-2 text-slate-700 hover:text-red-400 transition-colors opacity-0 group-hover:opacity-100"
                                     >
                                         <Trash2 className="w-5 h-5" />

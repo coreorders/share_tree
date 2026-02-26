@@ -46,15 +46,21 @@ def export_to_json():
     market_map = get_market_map()
     overrides = get_overrides()
     
-    # Pre-process overrides for quick lookup: (Type, SourceLabel, TargetLabel)
-    # Normalize labels in rules as well
+    # Pre-process overrides for quick lookup
+    # 1. DELETE_LINK: (SourceLabel, TargetLabel)
+    # 2. MERGE_ALIAS: alias_name -> canonical_id mapping
     delete_rules = set()
+    alias_map = {}
     for o in overrides:
-        if len(o) >= 4 and o[1] == 'DELETE_LINK':
-            # Remove spaces for matching
-            src = o[2].replace(' ', '').strip()
-            tgt = o[3].replace(' ', '').strip()
-            delete_rules.add((src, tgt))
+        if len(o) >= 4:
+            if o[1] == 'DELETE_LINK':
+                src = o[2].replace(' ', '').strip()
+                tgt = o[3].replace(' ', '').strip()
+                delete_rules.add((src, tgt))
+            elif o[1] == 'MERGE_ALIAS':
+                src = o[2].replace(' ', '').strip()
+                tgt = o[3].replace(' ', '').strip()
+                alias_map[src] = tgt
 
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
@@ -62,9 +68,6 @@ def export_to_json():
 
     cursor.execute("SELECT * FROM companies")
     companies = cursor.fetchall()
-    
-    cursor.execute("SELECT alias_name, canonical_id FROM entity_aliases")
-    alias_map = {row['alias_name']: row['canonical_id'] for row in cursor.fetchall()}
     
     nodes_dict = {}
     # Helper to clean names: remove (주) and all spaces, then apply alias mapping
