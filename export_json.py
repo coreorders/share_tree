@@ -69,6 +69,7 @@ def export_to_json():
     # 정부 variants -> 대한민국정부
     alias_map['기획재정부'] = '대한민국정부'
     alias_map['정부'] = '대한민국정부'
+    alias_map['정부(산업통상자원부)'] = '대한민국정부'
     alias_map['정부(산업통산자원부)'] = '대한민국정부'
 
     conn = sqlite3.connect(DB_PATH)
@@ -143,7 +144,7 @@ def export_to_json():
         if normalized_source not in nodes_dict:
             nodes_dict[normalized_source] = {
                 "id": normalized_source, # Use normalized as ID
-                "label": source_name.replace(' ', '').strip(),
+                "label": normalized_source,  # Use canonical name as label
                 "isCompany": False,
                 "isListed": False,
                 "market": "NONE"
