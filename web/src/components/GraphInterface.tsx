@@ -435,20 +435,30 @@ export default function GraphInterface() {
             const height = canvas.height;
             const padding = 40;
 
-            // Draw dark gradient at the bottom for text readability
-            const gradient = ctx.createLinearGradient(0, height - 150, 0, height);
-            // using solid color stops to ensure visibility over nodes
-            gradient.addColorStop(0, "rgba(15, 23, 42, 0)");
-            gradient.addColorStop(0.5, "rgba(15, 23, 42, 0.7)");
-            gradient.addColorStop(1, "rgba(15, 23, 42, 0.95)");
-            ctx.fillStyle = gradient;
+            // --- Top Banner (holdertree.kr) ---
+            const topGradient = ctx.createLinearGradient(0, 0, 0, 100);
+            topGradient.addColorStop(0, "rgba(15, 23, 42, 0.9)");
+            topGradient.addColorStop(1, "rgba(15, 23, 42, 0)");
+            ctx.fillStyle = topGradient;
+            ctx.fillRect(0, 0, width, 100);
+
+            ctx.fillStyle = "rgba(255,255,255,0.9)";
+            ctx.font = "bold 32px Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "top";
+            ctx.fillText("holdertree.kr", width / 2, padding / 2);
+
+            // --- Bottom Banner (Filter Info) ---
+            const bottomGradient = ctx.createLinearGradient(0, height - 150, 0, height);
+            bottomGradient.addColorStop(0, "rgba(15, 23, 42, 0)");
+            bottomGradient.addColorStop(0.5, "rgba(15, 23, 42, 0.7)");
+            bottomGradient.addColorStop(1, "rgba(15, 23, 42, 0.95)");
+            ctx.fillStyle = bottomGradient;
             ctx.fillRect(0, height - 150, width, 150);
 
-            // Setup Text Style
             ctx.fillStyle = "rgba(255,255,255,0.85)";
-            // Use standard web fonts as fallback in case Pretendard isn't fully loaded in context
             ctx.font = "bold 26px Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif";
-            ctx.textAlign = "left";
+            ctx.textAlign = "center";
             ctx.textBaseline = "bottom";
 
             const filterDesc = [
@@ -460,14 +470,8 @@ export default function GraphInterface() {
                 sizeMode === "market_cap" ? "크기:시총" : "크기:지분"
             ].filter(Boolean).join(" · ");
 
-            const title = `🌳 ShareGraph | ${centerName} 지분관계도 (${filterDesc})`;
-            ctx.fillText(title, padding, height - padding);
-
-            const timestamp = new Date().toLocaleString('ko-KR');
-            ctx.fillStyle = "rgba(255,255,255,0.4)";
-            ctx.font = "20px -apple-system, BlinkMacSystemFont, system-ui, sans-serif";
-            ctx.textAlign = "right";
-            ctx.fillText(`Captured at ${timestamp}`, width - padding, height - padding);
+            const title = `🌳 ${centerName} 지분관계도 (${filterDesc})`;
+            ctx.fillText(title, width / 2, height - padding);
 
             // Trigger download
             const image = canvas.toDataURL("image/png", 1.0);
