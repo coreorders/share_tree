@@ -6,7 +6,6 @@ import NodeInfoPopup from "./NodeInfoPopup";
 import classNames from "classnames";
 import dynamic from "next/dynamic";
 import { Search, Loader2, Building2, User, ChevronDown, ChevronUp, Shuffle, Share2, Camera } from "lucide-react";
-import html2canvas from "html2canvas";
 
 // Types
 type Link = { source: string; target: string; value: number; label?: string; isSubsidiary?: boolean; direction?: string; isMutual?: boolean; edgeColor?: string };
@@ -401,65 +400,84 @@ export default function GraphInterface() {
 
     const handleScreenshot = useCallback(async () => {
         setIsScreenshotting(true);
-        // Wait for React to re-render and hide the UI overlays
+        // Wait for React to re-render to hide UI overlays just in case (though not strictly needed since we grab the canvas directly)
         await new Promise(resolve => setTimeout(resolve, 50));
 
         try {
             const container = document.getElementById("graph-container");
             if (!container) return;
 
-            const canvas = await html2canvas(container, {
-                backgroundColor: "#0f172a", // Match slate-900
-                scale: 2, // High resolution
-                logging: false,
-                ignoreElements: (element) => element.classList.contains('hide-on-screenshot')
-            });
-
-            // Add metadata watermark
-            const ctx = canvas.getContext('2d');
-            if (ctx) {
-                const width = canvas.width;
-                const height = canvas.height;
-                const padding = 40;
-
-                // Draw dark gradient at the bottom for text readability
-                const gradient = ctx.createLinearGradient(0, height - 150, 0, height);
-                gradient.addColorStop(0, "rgba(15, 23, 42, 0)");
-                gradient.addColorStop(1, "rgba(15, 23, 42, 0.9)");
-                ctx.fillStyle = gradient;
-                ctx.fillRect(0, height - 150, width, 150);
-
-                ctx.fillStyle = "rgba(255,255,255,0.7)";
-                ctx.font = "24px Pretendard, sans-serif";
-                ctx.textAlign = "left";
-                ctx.textBaseline = "bottom";
-
-                const filterDesc = [
-                    `${maxDepth}촌까지`,
-                    `${minShare}% 이상`,
-                    unlistedFilter === "hide" ? "비상장 숨김" : (unlistedFilter === "1-degree" ? "비상장 1촌만" : ""),
-                    hideNps ? "국민연금 숨김" : "",
-                    hidePerson ? "개인 숨김" : "",
-                    sizeMode === "market_cap" ? "크기:시총" : "크기:지분"
-                ].filter(Boolean).join(" · ");
-
-                const title = `🌳 ShareGraph | ${centerName} 지분관계도 (${filterDesc})`;
-                ctx.fillText(title, padding, height - padding);
-
-                const timestamp = new Date().toLocaleString('ko-KR');
-                ctx.fillStyle = "rgba(255,255,255,0.4)";
-                ctx.font = "18px Pretendard, sans-serif";
-                ctx.textAlign = "right";
-                ctx.fillText(`Captured at ${timestamp}`, width - padding, height - padding);
+            // Find the canvas element created by react-force-graph
+            const sourceCanvas = container.querySelector('canvas');
+            if (!sourceCanvas) {
+                throw new Error("Graph canvas not found.");
             }
 
+            // Create an offscreen canvas specifically for composing the final image
+            const canvas = document.createElement('canvas');
+            canvas.width = sourceCanvas.width;
+            canvas.height = sourceCanvas.height;
+            const ctx = canvas.getContext('2d');
+
+            if (!ctx) {
+                throw new Error("Could not initialize 2D context.");
+            }
+
+            // 1. Draw the background color (critical since force-graph might leave it transparent)
+            ctx.fillStyle = "#0f172a"; // Match slate-900
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 2. Draw the actual graph canvas on top
+            ctx.drawImage(sourceCanvas, 0, 0);
+
+            // 3. Add metadata watermark text
+            const width = canvas.width;
+            const height = canvas.height;
+            const padding = 40;
+
+            // Draw dark gradient at the bottom for text readability
+            const gradient = ctx.createLinearGradient(0, height - 150, 0, height);
+            // using solid color stops to ensure visibility over nodes
+            gradient.addColorStop(0, "rgba(15, 23, 42, 0)");
+            gradient.addColorStop(0.5, "rgba(15, 23, 42, 0.7)");
+            gradient.addColorStop(1, "rgba(15, 23, 42, 0.95)");
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, height - 150, width, 150);
+
+            // Setup Text Style
+            ctx.fillStyle = "rgba(255,255,255,0.85)";
+            // Use standard web fonts as fallback in case Pretendard isn't fully loaded in context
+            ctx.font = "bold 26px Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif";
+            ctx.textAlign = "left";
+            ctx.textBaseline = "bottom";
+
+            const filterDesc = [
+                `${maxDepth}촌까지`,
+                `${minShare}% 이상`,
+                unlistedFilter === "hide" ? "비상장 숨김" : (unlistedFilter === "1-degree" ? "비상장 1촌만" : ""),
+                hideNps ? "국민연금 숨김" : "",
+                hidePerson ? "개인 숨김" : "",
+                sizeMode === "market_cap" ? "크기:시총" : "크기:지분"
+            ].filter(Boolean).join(" · ");
+
+            const title = `🌳 ShareGraph | ${centerName} 지분관계도 (${filterDesc})`;
+            ctx.fillText(title, padding, height - padding);
+
+            const timestamp = new Date().toLocaleString('ko-KR');
+            ctx.fillStyle = "rgba(255,255,255,0.4)";
+            ctx.font = "20px -apple-system, BlinkMacSystemFont, system-ui, sans-serif";
+            ctx.textAlign = "right";
+            ctx.fillText(`Captured at ${timestamp}`, width - padding, height - padding);
+
             // Trigger download
-            const image = canvas.toDataURL("image/png");
+            const image = canvas.toDataURL("image/png", 1.0);
             const link = document.createElement("a");
             link.href = image;
             link.download = `ShareGraph_${centerName}_${new Date().toISOString().slice(0, 10)}.png`;
             link.click();
 
+            // Clean up
+            link.remove();
         } catch (error) {
             console.error("Screenshot failed:", error);
             alert("스크린샷 캡처에 실패했습니다.");
