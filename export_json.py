@@ -62,6 +62,15 @@ def export_to_json():
                 tgt = o[3].replace(' ', '').strip()
                 alias_map[src] = tgt
 
+    # Hardcoded alias rules for common entity merges
+    # 국민연금 variants -> 국민연금
+    alias_map['국민연금공단'] = '국민연금'
+    alias_map['국민연금기금'] = '국민연금'
+    # 정부 variants -> 대한민국정부
+    alias_map['기획재정부'] = '대한민국정부'
+    alias_map['정부'] = '대한민국정부'
+    alias_map['정부(산업통산자원부)'] = '대한민국정부'
+
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
