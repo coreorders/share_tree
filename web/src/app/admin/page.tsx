@@ -13,7 +13,23 @@ export default function AdminPage() {
     const [manualSource, setManualSource] = useState("");
     const [manualTarget, setManualTarget] = useState("");
 
+    // Alias states
+    const [aliases, setAliases] = useState<any[]>([]);
+    const [aliasName, setAliasName] = useState("");
+    const [canonicalId, setCanonicalId] = useState("");
+
     const gasUrl = process.env.NEXT_PUBLIC_GAS_URL;
+
+    const fetchAliases = async () => {
+        try {
+            const res = await fetch("/api/admin/aliases");
+            if (res.ok) {
+                setAliases(await res.json());
+            }
+        } catch (err) {
+            console.error("Failed to fetch aliases", err);
+        }
+    };
 
     const fetchAdminData = async () => {
         if (!gasUrl || !password) return;
@@ -29,6 +45,7 @@ export default function AdminPage() {
 
             setReports(data.reports || []);
             setOverrides(data.overrides || []);
+            await fetchAliases();
         } catch (err) {
             console.error(err);
             setError("데이터를 불러오는 데 실패했습니다.");
@@ -54,6 +71,7 @@ export default function AdminPage() {
             if (data.reports || data.overrides) {
                 setReports(data.reports || []);
                 setOverrides(data.overrides || []);
+                await fetchAliases();
                 setIsAuthenticated(true);
             } else {
                 setError("데이터를 불러올 수 없습니다. GAS 설정을 확인하세요.");
@@ -124,6 +142,49 @@ export default function AdminPage() {
         // GAS URL에 index 정보를 보내서 삭제하거나, 사용자에게 시트를 안내
         if (!window.confirm("이 규칙을 관리하시겠습니까?")) return;
         alert("구글 시트의 'Overrides' 탭에서 해당 행을 직접 관리하거나 삭제해 주세요.\n(데이터 안전을 위해 현재 UI에서의 삭제는 지원되지 않으며 시트에서 직접 삭제하면 다음 업데이트 때 반영됩니다)");
+    };
+
+    const handleAddAlias = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!aliasName || !canonicalId) return;
+        setIsLoading(true);
+        try {
+            const res = await fetch("/api/admin/aliases", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ alias_name: aliasName, canonical_id: canonicalId })
+            });
+            if (res.ok) {
+                alert("이름 병합 규칙이 추가되었습니다.");
+                setAliasName("");
+                setCanonicalId("");
+                fetchAliases();
+            } else {
+                alert("추가 중 오류 발생: " + (await res.json()).error);
+            }
+        } catch (err) {
+            alert("이름 병합 오류");
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleDeleteAlias = async (id: number) => {
+        if (!window.confirm("이 병합 규칙을 삭제하시겠습니까?")) return;
+        setIsLoading(true);
+        try {
+            const res = await fetch(`/api/admin/aliases?id=${id}`, { method: "DELETE" });
+            if (res.ok) {
+                alert("병합 규칙이 삭제되었습니다.");
+                fetchAliases();
+            } else {
+                alert("삭제 중 오류 발생");
+            }
+        } catch (err) {
+            alert("삭제 오류");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     if (!isAuthenticated) {
@@ -316,6 +377,73 @@ export default function AdminPage() {
                         )}
                     </div>
                 </div>
+
+                {/* Aliases Section (Full width) */}
+                <div className="mt-8 space-y-4">
+                    <div className="flex items-center gap-2 mb-2 px-1">
+                        <MessageSquare className="w-5 h-5 text-purple-400" />
+                        <h2 className="text-xl font-bold">표기명 병합/파편화 해결 ({aliases.length})</h2>
+                    </div>
+                    {/* Manual Add Alias Form */}
+                    <form onSubmit={handleAddAlias} className="bg-slate-900 border border-slate-800 p-5 rounded-3xl space-y-3 mb-6">
+                        <p className="text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">새로운 병합 규칙 (별명 -&gt; 진짜 이름)</p>
+                        <div className="grid grid-cols-2 gap-2">
+                            <input
+                                placeholder="파편화된 이름 (예: ㈜원익홀딩스)"
+                                value={aliasName}
+                                onChange={(e) => setAliasName(e.target.value)}
+                                className="bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500"
+                            />
+                            <input
+                                placeholder="진짜 합쳐질 이름/ID (예: 원익홀딩스)"
+                                value={canonicalId}
+                                onChange={(e) => setCanonicalId(e.target.value)}
+                                className="bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500"
+                            />
+                        </div>
+                        <button
+                            type="submit"
+                            disabled={isLoading || !aliasName || !canonicalId}
+                            className="w-full py-3 bg-slate-800 hover:bg-slate-700 text-purple-400 font-bold rounded-xl text-xs transition-all flex items-center justify-center gap-2"
+                        >
+                            <Link2 className="w-4 h-4" />
+                            병합 규칙 저장
+                        </button>
+                    </form>
+
+                    {aliases.length === 0 ? (
+                        <div className="bg-slate-900/40 border border-slate-800/50 border-dashed rounded-3xl p-12 text-center text-slate-500">
+                            적용된 병합 규칙이 없습니다.
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            {aliases.map((o, i) => (
+                                <div key={i} className="bg-slate-900/60 border border-slate-800/50 p-4 rounded-2xl flex items-center justify-between group">
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-10 h-10 bg-slate-800 rounded-xl flex items-center justify-center flex-shrink-0">
+                                            <Link2 className="w-5 h-5 text-purple-400" />
+                                        </div>
+                                        <div>
+                                            <div className="flex items-center gap-2">
+                                                <span className="font-bold text-red-400">{o.alias_name}</span>
+                                                <ChevronRight className="w-3 h-3 text-slate-600" />
+                                                <span className="font-bold text-emerald-400">{o.canonical_id}</span>
+                                            </div>
+                                            <p className="text-[10px] text-slate-500 mt-0.5">병합/정규화 처리됨</p>
+                                        </div>
+                                    </div>
+                                    <button
+                                        onClick={() => handleDeleteAlias(o.id)}
+                                        className="p-2 text-slate-700 hover:text-red-400 transition-colors opacity-0 group-hover:opacity-100"
+                                    >
+                                        <Trash2 className="w-5 h-5" />
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+
             </div>
         </div>
     );

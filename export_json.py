@@ -63,10 +63,14 @@ def export_to_json():
     cursor.execute("SELECT * FROM companies")
     companies = cursor.fetchall()
     
+    cursor.execute("SELECT alias_name, canonical_id FROM entity_aliases")
+    alias_map = {row['alias_name']: row['canonical_id'] for row in cursor.fetchall()}
+    
     nodes_dict = {}
-    # Helper to clean names: remove (주) and all spaces
+    # Helper to clean names: remove (주) and all spaces, then apply alias mapping
     def clean_name(name):
-        return name.replace('(주)', '').replace(' ', '').strip()
+        n = name.replace('(주)', '').replace(' ', '').strip()
+        return alias_map.get(n, n)
 
     for c in companies:
         c_dict = dict(c)

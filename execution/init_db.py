@@ -154,6 +154,16 @@ def init_db():
     )
     ''')
 
+    # 통합을 위한 별명/이명 (Alias) 매핑 테이블
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS entity_aliases (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        alias_name TEXT UNIQUE,
+        canonical_id TEXT,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+    ''')
+
     conn.commit()
     conn.close()
     print(f"Database initialized at {os.path.abspath(DB_PATH)}")
