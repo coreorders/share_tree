@@ -3,8 +3,10 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import FilterPanel from "./FilterPanel";
 import NodeInfoPopup from "./NodeInfoPopup";
+import classNames from "classnames";
 import dynamic from "next/dynamic";
-import { Loader2 } from "lucide-react";
+import { Search, Loader2, Building2, User, ChevronDown, ChevronUp, Shuffle, Share2, Camera } from "lucide-react";
+import html2canvas from "html2canvas";
 
 // Types
 type Link = { source: string; target: string; value: number; label?: string; isSubsidiary?: boolean; direction?: string; isMutual?: boolean; edgeColor?: string };
@@ -48,6 +50,7 @@ export default function GraphInterface() {
 
     const [graphData, setGraphData] = useState<{ nodes: Node[], links: Link[] }>({ nodes: [], links: [] });
     const [isLoading, setIsLoading] = useState(false);
+    const [isScreenshotting, setIsScreenshotting] = useState(false);
 
     // Popup state
     const [popupData, setPopupData] = useState<any>(null);
@@ -386,8 +389,88 @@ export default function GraphInterface() {
         setPopupData(null);
     }, []);
 
+    const handleShareLink = useCallback(() => {
+        const url = window.location.href;
+        navigator.clipboard.writeText(url).then(() => {
+            alert("🔗 현재 지분나무 주소(링크)가 복사되었습니다!\n원하시는 곳에 붙여넣기 해보세요.");
+        }).catch(err => {
+            console.error('Failed to copy link: ', err);
+            alert("링크 복사에 실패했습니다.");
+        });
+    }, []);
+
+    const handleScreenshot = useCallback(async () => {
+        setIsScreenshotting(true);
+        // Wait for React to re-render and hide the UI overlays
+        await new Promise(resolve => setTimeout(resolve, 50));
+
+        try {
+            const container = document.getElementById("graph-container");
+            if (!container) return;
+
+            const canvas = await html2canvas(container, {
+                backgroundColor: "#0f172a", // Match slate-900
+                scale: 2, // High resolution
+                logging: false,
+                ignoreElements: (element) => element.classList.contains('hide-on-screenshot')
+            });
+
+            // Add metadata watermark
+            const ctx = canvas.getContext('2d');
+            if (ctx) {
+                const width = canvas.width;
+                const height = canvas.height;
+                const padding = 40;
+
+                // Draw dark gradient at the bottom for text readability
+                const gradient = ctx.createLinearGradient(0, height - 150, 0, height);
+                gradient.addColorStop(0, "rgba(15, 23, 42, 0)");
+                gradient.addColorStop(1, "rgba(15, 23, 42, 0.9)");
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, height - 150, width, 150);
+
+                ctx.fillStyle = "rgba(255,255,255,0.7)";
+                ctx.font = "24px Pretendard, sans-serif";
+                ctx.textAlign = "left";
+                ctx.textBaseline = "bottom";
+
+                const filterDesc = [
+                    `${maxDepth}촌까지`,
+                    `${minShare}% 이상`,
+                    unlistedFilter === "hide" ? "비상장 숨김" : (unlistedFilter === "1-degree" ? "비상장 1촌만" : ""),
+                    hideNps ? "국민연금 숨김" : "",
+                    hidePerson ? "개인 숨김" : "",
+                    sizeMode === "market_cap" ? "크기:시총" : "크기:지분"
+                ].filter(Boolean).join(" · ");
+
+                const title = `🌳 ShareGraph | ${centerName} 지분관계도 (${filterDesc})`;
+                ctx.fillText(title, padding, height - padding);
+
+                const timestamp = new Date().toLocaleString('ko-KR');
+                ctx.fillStyle = "rgba(255,255,255,0.4)";
+                ctx.font = "18px Pretendard, sans-serif";
+                ctx.textAlign = "right";
+                ctx.fillText(`Captured at ${timestamp}`, width - padding, height - padding);
+            }
+
+            // Trigger download
+            const image = canvas.toDataURL("image/png");
+            const link = document.createElement("a");
+            link.href = image;
+            link.download = `ShareGraph_${centerName}_${new Date().toISOString().slice(0, 10)}.png`;
+            link.click();
+
+        } catch (error) {
+            console.error("Screenshot failed:", error);
+            alert("스크린샷 캡처에 실패했습니다.");
+        } finally {
+            setIsScreenshotting(false);
+        }
+    }, [centerName, maxDepth, minShare, unlistedFilter, hideNps, hidePerson, sizeMode]);
+
+
     return (
-        <div className="relative w-screen h-screen bg-slate-900 overflow-hidden text-slate-100">
+        <div id="graph-container" className="relative w-screen h-screen bg-slate-900 overflow-hidden text-slate-100">
             <div className="absolute top-0 left-0 w-full h-full">
                 {isLoading && graphData.nodes.length > 0 && (
                     <div className="absolute top-6 right-6 z-20 flex items-center gap-2 glass px-4 py-2 rounded-full text-blue-400 font-medium">
@@ -407,30 +490,32 @@ export default function GraphInterface() {
                 />
             </div>
 
-            <FilterPanel
-                onSearch={handleSearch}
-                onRandom={loadRandomCompany}
-                minShare={minShare}
-                setMinShare={setMinShare}
-                maxDepth={maxDepth}
-                setMaxDepth={setMaxDepth}
-                sizeMode={sizeMode}
-                setSizeMode={setSizeMode}
-                hideNps={hideNps}
-                setHideNps={setHideNps}
-                showSubsidiaries={showSubsidiaries}
-                setShowSubsidiaries={setShowSubsidiaries}
-                unlistedFilter={unlistedFilter}
-                setUnlistedFilter={setUnlistedFilter}
-                nodeTypeFilter={nodeTypeFilter}
-                setNodeTypeFilter={setNodeTypeFilter}
-                hidePerson={hidePerson}
-                setHidePerson={setHidePerson}
-                currentCenterName={centerName}
-                allNodesMap={allNodesMap}
-            />
+            {!isScreenshotting && (
+                <FilterPanel
+                    onSearch={handleSearch}
+                    onRandom={loadRandomCompany}
+                    minShare={minShare}
+                    setMinShare={setMinShare}
+                    maxDepth={maxDepth}
+                    setMaxDepth={setMaxDepth}
+                    sizeMode={sizeMode}
+                    setSizeMode={setSizeMode}
+                    hideNps={hideNps}
+                    setHideNps={setHideNps}
+                    showSubsidiaries={showSubsidiaries}
+                    setShowSubsidiaries={setShowSubsidiaries}
+                    unlistedFilter={unlistedFilter}
+                    setUnlistedFilter={setUnlistedFilter}
+                    nodeTypeFilter={nodeTypeFilter}
+                    setNodeTypeFilter={setNodeTypeFilter}
+                    hidePerson={hidePerson}
+                    setHidePerson={setHidePerson}
+                    currentCenterName={centerName}
+                    allNodesMap={allNodesMap}
+                />
+            )}
 
-            {popupData && (
+            {(!isScreenshotting && popupData) && (
                 <NodeInfoPopup
                     data={popupData}
                     position={popupPosition}
@@ -439,12 +524,33 @@ export default function GraphInterface() {
                 />
             )}
 
-            <div className="fixed bottom-3 left-1/2 -translate-x-1/2 z-50 text-[10px] text-slate-500/80 flex items-center gap-1.5 w-max pointer-events-auto">
-                <span>제작자 :</span>
-                <a href="https://mindaesik.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-200 transition-colors underline">민대식</a>
-                <span>|</span>
-                <span>ddokddogi@gmail.com</span>
-            </div>
+            {!isScreenshotting && (
+                <div className="fixed bottom-4 sm:bottom-6 left-4 sm:left-6 z-50 flex flex-col gap-2 pointer-events-auto">
+                    <button
+                        onClick={handleScreenshot}
+                        className="w-10 h-10 sm:w-12 sm:h-12 bg-slate-800/80 hover:bg-slate-700 backdrop-blur-md rounded-full flex items-center justify-center text-slate-200 border border-slate-600/50 shadow-lg hover:shadow-cyan-500/20 hover:border-cyan-500/50 transition-all group"
+                        title="화면 캡처 (스크린샷)"
+                    >
+                        <Camera className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform" />
+                    </button>
+                    <button
+                        onClick={handleShareLink}
+                        className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600/90 hover:bg-blue-500 backdrop-blur-md rounded-full flex items-center justify-center text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all group"
+                        title="현재 설정 링크 복사"
+                    >
+                        <Share2 className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform" />
+                    </button>
+                </div>
+            )}
+
+            {!isScreenshotting && (
+                <div className="fixed bottom-3 left-1/2 -translate-x-1/2 z-50 text-[10px] text-slate-500/80 flex items-center gap-1.5 w-max pointer-events-auto">
+                    <span>제작자 :</span>
+                    <a href="https://mindaesik.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-200 transition-colors underline">민대식</a>
+                    <span>|</span>
+                    <span>ddokddogi@gmail.com</span>
+                </div>
+            )}
         </div>
     );
 }
