@@ -48,7 +48,6 @@ export default function NodeInfoPopup({ data, position, onClose, onNavigate }: N
     const [reportMsg, setReportMsg] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // Center on screen
     useEffect(() => {
         if (typeof window !== "undefined") {
             const w = Math.min(384, window.innerWidth - 32);
@@ -57,6 +56,39 @@ export default function NodeInfoPopup({ data, position, onClose, onNavigate }: N
                 y: window.innerHeight * 0.1,
             });
         }
+    }, [data]);
+
+    // Keyboard Shortcuts (Desktop Only)
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            // Ignore if active element is an input or textarea
+            if (
+                e.target instanceof HTMLInputElement ||
+                e.target instanceof HTMLTextAreaElement ||
+                e.target instanceof HTMLSelectElement
+            ) {
+                return;
+            }
+
+            const key = e.key.toLowerCase();
+            if (key === 'q' && data?.isCompany && data?.stock_code) {
+                const url = `https://finance.naver.com/item/board.naver?code=${data.stock_code}`;
+                window.open(url, '_blank');
+            } else if (key === '1') {
+                setActiveTab('info');
+            } else if (key === '2') {
+                setActiveTab('exec');
+            } else if (key === '3') {
+                setActiveTab('div');
+            } else if (key === '4') {
+                setActiveTab('changes');
+            } else if (key === '5') {
+                setActiveTab('insider');
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
     }, [data]);
 
     // Drag handlers

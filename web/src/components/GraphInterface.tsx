@@ -144,6 +144,8 @@ export default function GraphInterface() {
         }
     }, [centerCorpCode, minShare, maxDepth, sizeMode, unlistedFilter, hidePerson, hideNps, showSubsidiaries, isDataLoaded]);
 
+
+
     const loadRandomCompany = useCallback(() => {
         if (!isDataLoaded || allNodesMap.size === 0) return;
         const listedCompanies = Array.from(allNodesMap.values()).filter(n => n.isListed && n.market_cap && n.market_cap > 0);
@@ -490,6 +492,35 @@ export default function GraphInterface() {
         }
     }, [centerName, maxDepth, minShare, unlistedFilter, hideNps, hidePerson, sizeMode]);
 
+    // Keyboard Shortcuts (Desktop Only)
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            // Ignore if active element is an input, textarea, or select
+            if (
+                e.target instanceof HTMLInputElement ||
+                e.target instanceof HTMLTextAreaElement ||
+                e.target instanceof HTMLSelectElement
+            ) {
+                return;
+            }
+
+            const key = e.key.toLowerCase();
+
+            if (key === 'r') {
+                e.preventDefault();
+                loadRandomCompany();
+            } else if (key === 's') {
+                e.preventDefault();
+                handleScreenshot();
+            } else if (key === 'c') {
+                e.preventDefault();
+                handleShareLink();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [loadRandomCompany, handleScreenshot, handleShareLink]);
 
     return (
         <div id="graph-container" className="relative w-screen h-screen bg-slate-900 overflow-hidden text-slate-100">
@@ -551,14 +582,14 @@ export default function GraphInterface() {
                     <button
                         onClick={handleScreenshot}
                         className="w-10 h-10 sm:w-12 sm:h-12 bg-slate-800/80 hover:bg-slate-700 backdrop-blur-md rounded-full flex items-center justify-center text-slate-200 border border-slate-600/50 shadow-lg hover:shadow-cyan-500/20 hover:border-cyan-500/50 transition-all group"
-                        title="화면 캡처 (스크린샷)"
+                        title="화면 캡처 (단축키: S)"
                     >
                         <Camera className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform" />
                     </button>
                     <button
                         onClick={handleShareLink}
                         className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600/90 hover:bg-blue-500 backdrop-blur-md rounded-full flex items-center justify-center text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all group"
-                        title="현재 설정 링크 복사"
+                        title="현재 설정 링크 복사 (단축키: C)"
                     >
                         <Share2 className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform" />
                     </button>
