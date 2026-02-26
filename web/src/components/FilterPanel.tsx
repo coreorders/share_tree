@@ -212,6 +212,11 @@ export default function FilterPanel({
 
                 <div className="flex flex-col gap-2 pt-1 border-t border-slate-700/20 mt-1">
                     <label className="flex items-center gap-2 text-[11px] text-slate-300 cursor-pointer w-full hover:text-white transition-colors">
+                        <div className="relative flex items-center">
+                            <input type="checkbox" className="sr-only" checked={hidePerson} onChange={(e) => setHidePerson(e.target.checked)} />
+                            <div className={classNames("block w-7 h-4 rounded-full transition-colors", hidePerson ? "bg-emerald-500" : "bg-slate-700")}></div>
+                            <div className={classNames("absolute left-[2px] bg-white w-3 h-3 rounded-full transition-transform", hidePerson ? "transform translate-x-3" : "")}></div>
+                        </div>
                         <span className="flex-1">개인(초록색 원) 숨기기</span>
                     </label>
                     <label className="flex items-center gap-2 text-[11px] text-slate-300 cursor-pointer w-full hover:text-white transition-colors">
