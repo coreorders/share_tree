@@ -608,7 +608,7 @@ export default function GraphInterface() {
 
             {!isScreenshotting && (
                 <div className="fixed bottom-3 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-0.5 w-max pointer-events-auto">
-                    <span className="text-[9px] text-slate-600/50">이 데이터는 DART 전자공시 데이터를 기반으로 합니다.</span>
+                    <span className="text-[9px] text-slate-600/50">DART 공시 데이터를 기반으로 하며, 투자 권유 목적이 아닙니다.</span>
                     <div className="text-[10px] text-slate-500/80 flex items-center gap-1.5">
                         <span>제작자 :</span>
                         <a href="https://mindaesik.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-200 transition-colors underline">민대식</a>
