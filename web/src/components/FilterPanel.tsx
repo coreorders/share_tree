@@ -148,22 +148,20 @@ export default function FilterPanel({
                         </div>
                     )}
                 </div>
+                {currentCenterName && (
+                    <div className="px-2 py-2 bg-slate-800/30 rounded-lg flex items-center justify-center border border-slate-700/20 text-xs flex-shrink-0 max-w-[90px] sm:max-w-[140px]">
+                        <span className="text-slate-400 hidden sm:inline mr-1">기준:</span>
+                        <span className="font-bold text-yellow-400 truncate" title={currentCenterName}>{currentCenterName}</span>
+                    </div>
+                )}
                 <button
                     onClick={onRandom}
-                    className="px-3 py-2 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:bg-purple-600/50 hover:border-purple-500/50 transition-all flex-shrink-0"
+                    className="px-2.5 sm:px-3 py-2 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:bg-purple-600/50 hover:border-purple-500/50 transition-all flex-shrink-0"
                     title="랜덤 기업"
                 >
                     <Shuffle className="w-4 h-4" />
                 </button>
             </div>
-
-            {/* Center name */}
-            {currentCenterName && (
-                <div className="px-3 py-2 bg-slate-800/30 rounded-lg flex items-center justify-between border border-slate-700/20 text-xs">
-                    <span className="text-slate-400">중심</span>
-                    <span className="font-bold text-yellow-400 truncate ml-2">{currentCenterName}</span>
-                </div>
-            )}
 
             {/* Collapsible filters */}
             <div className={classNames(
@@ -235,7 +233,7 @@ export default function FilterPanel({
                         <span>🩷 비상장</span>
                         <span>🟢 개인</span>
                         <span>🟠 기관/재단</span>
-                        <span>🟡 중심</span>
+                        <span>🟡 기준</span>
                     </div>
                     <div className="flex flex-wrap gap-x-2">
                         <span>➡️ 🔵 1촌(보유)</span>
