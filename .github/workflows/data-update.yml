@@ -34,8 +34,9 @@ jobs:
       - name: Initialize DB (if missing)
         run: python execution/init_db.py
 
-      - name: Update Market Cap & Close Price (KOSPI & KOSDAQ)
-        run: python execution/update_market_cap.py
+      # Temporarily disabled because pykrx library is broken due to KRX website update
+      # - name: Update Market Cap & Close Price (KOSPI & KOSDAQ)
+      #   run: python execution/update_market_cap.py
 
       - name: Export JSON for Frontend
         run: python export_json.py
