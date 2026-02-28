@@ -184,15 +184,15 @@ export default function NetworkGraph({
     useEffect(() => {
         const fg = fgRef.current;
         if (fg) {
-            // Reverted: Increase centering force and reduce collision explosion
-            fg.d3Force('charge', d3.forceManyBody().strength(-200).distanceMax(500));
-            fg.d3Force('link', d3.forceLink().distance(70).strength(0.5));
-            fg.d3Force('center', d3.forceCenter(0, 0).strength(0.1));
-            fg.d3Force('collide', d3.forceCollide().radius((d: any) => Math.sqrt(d.val || 1) * 4 + 2).iterations(2));
+            // Adjusted parameters to spread nodes further and reduce central clustering
+            fg.d3Force('charge', d3.forceManyBody().strength(-300).distanceMax(800));
+            fg.d3Force('link', d3.forceLink().distance(120).strength(0.4));
+            fg.d3Force('center', d3.forceCenter(0, 0).strength(0.05));
+            fg.d3Force('collide', d3.forceCollide().radius((d: any) => Math.sqrt(d.val || 1) * 6 + 5).iterations(2));
 
             // Strongly pull everything to center to prevent "scattering"
-            // Use cohesion prop (0-100) to adjust radial force (0 to 0.3)
-            const cohesionStrength = (cohesion / 100) * 0.3;
+            // Use cohesion prop (0-100) to adjust radial force (0 to 0.15) - relaxed to allow spreading
+            const cohesionStrength = (cohesion / 100) * 0.15;
             fg.d3Force('radial', d3.forceRadial(0, 0, 0).strength(cohesionStrength));
 
             if (sizeMode === "market_cap") {
