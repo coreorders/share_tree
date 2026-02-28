@@ -16,12 +16,23 @@ def update_market_cap():
     latest_date = ""
     for i in range(7):
         date_str = (today - pd.Timedelta(days=i)).strftime("%Y%m%d")
-        df_ohlcv_kospi = stock.get_market_ohlcv(date_str, market="KOSPI")
-        if not df_ohlcv_kospi.empty:
-            df_ohlcv_kosdaq = stock.get_market_ohlcv(date_str, market="KOSDAQ")
-            latest_date = date_str
-            break
-            
+        try:
+            df_kospi = stock.get_market_ohlcv(date_str, market="KOSPI")
+            # Pykrx might return an empty dataframe or raise an error for holidays
+            if not df_kospi.empty and '종가' in df_kospi.columns:
+                df_kosdaq = stock.get_market_ohlcv(date_str, market="KOSDAQ")
+                df_ohlcv_kospi = df_kospi
+                df_ohlcv_kosdaq = df_kosdaq
+                latest_date = date_str
+                break
+        except Exception as e:
+            print(f"Skipping {date_str} due to error: {e}")
+            continue
+
+    if df_ohlcv_kospi.empty and df_ohlcv_kosdaq.empty:
+        print("Error: Could not find any valid market data in the last 7 days.")
+        return
+
     df_all = pd.concat([df_ohlcv_kospi, df_ohlcv_kosdaq])
             
     print(f"Using latest business date: {latest_date}")
