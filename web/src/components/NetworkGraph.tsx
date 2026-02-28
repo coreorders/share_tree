@@ -184,25 +184,15 @@ export default function NetworkGraph({
     useEffect(() => {
         const fg = fgRef.current;
         if (fg) {
-            // Adjusted parameters heavily to break central hairball and spread nodes wide
-            fg.d3Force('charge', d3.forceManyBody().strength(-800).distanceMax(1500));
-            fg.d3Force('link', d3.forceLink().distance(180).strength(0.3));
-            fg.d3Force('center', d3.forceCenter(0, 0).strength(0.01));
-            fg.d3Force('collide', d3.forceCollide().radius((d: any) => Math.sqrt(d.val || 1) * 8 + 12).iterations(3));
+            // Reverted basic forces to original values
+            fg.d3Force('charge', d3.forceManyBody().strength(-200).distanceMax(500));
+            fg.d3Force('link', d3.forceLink().distance(70).strength(0.5));
+            fg.d3Force('center', d3.forceCenter(0, 0).strength(0.1));
+            fg.d3Force('collide', d3.forceCollide().radius((d: any) => Math.sqrt(d.val || 1) * 4 + 2).iterations(2));
 
-            // Strongly reduced radial force to allow spreading
-            const cohesionStrength = (cohesion / 100) * 0.05;
-            fg.d3Force('radial', d3.forceRadial(0, 0, 0).strength(cohesionStrength));
-
-            // Reduced market cap gravity to prevent large nodes from bunching in the center
-            if (sizeMode === "market_cap") {
-                const maxMarketCap = Math.max(1, ...processedNodes.map((n: any) => n.market_cap || 0));
-                fg.d3Force('capGravity', d3.forceRadial(0, 0, 0).strength((d: any) => {
-                    return ((d.market_cap || 0) / maxMarketCap) * 0.05;
-                }));
-            } else {
-                fg.d3Force('capGravity', null);
-            }
+            // Completely disabled all central clustering/gravity forces
+            fg.d3Force('radial', null); // removed cohesion pulling to center
+            fg.d3Force('capGravity', null); // removed market cap gravity
             fg.d3ReheatSimulation();
         }
     }, [processedNodes, sizeMode]);
