@@ -184,21 +184,21 @@ export default function NetworkGraph({
     useEffect(() => {
         const fg = fgRef.current;
         if (fg) {
-            // Adjusted parameters to spread nodes further and reduce central clustering
-            fg.d3Force('charge', d3.forceManyBody().strength(-300).distanceMax(800));
-            fg.d3Force('link', d3.forceLink().distance(120).strength(0.4));
-            fg.d3Force('center', d3.forceCenter(0, 0).strength(0.05));
-            fg.d3Force('collide', d3.forceCollide().radius((d: any) => Math.sqrt(d.val || 1) * 6 + 5).iterations(2));
+            // Adjusted parameters heavily to break central hairball and spread nodes wide
+            fg.d3Force('charge', d3.forceManyBody().strength(-800).distanceMax(1500));
+            fg.d3Force('link', d3.forceLink().distance(180).strength(0.3));
+            fg.d3Force('center', d3.forceCenter(0, 0).strength(0.01));
+            fg.d3Force('collide', d3.forceCollide().radius((d: any) => Math.sqrt(d.val || 1) * 8 + 12).iterations(3));
 
-            // Strongly pull everything to center to prevent "scattering"
-            // Use cohesion prop (0-100) to adjust radial force (0 to 0.15) - relaxed to allow spreading
-            const cohesionStrength = (cohesion / 100) * 0.15;
+            // Strongly reduced radial force to allow spreading
+            const cohesionStrength = (cohesion / 100) * 0.05;
             fg.d3Force('radial', d3.forceRadial(0, 0, 0).strength(cohesionStrength));
 
+            // Reduced market cap gravity to prevent large nodes from bunching in the center
             if (sizeMode === "market_cap") {
                 const maxMarketCap = Math.max(1, ...processedNodes.map((n: any) => n.market_cap || 0));
                 fg.d3Force('capGravity', d3.forceRadial(0, 0, 0).strength((d: any) => {
-                    return ((d.market_cap || 0) / maxMarketCap) * 0.2;
+                    return ((d.market_cap || 0) / maxMarketCap) * 0.05;
                 }));
             } else {
                 fg.d3Force('capGravity', null);
