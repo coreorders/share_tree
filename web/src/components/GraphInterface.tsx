@@ -6,6 +6,7 @@ import NodeInfoPopup from "./NodeInfoPopup";
 import classNames from "classnames";
 import dynamic from "next/dynamic";
 import { Search, Loader2, Building2, User, ChevronDown, ChevronUp, Shuffle, Share2, Camera } from "lucide-react";
+import NoticeDialog from "./NoticeDialog";
 
 // Types
 type Link = { source: string; target: string; value: number; label?: string; isSubsidiary?: boolean; direction?: string; isMutual?: boolean; edgeColor?: string };
@@ -49,6 +50,7 @@ export default function GraphInterface() {
     const [graphData, setGraphData] = useState<{ nodes: Node[], links: Link[] }>({ nodes: [], links: [] });
     const [isLoading, setIsLoading] = useState(false);
     const [isScreenshotting, setIsScreenshotting] = useState(false);
+    const [isNoticeOpen, setIsNoticeOpen] = useState(false);
 
     // Popup state
     const [popupData, setPopupData] = useState<any>(null);
@@ -559,6 +561,7 @@ export default function GraphInterface() {
                     setHidePerson={setHidePerson}
                     currentCenterName={centerName}
                     allNodesMap={allNodesMap}
+                    onShowNotice={() => setIsNoticeOpen(true)}
                 />
             )}
 
@@ -570,6 +573,11 @@ export default function GraphInterface() {
                     onNavigate={handlePopupNavigate}
                 />
             )}
+
+            <NoticeDialog
+                isOpen={isNoticeOpen}
+                onClose={() => setIsNoticeOpen(false)}
+            />
 
             {!isScreenshotting && (
                 <div className="fixed bottom-4 sm:bottom-6 left-4 sm:left-6 z-50 flex flex-col gap-2 pointer-events-auto">

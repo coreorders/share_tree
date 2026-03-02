@@ -23,6 +23,7 @@ interface FilterPanelProps {
     setHidePerson: (val: boolean) => void;
     currentCenterName: string;
     allNodesMap: Map<string, any>;
+    onShowNotice?: () => void;
 }
 
 export default function FilterPanel({
@@ -44,6 +45,7 @@ export default function FilterPanel({
     setHidePerson,
     currentCenterName,
     allNodesMap,
+    onShowNotice,
 }: FilterPanelProps) {
     const [query, setQuery] = useState("");
     const [results, setResults] = useState<any[]>([]);
@@ -79,9 +81,17 @@ export default function FilterPanel({
             {/* Header + Toggle */}
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-lg sm:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-blue-500">
-                        🌳 지분나무
-                    </h1>
+                    <div className="flex items-center gap-2">
+                        <h1 className="text-lg sm:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-blue-500">
+                            🌳 지분나무
+                        </h1>
+                        <button
+                            onClick={onShowNotice}
+                            className="bg-slate-700/50 hover:bg-slate-600/50 text-slate-400 text-[10px] sm:text-xs px-2 py-0.5 rounded border border-slate-600/30 transition-colors"
+                        >
+                            [긴급공지]
+                        </button>
+                    </div>
                     <p className="text-slate-400 text-[10px] sm:text-xs">기업 지분 구조 시각화</p>
                 </div>
                 <button
