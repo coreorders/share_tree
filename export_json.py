@@ -94,13 +94,32 @@ def export_to_json():
         # Aggressive normalization
         normalized_name = clean_name(corp_name)
         
-        # We use the normalized name as the ID for everything to ensure merging
-        # Unless it's a listed company where we might prefer the corp_code
+        # If this normalized name already exists (merged), we might want to preserve 
+        # the listed status or other more important metadata
+        if normalized_name in nodes_dict:
+            existing = nodes_dict[normalized_name]
+            # Update to higher market cap or listed status if available
+            if c_dict.get('market_cap', 0) > existing.get('market_cap', 0):
+                existing.update({
+                    "id": c_dict.get('corp_code') or normalized_name,
+                    "stock_code": stock_code,
+                    "market_cap": c_dict.get('market_cap', 0),
+                    "close_price": c_dict.get('close_price', 0),
+                    "price_change": c_dict.get('price_change', 0),
+                    "change_rate": c_dict.get('change_rate', 0),
+                    "shares_outstanding": c_dict.get('shares_outstanding', 0),
+                    "market": market
+                })
+            if (c_dict.get('close_price', 0) > 0):
+                existing["isListed"] = True
+            continue
+
+        # Use normalized_name for both ID and Label to ensure consistent merging and naming
         node_id = c_dict.get('corp_code') or normalized_name
         
         nodes_dict[normalized_name] = {
             "id": node_id,
-            "label": corp_name.replace(' ', '').strip(), # Clean label too
+            "label": normalized_name, # Use normalized name as label
             "stock_code": stock_code,
             "market_cap": c_dict.get('market_cap', 0),
             "close_price": c_dict.get('close_price', 0),
