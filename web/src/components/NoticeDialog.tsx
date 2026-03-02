@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { X, AlertCircle, CheckCircle2, Info } from "lucide-react";
+import { X, AlertCircle, CheckCircle2, Info, ChevronRight } from "lucide-react";
 
 interface NoticeDialogProps {
     isOpen: boolean;
@@ -69,6 +69,28 @@ export default function NoticeDialog({ isOpen, onClose }: NoticeDialogProps) {
                             외부 라이브러리 및 거래소 시스템 안정화 이후 즉시 복구될 예정입니다.<br />
                             이용에 불편을 드려 죄송합니다.
                         </p>
+
+                        {/* Community Section */}
+                        <div className="pt-4 border-t border-slate-800">
+                            <p className="text-slate-400 text-xs mb-2">지분나무 사용자 분들과 의견을 나누고 싶다면?</p>
+                            <a
+                                href="https://open.kakao.com/o/pr23abji"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-between p-3 bg-yellow-400/10 hover:bg-yellow-400/20 border border-yellow-400/20 rounded-xl transition-all group"
+                            >
+                                <div className="flex items-center gap-3">
+                                    <div className="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center text-slate-900 font-bold text-xs">
+                                        톡
+                                    </div>
+                                    <div className="text-left">
+                                        <div className="text-slate-200 font-semibold text-sm">지분나무 사용자 모임 오픈톡</div>
+                                        <div className="text-yellow-400/80 text-[11px]">함께 서비스를 만들어가는 소통 공간</div>
+                                    </div>
+                                </div>
+                                <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-yellow-400 transition-colors" />
+                            </a>
+                        </div>
                     </div>
 
                     <div className="mt-8 flex justify-end">
