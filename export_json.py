@@ -51,15 +51,18 @@ def export_to_json():
     # 2. MERGE_ALIAS: alias_name -> canonical_id mapping
     delete_rules = set()
     alias_map = {}
+    def base_clean(name):
+        return name.replace('(주)', '').replace('㈜', '').replace('주식회사', '').replace(' ', '').strip()
+
     for o in overrides:
         if len(o) >= 4:
             if o[1] == 'DELETE_LINK':
-                src = o[2].replace(' ', '').strip()
-                tgt = o[3].replace(' ', '').strip()
+                src = base_clean(o[2])
+                tgt = base_clean(o[3])
                 delete_rules.add((src, tgt))
             elif o[1] == 'MERGE_ALIAS':
-                src = o[2].replace(' ', '').strip()
-                tgt = o[3].replace(' ', '').strip()
+                src = base_clean(o[2])
+                tgt = base_clean(o[3])
                 alias_map[src] = tgt
 
     # Hardcoded alias rules for common entity merges
@@ -80,9 +83,9 @@ def export_to_json():
     companies = cursor.fetchall()
     
     nodes_dict = {}
-    # Helper to clean names: remove (주), ㈜ and all spaces, then apply alias mapping
+    # Helper to clean names: remove (주), ㈜, 주식회사 and all spaces, then apply alias mapping
     def clean_name(name):
-        n = name.replace('(주)', '').replace('㈜', '').replace(' ', '').strip()
+        n = base_clean(name)
         return alias_map.get(n, n)
 
     for c in companies:
