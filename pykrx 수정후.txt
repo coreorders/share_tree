@@ -1,0 +1,38 @@
+나중에 pykrx 라이브러리가 업데이트되어 한국거래소(KRX) 웹사이트 개편 오류가 해결되면, 다음 두 곳의 주석 처리를 해제하여 원래 기능(시가총액 및 코스피/코스닥 라벨 업데이트)을 복구해야 합니다.
+
+1. .github/workflows/data-update.yml 파일 수정
+- "Update Market Cap & Close Price (KOSPI & KOSDAQ)" 스텝의 주석을 해제합니다.
+- 수정 내용:
+  # Temporarily disabled because pykrx library is broken due to KRX website update
+  # - name: Update Market Cap & Close Price (KOSPI & KOSDAQ)
+  #   run: python execution/update_market_cap.py
+  
+  👇 위 부분을 아래처럼 주석 해제 👇
+  
+  - name: Update Market Cap & Close Price (KOSPI & KOSDAQ)
+    run: python execution/update_market_cap.py
+
+2. export_json.py 파일 수정
+- get_market_map() 함수 내에서 주석 처리된 pykrx 코드를 다시 살려주세요.
+- 수정 내용:
+  def get_market_map():
+      print("Temporarily skipping KOSPI/KOSDAQ ticker list due to KRX website issue...")
+      market_map = {}
+      # for ticker in stock.get_market_ticker_list(market="KOSPI"):
+      #     market_map[ticker] = "KOSPI"
+      # for ticker in stock.get_market_ticker_list(market="KOSDAQ"):
+      #     market_map[ticker] = "KOSDAQ"
+      return market_map
+      
+  👇 위 부분을 아래처럼 주석 해제 및 복구 👇
+  
+  def get_market_map():
+      print("Fetching KOSPI/KOSDAQ ticker list to determine market type...")
+      market_map = {}
+      for ticker in stock.get_market_ticker_list(market="KOSPI"):
+          market_map[ticker] = "KOSPI"
+      for ticker in stock.get_market_ticker_list(market="KOSDAQ"):
+          market_map[ticker] = "KOSDAQ"
+      return market_map
+
+이 두 가지만 원래대로 돌려놓으면 시가총액과 KOSPI/KOSDAQ 데이터가 다시 정상적으로 갱신됩니다.

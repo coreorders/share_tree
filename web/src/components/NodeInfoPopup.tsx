@@ -39,6 +39,7 @@ function formatDate(d: string | null | undefined): string {
 }
 
 export default function NodeInfoPopup({ data, position, onClose, onNavigate }: NodeInfoPopupProps) {
+    const isPykrxWorking = false; // 🔴 [임시] pykrx 복구 시 true로 변경하여 주가/시총 UI 롤백
     const [activeTab, setActiveTab] = useState("info");
     const popupRef = useRef<HTMLDivElement>(null);
     const [pos, setPos] = useState({ x: 0, y: 0 });
@@ -305,7 +306,7 @@ export default function NodeInfoPopup({ data, position, onClose, onNavigate }: N
                                 {/* Tab: 기본 정보 */}
                                 {activeTab === "info" && (
                                     <>
-                                        {data.stock_code && (
+                                        {isPykrxWorking && data.stock_code && (
                                             <div className="bg-slate-800/60 rounded-lg p-3 mb-3 flex items-center justify-between border border-slate-600/30">
                                                 <div className="flex items-center gap-3">
                                                     <div>
@@ -324,14 +325,18 @@ export default function NodeInfoPopup({ data, position, onClose, onNavigate }: N
                                             </div>
                                         )}
                                         <div className="grid grid-cols-2 gap-2">
-                                            <div className="bg-slate-800/40 rounded-lg p-2.5">
-                                                <p className="text-slate-400 text-xs mb-0.5">시가총액</p>
-                                                <p className="font-bold text-blue-300 text-sm">{data.isListed ? formatWon(data.market_cap) : "비상장"}</p>
-                                            </div>
-                                            <div className="bg-slate-800/40 rounded-lg p-2.5">
-                                                <p className="text-slate-400 text-xs mb-0.5">발행 주식수</p>
-                                                <p className="font-bold text-sm">{formatNumber(data.shares_outstanding)}주</p>
-                                            </div>
+                                            {isPykrxWorking && (
+                                                <>
+                                                    <div className="bg-slate-800/40 rounded-lg p-2.5">
+                                                        <p className="text-slate-400 text-xs mb-0.5">시가총액</p>
+                                                        <p className="font-bold text-blue-300 text-sm">{data.isListed ? formatWon(data.market_cap) : "비상장"}</p>
+                                                    </div>
+                                                    <div className="bg-slate-800/40 rounded-lg p-2.5">
+                                                        <p className="text-slate-400 text-xs mb-0.5">발행 주식수</p>
+                                                        <p className="font-bold text-sm">{formatNumber(data.shares_outstanding)}주</p>
+                                                    </div>
+                                                </>
+                                            )}
                                             <div className="bg-slate-800/40 rounded-lg p-2.5">
                                                 <p className="text-slate-400 text-xs mb-0.5">종목코드</p>
                                                 <p className="font-bold font-mono text-sm">{data.stock_code || "비상장"}</p>
