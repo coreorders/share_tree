@@ -1,9 +1,9 @@
 import sqlite3
-from pykrx import stock
 from datetime import datetime
 from dotenv import load_dotenv
 
 load_dotenv()
+from pykrx import stock
 DB_PATH = "web/stocks.db"
 
 def update_market_cap():

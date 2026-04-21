@@ -2,11 +2,11 @@ import sqlite3
 import json
 import os
 import requests
-from pykrx import stock
 from dotenv import load_dotenv
 
 load_dotenv()
 
+from pykrx import stock
 DB_PATH = "web/stocks.db"
 OUTPUT_PATH = "web/public/data.json"
 GAS_URL = os.environ.get("NEXT_PUBLIC_GAS_URL")
