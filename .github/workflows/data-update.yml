@@ -29,19 +29,25 @@ jobs:
       - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests pykrx pandas dart-fss python-dotenv
+          pip install requests pandas dart-fss python-dotenv
+          pip install git+https://github.com/sharebook-kr/pykrx.git
 
       - name: Initialize DB (if missing)
         run: python execution/init_db.py
 
-      # Temporarily disabled because pykrx library is broken due to KRX website update
-      # - name: Update Market Cap & Close Price (KOSPI & KOSDAQ)
-      #   run: python execution/update_market_cap.py
+      # Pykrx is now fixed with environment variable based automated login
+      - name: Update Market Cap & Close Price (KOSPI & KOSDAQ)
+        run: python execution/update_market_cap.py
+        env:
+          KRX_ID: ${{ secrets.KRX_ID }}
+          KRX_PW: ${{ secrets.KRX_PW }}
 
       - name: Export JSON for Frontend
         run: python export_json.py
         env:
           NEXT_PUBLIC_GAS_URL: ${{ secrets.NEXT_PUBLIC_GAS_URL }}
+          KRX_ID: ${{ secrets.KRX_ID }}
+          KRX_PW: ${{ secrets.KRX_PW }}
 
       - name: Commit and Push DB and json changes
         continue-on-error: true

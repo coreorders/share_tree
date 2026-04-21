@@ -39,7 +39,7 @@ function formatDate(d: string | null | undefined): string {
 }
 
 export default function NodeInfoPopup({ data, position, onClose, onNavigate }: NodeInfoPopupProps) {
-    const isPykrxWorking = false; // 🔴 [임시] pykrx 복구 시 true로 변경하여 주가/시총 UI 롤백
+    const isPykrxWorking = true; // 🟢 pykrx 자동 로그인 패치 적용 완료!
     const [activeTab, setActiveTab] = useState("info");
     const popupRef = useRef<HTMLDivElement>(null);
     const [pos, setPos] = useState({ x: 0, y: 0 });
