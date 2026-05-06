@@ -89,7 +89,7 @@ export default function FilterPanel({
                             onClick={onShowNotice}
                             className="bg-slate-700/50 hover:bg-slate-600/50 text-slate-400 text-[10px] sm:text-xs px-2 py-0.5 rounded border border-slate-600/30 transition-colors"
                         >
-                            [긴급공지]
+                            [공지]
                         </button>
                     </div>
                     <p className="text-slate-400 text-[10px] sm:text-xs">기업 지분 구조 시각화</p>
