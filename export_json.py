@@ -31,10 +31,13 @@ def get_overrides():
 def get_market_map():
     print("Fetching KOSPI/KOSDAQ ticker list to determine market type...")
     market_map = {}
-    for ticker in stock.get_market_ticker_list(market="KOSPI"):
-        market_map[ticker] = "KOSPI"
-    for ticker in stock.get_market_ticker_list(market="KOSDAQ"):
-        market_map[ticker] = "KOSDAQ"
+    try:
+        for ticker in stock.get_market_ticker_list(market="KOSPI"):
+            market_map[ticker] = "KOSPI"
+        for ticker in stock.get_market_ticker_list(market="KOSDAQ"):
+            market_map[ticker] = "KOSDAQ"
+    except Exception as e:
+        print(f"⚠️ Failed to fetch market ticker list: {e}. Market labels will be UNKNOWN.")
     return market_map
 
 def export_to_json():

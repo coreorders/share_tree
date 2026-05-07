@@ -12,16 +12,22 @@ DB_PATH = "web/stocks.db"
 API_KEY = os.getenv("DART_API_KEY")
 API_URL = "https://opendart.fss.or.kr/api/hyslrChgSttus.json" # 최대주주 변동현황
 
+def get_business_year():
+    configured_year = os.getenv("DART_BUSINESS_YEAR")
+    if configured_year:
+        return configured_year
+    return str(datetime.now().year - 1)
+
 def fetch_major_shareholder_changes(corp_code):
     if not API_KEY:
         print("Error: DART_API_KEY is not set.")
         return []
 
-    # 최근 연도 사업보고서 기준 (2023년)
+    business_year = get_business_year()
     params = {
         'crtfc_key': API_KEY,
         'corp_code': corp_code,
-        'bsns_year': '2023',
+        'bsns_year': business_year,
         'reprt_code': '11011' # 사업보고서
     }
 

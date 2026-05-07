@@ -2,8 +2,8 @@ name: Weekly Batch Data Collection
 
 on:
   schedule:
-    # Every Sunday at 06:39 UTC = 15:39 KST
-    - cron: '39 6 * * 0'
+    # Every Sunday at 09:39 UTC = 18:39 KST, after the daily market-data window
+    - cron: '39 9 * * 0'
   workflow_dispatch:
 
 permissions:
@@ -33,11 +33,14 @@ jobs:
         run: python execution/fetch_weekly_all.py
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          DART_BUSINESS_YEAR: ${{ vars.DART_BUSINESS_YEAR }}
 
       - name: Export JSON for Frontend
         run: python export_json.py
         env:
           NEXT_PUBLIC_GAS_URL: ${{ secrets.NEXT_PUBLIC_GAS_URL }}
+          KRX_ID: ${{ secrets.KRX_ID }}
+          KRX_PW: ${{ secrets.KRX_PW }}
 
       - name: Commit and Push DB and JSON changes
         continue-on-error: true

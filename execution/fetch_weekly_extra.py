@@ -17,9 +17,36 @@ URL_TREASURY = "https://opendart.fss.or.kr/api/tesstkAcqsDspsSttus.json"
 # D: 배당에 관한 사항
 URL_DIVIDENDS = "https://opendart.fss.or.kr/api/alotMatter.json"
 
-def fetch_dart(url, corp_code, year='2023', report_code='11011'):
+def get_business_year():
+    configured_year = os.getenv("DART_BUSINESS_YEAR")
+    if configured_year:
+        return configured_year
+    return str(datetime.now().year - 1)
+
+def fetch_dart_equity_disclosures(url, corp_code):
     if not API_KEY:
         return []
+    params = {
+        'crtfc_key': API_KEY,
+        'corp_code': corp_code
+    }
+    try:
+        res = requests.get(url, params=params, timeout=10)
+        data = res.json()
+        if data.get('status') == '000':
+            return data.get('list', [])
+        elif data.get('status') != '013':
+            print(f"  [{url.split('/')[-1]}] {data.get('message')}")
+        return []
+    except Exception as e:
+        print(f"  [{url.split('/')[-1]}] Error: {e}")
+        return []
+
+def fetch_dart_periodic(url, corp_code, year=None, report_code='11011'):
+    if not API_KEY:
+        return []
+    if year is None:
+        year = get_business_year()
     params = {
         'crtfc_key': API_KEY,
         'corp_code': corp_code,
@@ -68,7 +95,7 @@ def run_collection():
         counts = {'AB': 0, 'C': 0, 'D': 0}
 
         # ── A+B: 임원ㆍ주요주주 소유보고 (elestock.json) ──
-        for d in fetch_dart(URL_EXEC_REPORT, corp_code):
+        for d in fetch_dart_equity_disclosures(URL_EXEC_REPORT, corp_code):
             repror = (d.get('repror') or '').strip()
             rcept_no = (d.get('rcept_no') or '').strip()
             if not repror or not rcept_no:
@@ -99,7 +126,7 @@ def run_collection():
                 print(f"  Insert error (AB): {e}")
 
         # ── C: 자기주식 취득 및 처분 (tesstkAcqsDspsSttus.json) ──
-        data_C = fetch_dart(URL_TREASURY, corp_code)
+        data_C = fetch_dart_periodic(URL_TREASURY, corp_code)
         if data_C:
             cursor.execute("DELETE FROM treasury_shares WHERE corp_code = ?", (corp_code,))
             for d in data_C:
@@ -130,7 +157,7 @@ def run_collection():
                     print(f"  Insert error (C): {e}")
 
         # ── D: 배당에 관한 사항 (alotMatter.json) ──
-        for d in fetch_dart(URL_DIVIDENDS, corp_code):
+        for d in fetch_dart_periodic(URL_DIVIDENDS, corp_code):
             se = (d.get('se') or '').strip()
             if not se:
                 continue

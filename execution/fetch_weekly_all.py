@@ -2,7 +2,6 @@ import sqlite3
 import os
 import requests
 import time
-import datetime
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -20,6 +19,12 @@ URL_SUBSID = "https://opendart.fss.or.kr/api/otrCprInvstmntSttus.json"    # 타�
 URL_EXEC_STATUS = "https://opendart.fss.or.kr/api/exctvSttus.json"      # 임원현황
 URL_COMP = "https://opendart.fss.or.kr/api/indvdlByPay.json"            # 개인별 보수
 
+def get_business_year():
+    configured_year = os.getenv("DART_BUSINESS_YEAR")
+    if configured_year:
+        return configured_year
+    return str(datetime.now().year - 1)
+
 def safe_int(v):
     try:
         if v is None: return 0
@@ -36,9 +41,27 @@ def safe_float(v):
     except:
         return 0.0
 
-def fetch_dart(url, corp_code, year='2023', report_code='11011'):
+def fetch_dart_equity_disclosures(url, corp_code):
     if not API_KEY:
         return []
+    params = {
+        'crtfc_key': API_KEY,
+        'corp_code': corp_code
+    }
+    try:
+        res = requests.get(url, params=params, timeout=15)
+        data = res.json()
+        if data.get('status') == '000':
+            return data.get('list', [])
+        return []
+    except Exception:
+        return []
+
+def fetch_dart_periodic(url, corp_code, year=None, report_code='11011'):
+    if not API_KEY:
+        return []
+    if year is None:
+        year = get_business_year()
     params = {
         'crtfc_key': API_KEY,
         'corp_code': corp_code,
@@ -74,7 +97,8 @@ def run_all_collection(limit=None):
     companies = cursor.fetchall()
     total = len(companies)
     
-    print(f"🚀 Starting Unified Weekly Collection for {total} companies...")
+    business_year = get_business_year()
+    print(f"🚀 Starting Unified Weekly Collection for {total} companies (business year: {business_year})...")
     start_time = time.time()
 
     for idx, (corp_code, corp_name) in enumerate(companies, 1):
@@ -82,7 +106,7 @@ def run_all_collection(limit=None):
         print(f"[{idx}/{total}] {corp_name} ({corp_code}) Processing...", end="\r")
         
         # 1. Insider Reports (A+B)
-        data_ab = fetch_dart(URL_EXEC_REPORT, corp_code)
+        data_ab = fetch_dart_equity_disclosures(URL_EXEC_REPORT, corp_code)
         for d in data_ab:
             repror = (d.get('repror') or '').strip()
             rcept_no = (d.get('rcept_no') or '').strip()
@@ -100,7 +124,7 @@ def run_all_collection(limit=None):
                       safe_float(d.get('sp_stock_lmp_irds_rate')), now_str))
 
         # 2. Treasury Shares (C)
-        data_c = fetch_dart(URL_TREASURY, corp_code)
+        data_c = fetch_dart_periodic(URL_TREASURY, corp_code)
         if data_c:
             cursor.execute("DELETE FROM treasury_shares WHERE corp_code = ?", (corp_code,))
             for d in data_c:
@@ -111,7 +135,7 @@ def run_all_collection(limit=None):
                       d.get('change_qy_dsps',''), d.get('trmend_qy',''), now_str))
 
         # 3. Dividends (D)
-        data_d = fetch_dart(URL_DIVIDENDS, corp_code)
+        data_d = fetch_dart_periodic(URL_DIVIDENDS, corp_code)
         for d in data_d:
             se = (d.get('se') or '').strip()
             if se:
@@ -121,7 +145,7 @@ def run_all_collection(limit=None):
                 ''', (corp_code, se, d.get('stock_knd',''), d.get('thstrm',''), d.get('frmtrm',''), d.get('lwfr',''), now_str))
 
         # 4. Major Shareholder Changes
-        data_major = fetch_dart(URL_MAJOR_CHG, corp_code)
+        data_major = fetch_dart_periodic(URL_MAJOR_CHG, corp_code)
         for d in data_major:
             nm = (d.get('mxmm_shrholdr_nm') or '').strip()
             if nm:
@@ -133,7 +157,7 @@ def run_all_collection(limit=None):
                       safe_float(d.get('qota_rt')), d.get('change_cause',''), d.get('rm',''), now_str))
 
         # 5. Subsidiaries
-        data_sub = fetch_dart(URL_SUBSID, corp_code)
+        data_sub = fetch_dart_periodic(URL_SUBSID, corp_code)
         if data_sub:
             cursor.execute("DELETE FROM subsidiaries WHERE corp_code = ?", (corp_code,))
             for sub in data_sub:
@@ -147,7 +171,7 @@ def run_all_collection(limit=None):
                           sub.get('invstmnt_purps') or sub.get('relate') or '', now_str))
 
         # 6. Executives & Compensations
-        data_exec = fetch_dart(URL_EXEC_STATUS, corp_code)
+        data_exec = fetch_dart_periodic(URL_EXEC_STATUS, corp_code)
         if data_exec:
             cursor.execute("DELETE FROM executives WHERE corp_code = ?", (corp_code,))
             for ex in data_exec:
@@ -159,7 +183,7 @@ def run_all_collection(limit=None):
                     ''', (corp_code, name, ex.get('ofcps',''), ex.get('birth_ym',''), ex.get('rgist_exctv_at',''), 
                           ex.get('main_career',''), ex.get('chrg_job',''), now_str))
 
-        data_comp = fetch_dart(URL_COMP, corp_code)
+        data_comp = fetch_dart_periodic(URL_COMP, corp_code)
         if data_comp:
             cursor.execute("DELETE FROM compensations WHERE corp_code = ?", (corp_code,))
             for cp in data_comp:
