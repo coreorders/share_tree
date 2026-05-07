@@ -2,8 +2,8 @@ name: Weekly Batch Data Collection
 
 on:
   schedule:
-    # Every Sunday at 09:39 UTC = 18:39 KST, after the daily market-data window
-    - cron: '39 9 * * 0'
+    # Every Sunday at 14:27 UTC = 23:27 KST
+    - cron: '27 14 * * 0'
   workflow_dispatch:
 
 permissions:
