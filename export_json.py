@@ -176,6 +176,7 @@ def export_to_json():
             latest_shareholders[dedupe_key] = s_dict
     
     links = []
+    link_index_by_pair = {}
     for s_dict in latest_shareholders.values():
         source_name = s_dict['shareholder_name']
         target_code = s_dict['target_corp_code']
@@ -199,13 +200,15 @@ def export_to_json():
         normalized_target = clean_name(target_name)
         target_node_id = nodes_dict.get(normalized_target, {}).get("id", target_code)
 
-        links.append({
+        link = {
             "source": source_node_id,
             "target": target_node_id,
             "value": share_rate,
             "shares_count": s_dict.get('shares_count', 0),
             "label": f"{share_rate}%"
-        })
+        }
+        link_index_by_pair[(source_node_id, target_node_id)] = len(links)
+        links.append(link)
 
     # Fetch and add subsidiaries
     cursor.execute("""
@@ -252,14 +255,20 @@ def export_to_json():
 
         label_text = f"[{reason}] {share_rate}%" if reason else f"{share_rate}%"
 
-        links.append({
+        link = {
             "source": source_node_id,
             "target": target_node_id,
             "value": share_rate,
             "shares_count": s_dict.get('shares_count', 0),
             "label": label_text,
             "isSubsidiary": True
-        })
+        }
+        existing_index = link_index_by_pair.get((source_node_id, target_node_id))
+        if existing_index is None:
+            link_index_by_pair[(source_node_id, target_node_id)] = len(links)
+            links.append(link)
+        elif not links[existing_index].get("isSubsidiary"):
+            links[existing_index] = link
 
     # Fetch compensations and attach to nodes
     cursor.execute("""
