@@ -377,6 +377,11 @@ export default function GraphInterface() {
         }
     }, [allNodesMap, allLinks, resolveId]);
 
+    const handleCenterClick = useCallback(() => {
+        if (!centerCorpCode) return;
+        handleNodeClick(centerCorpCode, { x: 360, y: 160 });
+    }, [centerCorpCode, handleNodeClick]);
+
     const handleNodeDoubleClick = useCallback((nodeId: string, nodeLabel: string) => {
         setCenterCorpCode(nodeId);
         setCenterName(nodeLabel);
@@ -562,6 +567,7 @@ export default function GraphInterface() {
                     currentCenterName={centerName}
                     allNodesMap={allNodesMap}
                     onShowNotice={() => setIsNoticeOpen(true)}
+                    onCenterClick={handleCenterClick}
                 />
             )}
 

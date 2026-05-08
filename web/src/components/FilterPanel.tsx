@@ -24,6 +24,7 @@ interface FilterPanelProps {
     currentCenterName: string;
     allNodesMap: Map<string, any>;
     onShowNotice?: () => void;
+    onCenterClick?: () => void;
 }
 
 export default function FilterPanel({
@@ -46,6 +47,7 @@ export default function FilterPanel({
     currentCenterName,
     allNodesMap,
     onShowNotice,
+    onCenterClick,
 }: FilterPanelProps) {
     const [query, setQuery] = useState("");
     const [results, setResults] = useState<any[]>([]);
@@ -161,7 +163,14 @@ export default function FilterPanel({
                 {/* Center name - mobile only (inline) */}
                 {currentCenterName && (
                     <div className="sm:hidden px-2 py-2 bg-slate-800/30 rounded-lg flex items-center justify-center border border-slate-700/20 text-xs flex-shrink-0 max-w-[90px]">
-                        <span className="font-bold text-yellow-400 truncate" title={currentCenterName}>{currentCenterName}</span>
+                        <button
+                            type="button"
+                            onClick={onCenterClick}
+                            className="font-bold text-yellow-400 truncate hover:text-yellow-300 transition-colors"
+                            title={currentCenterName}
+                        >
+                            {currentCenterName}
+                        </button>
                     </div>
                 )}
                 <button
@@ -177,7 +186,14 @@ export default function FilterPanel({
             {currentCenterName && (
                 <div className="hidden sm:flex px-3 py-2 bg-slate-800/30 rounded-lg items-center justify-between border border-slate-700/20 text-xs">
                     <span className="text-slate-400">기준</span>
-                    <span className="font-bold text-yellow-400 truncate ml-2">{currentCenterName}</span>
+                    <button
+                        type="button"
+                        onClick={onCenterClick}
+                        className="font-bold text-yellow-400 truncate ml-2 hover:text-yellow-300 transition-colors"
+                        title={currentCenterName}
+                    >
+                        {currentCenterName}
+                    </button>
                 </div>
             )}
 
