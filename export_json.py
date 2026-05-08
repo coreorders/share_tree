@@ -145,25 +145,42 @@ def export_to_json():
         WHERE s.shareholder_name != '계'
     """)
     shareholders = cursor.fetchall()
-    
-    links = []
+
+    def shareholder_sort_key(row_dict):
+        return (
+            row_dict.get('collected_at') or '',
+            row_dict.get('share_rate') or 0,
+            row_dict.get('id') or 0
+        )
+
+    latest_shareholders = {}
     for s in shareholders:
         s_dict = dict(s)
+        source_name = s_dict['shareholder_name']
+        target_name = s_dict['target_corp_name']
+        share_rate = s_dict['share_rate']
+
+        if not share_rate or share_rate <= 0:
+            continue
+
+        n_src = clean_name(source_name)
+        n_tgt = clean_name(target_name)
+
+        if (n_src, n_tgt) in delete_rules:
+            print(f"[REMOVED] Override link: {source_name} -> {target_name}")
+            continue
+
+        dedupe_key = (n_src, n_tgt)
+        existing = latest_shareholders.get(dedupe_key)
+        if existing is None or shareholder_sort_key(s_dict) > shareholder_sort_key(existing):
+            latest_shareholders[dedupe_key] = s_dict
+    
+    links = []
+    for s_dict in latest_shareholders.values():
         source_name = s_dict['shareholder_name']
         target_code = s_dict['target_corp_code']
         target_name = s_dict['target_corp_name']
         share_rate = s_dict['share_rate']
-        
-        if not share_rate or share_rate <= 0:
-            continue
-            
-        # Normalize for override check
-        n_src = clean_name(source_name)
-        n_tgt = clean_name(target_name)
-        
-        if (n_src, n_tgt) in delete_rules:
-            print(f"[REMOVED] Override link: {source_name} -> {target_name}")
-            continue
 
         normalized_source = clean_name(source_name)
         if normalized_source not in nodes_dict:
