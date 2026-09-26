@@ -60,7 +60,8 @@ export default function GraphInterface() {
     useEffect(() => {
         const fetchStaticData = async () => {
             try {
-                const res = await fetch('data.json');
+                const res = await fetch('data.json', { cache: 'no-store' });
+                if (!res.ok) throw new Error(`Data request failed: ${res.status}`);
                 const data = await res.json();
 
                 const nodesMap = new Map<string, Node>();
