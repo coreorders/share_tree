@@ -43,23 +43,34 @@ def safe_float(v):
 
 def fetch_dart_equity_disclosures(url, corp_code):
     if not API_KEY:
-        return []
+        raise RuntimeError('DART_API_KEY is missing')
     params = {
         'crtfc_key': API_KEY,
         'corp_code': corp_code
     }
-    try:
-        res = requests.get(url, params=params, timeout=15)
-        data = res.json()
+    return request_dart(url, params)
+
+def request_dart(url, params):
+    # Do not expose request URLs: they contain the API key.
+    for attempt in range(3):
+        try:
+            res = requests.get(url, params=params, timeout=15)
+            res.raise_for_status()
+            data = res.json()
+        except (requests.RequestException, ValueError):
+            if attempt == 2:
+                raise RuntimeError(f"DART request failed for {params['corp_code']}") from None
+            time.sleep(2 ** attempt)
+            continue
         if data.get('status') == '000':
             return data.get('list', [])
-        return []
-    except Exception:
-        return []
+        if data.get('status') == '013':
+            return []
+        raise RuntimeError(f"DART status {data.get('status')} for {params['corp_code']}")
 
 def fetch_dart_periodic(url, corp_code, year=None, report_code='11011'):
     if not API_KEY:
-        return []
+        raise RuntimeError('DART_API_KEY is missing')
     if year is None:
         year = get_business_year()
     params = {
@@ -68,19 +79,11 @@ def fetch_dart_periodic(url, corp_code, year=None, report_code='11011'):
         'bsns_year': year,
         'reprt_code': report_code
     }
-    try:
-        res = requests.get(url, params=params, timeout=15)
-        data = res.json()
-        if data.get('status') == '000':
-            return data.get('list', [])
-        return []
-    except Exception as e:
-        return []
+    return request_dart(url, params)
 
 def run_all_collection(limit=None):
     if not API_KEY:
-        print("Error: DART_API_KEY is missing.")
-        return
+        raise RuntimeError('DART_API_KEY is missing')
 
     if not os.path.exists(DB_PATH):
         print(f"Error: DB not found at {DB_PATH}")

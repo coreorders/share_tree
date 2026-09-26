@@ -24,6 +24,10 @@ def update_market_cap():
             latest_date = date_str
             break
             
+    required = {'종가', '시가총액', '등락률'}
+    for frame in (df_ohlcv_kospi, df_ohlcv_kosdaq):
+        if frame.empty or not required.issubset(frame.columns):
+            raise RuntimeError('Incomplete KRX market data; existing prices are preserved')
     df_all = pd.concat([df_ohlcv_kospi, df_ohlcv_kosdaq])
             
     print(f"Using latest business date: {latest_date}")
@@ -71,8 +75,14 @@ def update_market_cap():
             if cursor.rowcount > 0:
                 success_count += cursor.rowcount
         except Exception as e:
-            print(f"Failed to update code {stock_code}: {e}")
+            conn.rollback()
+            conn.close()
+            raise RuntimeError(f"Invalid market data for {stock_code}; update rolled back") from e
 
+    if success_count == 0:
+        conn.rollback()
+        conn.close()
+        raise RuntimeError('No matching companies were updated')
     conn.commit()
     conn.close()
     

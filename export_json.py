@@ -6,9 +6,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-from pykrx import stock
 DB_PATH = "web/stocks.db"
 OUTPUT_PATH = "web/public/data.json"
+MARKET_CACHE_PATH = "web/market-map.json"
 GAS_URL = os.environ.get("NEXT_PUBLIC_GAS_URL")
 
 def get_overrides():
@@ -31,13 +31,29 @@ def get_overrides():
 def get_market_map():
     print("Fetching KOSPI/KOSDAQ ticker list to determine market type...")
     market_map = {}
+    if os.path.exists(MARKET_CACHE_PATH):
+        with open(MARKET_CACHE_PATH, encoding='utf-8') as f:
+            market_map.update(json.load(f))
+    if os.path.exists(OUTPUT_PATH):
+        with open(OUTPUT_PATH, encoding='utf-8') as f:
+            for node in json.load(f).get('nodes', []):
+                if node.get('stock_code') and node.get('market') in ('KOSPI', 'KOSDAQ'):
+                    market_map[node['stock_code']] = node['market']
     try:
-        for ticker in stock.get_market_ticker_list(market="KOSPI"):
-            market_map[ticker] = "KOSPI"
-        for ticker in stock.get_market_ticker_list(market="KOSDAQ"):
-            market_map[ticker] = "KOSDAQ"
+        from pykrx import stock
+        fresh = {}
+        for market in ('KOSPI', 'KOSDAQ'):
+            tickers = stock.get_market_ticker_list(market=market)
+            if len(tickers) < 100:
+                raise RuntimeError(f"Incomplete {market} ticker list")
+            fresh.update({ticker: market for ticker in tickers})
+        market_map = fresh
     except Exception as e:
-        print(f"⚠️ Failed to fetch market ticker list: {e}. Market labels will be UNKNOWN.")
+        print(f"[WARNING] Market lookup failed ({type(e).__name__}); preserving {len(market_map)} cached labels.")
+    if not market_map:
+        raise RuntimeError('No valid market classification is available')
+    with open(MARKET_CACHE_PATH, 'w', encoding='utf-8') as f:
+        json.dump(market_map, f, sort_keys=True, indent=2)
     return market_map
 
 def export_to_json():

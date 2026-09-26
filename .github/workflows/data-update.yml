@@ -8,6 +8,14 @@ on:
     # Run at 09:38 and 17:38 KST on weekdays (00:38 and 08:38 UTC)
     - cron: '38 0,8 * * 1-5'
   workflow_dispatch:
+  workflow_run:
+    workflows: [Weekly Batch Data Collection]
+    types: [completed]
+    branches: [main]
+
+concurrency:
+  group: sharegraph-data-pipeline
+  cancel-in-progress: false
 
 permissions:
   contents: write
@@ -16,10 +24,15 @@ permissions:
 
 jobs:
   update-data:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
+    outputs:
+      market-outcome: ${{ steps.market.outcome }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -32,11 +45,16 @@ jobs:
           pip install requests pandas dart-fss python-dotenv
           pip install git+https://github.com/sharebook-kr/pykrx.git
 
+      - name: Test pipeline resilience
+        run: python -m unittest discover -s tests -v
+
       - name: Initialize DB (if missing)
         run: python execution/init_db.py
 
-      # Pykrx is now fixed with environment variable based automated login
+      # A market outage must not block deployment of collected DART data.
       - name: Update Market Cap & Close Price (KOSPI & KOSDAQ)
+        id: market
+        continue-on-error: true
         run: python execution/update_market_cap.py
         env:
           KRX_ID: ${{ secrets.KRX_ID }}
@@ -50,12 +68,13 @@ jobs:
           KRX_PW: ${{ secrets.KRX_PW }}
 
       - name: Commit and Push DB and json changes
-        continue-on-error: true
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add web/stocks.db web/public/data.json
+          git add web/stocks.db web/public/data.json web/market-map.json
+          if git diff --cached --quiet; then exit 0; fi
           git commit -m "Auto-update stock data [skip ci]"
+          git pull --rebase origin main
           git push
 
       - name: Upload exported JSON as artifact for next job
@@ -108,3 +127,9 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Report stale market data after deployment
+        if: needs.update-data.outputs.market-outcome == 'failure'
+        run: |
+          echo "::error::DART data deployed, but market prices remain stale. Check KRX password renewal and KRX_PW secret."
+          exit 1

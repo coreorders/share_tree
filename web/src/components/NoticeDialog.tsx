@@ -37,14 +37,14 @@ export default function NoticeDialog({ isOpen, onClose }: NoticeDialogProps) {
                     <div className="space-y-6 text-sm leading-relaxed">
                         <section className="bg-slate-800/40 rounded-xl p-4 border border-emerald-500/20">
                             <h3 className="flex items-center gap-2 text-emerald-400 font-semibold mb-3">
-                                <CheckCircle2 className="w-4 h-4" /> 전체 정상 작동 안내
+                                <CheckCircle2 className="w-4 h-4" /> 데이터 업데이트 안내
                             </h3>
                             <ul className="space-y-2 text-slate-300 list-disc list-inside marker:text-emerald-500/50">
                                 <li>
-                                    <span className="font-medium text-slate-200">서비스 상태:</span> 현재 지분나무의 모든 주요 기능은 <span className="text-emerald-300">정상 작동</span>하고 있습니다.
+                                    <span className="font-medium text-slate-200">주가 및 시가총액:</span> 거래소 인증 문제로 갱신이 지연될 수 있습니다. 기업 정보의 마지막 갱신일을 확인해 주세요.
                                 </li>
                                 <li>
-                                    <span className="font-medium text-slate-200">지분 정보 데이터:</span> 인물 및 기업 간의 지분율, 관계 데이터는 <span className="text-emerald-300">DART(전자공시) API를 통해 매일 정상적으로 업데이트</span>되고 있습니다.
+                                    <span className="font-medium text-slate-200">공시 데이터:</span> 임원·주요주주 소유 보고와 정기보고서 기반 정보는 주간 수집합니다. 공시 접수일과 보고서 기준에 따라 반영 시점이 다릅니다.
                                 </li>
                                 <li>
                                     <span className="font-medium text-slate-200">검색 및 시각화:</span> 기업 검색 및 지분 구조 마인드맵 탐색 기능은 평소와 다름없이 이용 가능합니다.
