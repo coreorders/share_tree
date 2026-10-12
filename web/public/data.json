@@ -3478,6 +3478,14 @@
           "name": "국민연금공단",
           "position": "-",
           "regType": "-",
+          "holdCnt": 3435943,
+          "changeCnt": -453324,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 3889267,
           "changeCnt": 57694,
           "date": "2026-07-02"
@@ -8979,6 +8987,14 @@
       ],
       "insiderTrades": [
         {
+          "name": "DB손해보험",
+          "position": "최대주주",
+          "regType": "-",
+          "holdCnt": 12287324,
+          "changeCnt": 116555,
+          "date": "2026-10-06"
+        },
+        {
           "name": "유승우",
           "position": "상무보",
           "regType": "비등기임원",
@@ -12756,6 +12772,14 @@
           "name": "울프",
           "position": "-",
           "regType": "-",
+          "holdCnt": 10636109,
+          "changeCnt": 122665,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "울프",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 10513444,
           "changeCnt": 89778,
           "date": "2026-09-23"
@@ -13280,6 +13304,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 2300870,
+          "changeCnt": 182214,
+          "date": "2026-10-06"
+        },
         {
           "name": "국민연금공단",
           "position": "-",
@@ -14005,6 +14037,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 5150732,
+          "changeCnt": 667477,
+          "date": "2026-10-06"
+        },
         {
           "name": "국민연금공단",
           "position": "-",
@@ -15734,6 +15774,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "홍석빈",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 3804478,
+          "changeCnt": 6000,
+          "date": "2026-10-07"
+        },
         {
           "name": "홍석빈",
           "position": "대표이사",
@@ -18152,6 +18200,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "미래에셋자산운용",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 46790257,
+          "changeCnt": 40690,
+          "date": "2026-10-08"
+        },
         {
           "name": "미래에셋자산운용",
           "position": "-",
@@ -21088,6 +21144,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 11025428,
+          "changeCnt": 2449045,
+          "date": "2026-10-06"
+        },
         {
           "name": "국민연금공단",
           "position": "-",
@@ -24891,6 +24955,14 @@
           "name": "국민연금공단",
           "position": "-",
           "regType": "-",
+          "holdCnt": 7921109,
+          "changeCnt": 1242672,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 6678437,
           "changeCnt": 35252,
           "date": "2026-07-02"
@@ -25596,6 +25668,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 6360390,
+          "changeCnt": 574138,
+          "date": "2026-10-06"
+        },
         {
           "name": "국민연금공단",
           "position": "-",
@@ -34381,6 +34461,62 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "구본수",
+          "position": "상무보",
+          "regType": "비등기임원",
+          "holdCnt": 35,
+          "changeCnt": 35,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "한주훈",
+          "position": "상무보",
+          "regType": "비등기임원",
+          "holdCnt": 65,
+          "changeCnt": 65,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "이기형",
+          "position": "상무보",
+          "regType": "비등기임원",
+          "holdCnt": 35,
+          "changeCnt": 35,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "정정훈",
+          "position": "상무보",
+          "regType": "비등기임원",
+          "holdCnt": 35,
+          "changeCnt": 35,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "남웅철",
+          "position": "상무보",
+          "regType": "비등기임원",
+          "holdCnt": 20,
+          "changeCnt": 20,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "이세연",
+          "position": "상무보",
+          "regType": "비등기임원",
+          "holdCnt": 44,
+          "changeCnt": 44,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 4958264,
+          "changeCnt": -20749,
+          "date": "2026-10-06"
+        },
         {
           "name": "국민연금공단",
           "position": "-",
@@ -43634,6 +43770,14 @@
           "name": "삼성자산운용",
           "position": "-",
           "regType": "-",
+          "holdCnt": 20100458,
+          "changeCnt": -1372212,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "삼성자산운용",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 21472670,
           "changeCnt": -1580511,
           "date": "2026-07-10"
@@ -51071,6 +51215,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "케이에스에스해운우리사주조합",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 2935243,
+          "changeCnt": 7110,
+          "date": "2026-10-06"
+        },
         {
           "name": "케이에스에스해운우리사주조합",
           "position": "-",
@@ -71919,6 +72071,14 @@
           "name": "국민연금공단",
           "position": "-",
           "regType": "-",
+          "holdCnt": 4195210,
+          "changeCnt": 271655,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 3923555,
           "changeCnt": -53316,
           "date": "2026-07-02"
@@ -84153,6 +84313,14 @@
           "name": "이지스자산운용",
           "position": "-",
           "regType": "-",
+          "holdCnt": 9699834,
+          "changeCnt": -764247,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "이지스자산운용",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 10464081,
           "changeCnt": -362866,
           "date": "2026-07-10"
@@ -84909,6 +85077,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "농협금융지주",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 233958335,
+          "changeCnt": 246000,
+          "date": "2026-10-06"
+        },
         {
           "name": "농협금융지주",
           "position": "-",
@@ -88605,6 +88781,14 @@
           "name": "국민연금공단",
           "position": "-",
           "regType": "-",
+          "holdCnt": 2348215,
+          "changeCnt": -125862,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 2474077,
           "changeCnt": -6742,
           "date": "2026-07-02"
@@ -91389,6 +91573,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 11517537,
+          "changeCnt": 203349,
+          "date": "2026-10-06"
+        },
         {
           "name": "AramcoOverseasCompany,B.V",
           "position": "-",
@@ -94732,6 +94924,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "최민영",
+          "position": "상무이사",
+          "regType": "비등기임원",
+          "holdCnt": 6236013,
+          "changeCnt": 10600,
+          "date": "2026-10-08"
+        },
         {
           "name": "최민영",
           "position": "상무이사",
@@ -101724,6 +101924,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "미래에셋자산운용",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 64257353,
+          "changeCnt": -238877,
+          "date": "2026-10-08"
+        },
         {
           "name": "미래에셋자산운용",
           "position": "-",
@@ -117153,6 +117361,14 @@
       ],
       "insiderTrades": [
         {
+          "name": "정인호",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 2283,
+          "changeCnt": 1192,
+          "date": "2026-10-08"
+        },
+        {
           "name": "서정헌",
           "position": "상무",
           "regType": "비등기임원",
@@ -119687,6 +119903,22 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "금강레저산업",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 2230223,
+          "changeCnt": 6113,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "금강레저산업",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 2224110,
+          "changeCnt": 7438,
+          "date": "2026-10-06"
+        },
         {
           "name": "금강레저산업",
           "position": "-",
@@ -133749,6 +133981,14 @@
       ],
       "insiderTrades": [
         {
+          "name": "서용섭",
+          "position": "담당",
+          "regType": "비등기임원",
+          "holdCnt": 9,
+          "changeCnt": 9,
+          "date": "2026-10-08"
+        },
+        {
           "name": "오명석",
           "position": "본부장",
           "regType": "비등기임원",
@@ -139353,6 +139593,22 @@
       ],
       "insiderTrades": [
         {
+          "name": "남영우",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 0,
+          "changeCnt": -1815237,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "남태훈",
+          "position": "대표이사 부회장",
+          "regType": "등기임원",
+          "holdCnt": 2263258,
+          "changeCnt": 1815237,
+          "date": "2026-10-08"
+        },
+        {
           "name": "김영관",
           "position": "부사장",
           "regType": "등기임원",
@@ -139529,7 +139785,7 @@
           "trmendQy": "0"
         }
       ],
-      "insiderSignal": "buy"
+      "insiderSignal": "both"
     },
     {
       "id": "00454946",
@@ -141256,6 +141512,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "고기영",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 118870,
+          "changeCnt": 25,
+          "date": "2026-10-06"
+        },
         {
           "name": "고기영",
           "position": "대표이사",
@@ -166805,6 +167069,14 @@
           "name": "국민연금공단",
           "position": "-",
           "regType": "-",
+          "holdCnt": 3739018,
+          "changeCnt": 165273,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 3573745,
           "changeCnt": -247816,
           "date": "2026-07-02"
@@ -172104,6 +172376,22 @@
           "name": "강병은",
           "position": "대표이사",
           "regType": "등기임원",
+          "holdCnt": 16000,
+          "changeCnt": -64000,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "신대양제지",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 11011508,
+          "changeCnt": -44046032,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "강병은",
+          "position": "대표이사",
+          "regType": "등기임원",
           "holdCnt": 80000,
           "changeCnt": 80000,
           "date": "2026-09-14"
@@ -172245,7 +172533,7 @@
           "trmendQy": "-"
         }
       ],
-      "insiderSignal": "buy"
+      "insiderSignal": "both"
     },
     {
       "id": "00124540",
@@ -178938,6 +179226,14 @@
           "name": "국민연금공단",
           "position": "-",
           "regType": "-",
+          "holdCnt": 733794,
+          "changeCnt": 70286,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 663508,
           "changeCnt": 663508,
           "date": "2026-09-17"
@@ -183353,6 +183649,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 36923581,
+          "changeCnt": 36923581,
+          "date": "2026-10-07"
+        },
         {
           "name": "이종혁",
           "position": "상무",
@@ -193437,6 +193741,14 @@
       ],
       "insiderTrades": [
         {
+          "name": "김상헌",
+          "position": "고문",
+          "regType": "-",
+          "holdCnt": 16800000,
+          "changeCnt": 300000,
+          "date": "2026-10-08"
+        },
+        {
           "name": "김종희",
           "position": "공동대표이사\n부사장",
           "regType": "등기임원",
@@ -195449,6 +195761,102 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "차태웅",
+          "position": "상무",
+          "regType": "비등기임원",
+          "holdCnt": 72,
+          "changeCnt": 72,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "송인식",
+          "position": "상무보",
+          "regType": "비등기임원",
+          "holdCnt": 27,
+          "changeCnt": 27,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "조진욱",
+          "position": "상무보",
+          "regType": "비등기임원",
+          "holdCnt": 138,
+          "changeCnt": 138,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "정민",
+          "position": "상무보",
+          "regType": "비등기임원",
+          "holdCnt": 13,
+          "changeCnt": 13,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "이남용",
+          "position": "상무보",
+          "regType": "비등기임원",
+          "holdCnt": 132,
+          "changeCnt": 132,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "윤춘희",
+          "position": "상무보",
+          "regType": "비등기임원",
+          "holdCnt": 28,
+          "changeCnt": 28,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "신남수",
+          "position": "상무보",
+          "regType": "비등기임원",
+          "holdCnt": 9,
+          "changeCnt": 9,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "홍민아",
+          "position": "상무보",
+          "regType": "비등기임원",
+          "holdCnt": 14,
+          "changeCnt": 14,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "김용운",
+          "position": "상무",
+          "regType": "비등기임원",
+          "holdCnt": 82,
+          "changeCnt": 82,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "강보성",
+          "position": "상무",
+          "regType": "비등기임원",
+          "holdCnt": 11,
+          "changeCnt": 11,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "백상환",
+          "position": "사장",
+          "regType": "비등기임원",
+          "holdCnt": 14,
+          "changeCnt": 14,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "오종원",
+          "position": "상무",
+          "regType": "비등기임원",
+          "holdCnt": 11,
+          "changeCnt": 11,
+          "date": "2026-10-08"
+        },
         {
           "name": "이혁수",
           "position": "상무보",
@@ -197830,6 +198238,94 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "황병욱",
+          "position": "상무",
+          "regType": "비등기임원",
+          "holdCnt": 21000,
+          "changeCnt": 1000,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "최재권",
+          "position": "상무보",
+          "regType": "비등기임원",
+          "holdCnt": 13950,
+          "changeCnt": 1100,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "황부익",
+          "position": "상무",
+          "regType": "비등기임원",
+          "holdCnt": 35746,
+          "changeCnt": 1000,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "정원영",
+          "position": "상무",
+          "regType": "비등기임원",
+          "holdCnt": 22830,
+          "changeCnt": 1000,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "이종면",
+          "position": "상무보",
+          "regType": "비등기임원",
+          "holdCnt": 38946,
+          "changeCnt": 1000,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "이동호",
+          "position": "상무보",
+          "regType": "비등기임원",
+          "holdCnt": 38750,
+          "changeCnt": 1000,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "안준수",
+          "position": "상무",
+          "regType": "비등기임원",
+          "holdCnt": 13800,
+          "changeCnt": 1000,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "배현석",
+          "position": "전무",
+          "regType": "비등기임원",
+          "holdCnt": 23023,
+          "changeCnt": 1500,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "권오정",
+          "position": "전무",
+          "regType": "비등기임원",
+          "holdCnt": 15500,
+          "changeCnt": 1500,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "고현구",
+          "position": "상무",
+          "regType": "비등기임원",
+          "holdCnt": 12750,
+          "changeCnt": 1000,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "조승범",
+          "position": "상무보",
+          "regType": "비등기임원",
+          "holdCnt": 21668,
+          "changeCnt": 1000,
+          "date": "2026-10-07"
+        },
         {
           "name": "김세훈",
           "position": "독립이사",
@@ -200321,6 +200817,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "이승재",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 5267585,
+          "changeCnt": 30520,
+          "date": "2026-10-07"
+        },
         {
           "name": "이승재",
           "position": "부사장",
@@ -204120,6 +204624,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 1490404,
+          "changeCnt": 1490404,
+          "date": "2026-10-07"
+        },
         {
           "name": "이준호",
           "position": "전무",
@@ -210441,6 +210953,14 @@
           "name": "미래에셋자산운용",
           "position": "-",
           "regType": "-",
+          "holdCnt": 12572259,
+          "changeCnt": -58,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "미래에셋자산운용",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 12572317,
           "changeCnt": -232,
           "date": "2026-10-01"
@@ -211633,6 +212153,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "유승범",
+          "position": "상무이사",
+          "regType": "비등기임원",
+          "holdCnt": 325,
+          "changeCnt": 325,
+          "date": "2026-10-07"
+        },
         {
           "name": "김진호",
           "position": "대표이사",
@@ -214148,6 +214676,14 @@
           "name": "미래에셋자산운용",
           "position": "-",
           "regType": "-",
+          "holdCnt": 44332409,
+          "changeCnt": 87905,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "미래에셋자산운용",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 44244504,
           "changeCnt": 628428,
           "date": "2026-10-01"
@@ -215394,6 +215930,22 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "임재철",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 25,
+          "changeCnt": 25,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 3057116,
+          "changeCnt": -586377,
+          "date": "2026-10-06"
+        },
         {
           "name": "신동빈",
           "position": "대표이사",
@@ -225848,6 +226400,22 @@
       ],
       "insiderTrades": [
         {
+          "name": "임기섭",
+          "position": "이사 ",
+          "regType": "비등기임원",
+          "holdCnt": 96558,
+          "changeCnt": 3793,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "정준일",
+          "position": "상무",
+          "regType": "비등기임원",
+          "holdCnt": 273000,
+          "changeCnt": 3000,
+          "date": "2026-10-06"
+        },
+        {
           "name": "정준일",
           "position": "상무",
           "regType": "비등기임원",
@@ -228040,6 +228608,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "이정욱",
+          "position": "이사",
+          "regType": "비등기임원",
+          "holdCnt": 150,
+          "changeCnt": 150,
+          "date": "2026-10-08"
+        },
         {
           "name": "박인준",
           "position": "대표이사",
@@ -239546,6 +240122,14 @@
           "name": "미원상사우리사주",
           "position": "-",
           "regType": "-",
+          "holdCnt": 601749,
+          "changeCnt": -1715,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "미원상사우리사주",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 603464,
           "changeCnt": 847,
           "date": "2026-09-28"
@@ -248951,6 +249535,14 @@
           "name": "김중건",
           "position": "-",
           "regType": "-",
+          "holdCnt": 1512614,
+          "changeCnt": 600,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "김중건",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 1512014,
           "changeCnt": 1500,
           "date": "2026-10-02"
@@ -252122,6 +252714,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 3381526,
+          "changeCnt": -1119062,
+          "date": "2026-10-06"
+        },
         {
           "name": "국민연금공단",
           "position": "-",
@@ -258475,6 +259075,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "미래에셋자산운용",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 12532460,
+          "changeCnt": 30555,
+          "date": "2026-10-08"
+        },
         {
           "name": "미래에셋자산운용",
           "position": "-",
@@ -295064,6 +295672,14 @@
           "name": "국민연금공단",
           "position": "-",
           "regType": "-",
+          "holdCnt": 10849112,
+          "changeCnt": -1073190,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 11922302,
           "changeCnt": 34541,
           "date": "2026-07-02"
@@ -299209,6 +299825,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 839662,
+          "changeCnt": -4100,
+          "date": "2026-10-06"
+        },
         {
           "name": "국민연금공단",
           "position": "-",
@@ -314405,6 +315029,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "정필문",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 4503504,
+          "changeCnt": 93247,
+          "date": "2026-10-06"
+        },
         {
           "name": "정필문",
           "position": "-",
@@ -334972,6 +335604,14 @@
           "name": "국민연금공단",
           "position": "-",
           "regType": "-",
+          "holdCnt": 1070954,
+          "changeCnt": -130879,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 1201833,
           "changeCnt": -70323,
           "date": "2026-07-02"
@@ -340743,6 +341383,22 @@
           "name": "미래에셋자산운용",
           "position": "-",
           "regType": "-",
+          "holdCnt": 9226434,
+          "changeCnt": -17982,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "이지스자산운용",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 7394355,
+          "changeCnt": -370868,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "미래에셋자산운용",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 9244416,
           "changeCnt": 105764,
           "date": "2026-10-01"
@@ -341403,6 +342059,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "미래에셋자산운용",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 26006454,
+          "changeCnt": 49917,
+          "date": "2026-10-08"
+        },
         {
           "name": "미래에셋자산운용",
           "position": "-",
@@ -345449,6 +346113,14 @@
       ],
       "insiderTrades": [
         {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 4718666,
+          "changeCnt": 486774,
+          "date": "2026-10-06"
+        },
+        {
           "name": "방성훈",
           "position": "대표이사",
           "regType": "등기임원",
@@ -347877,6 +348549,54 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "서병휘",
+          "position": "경영자",
+          "regType": "비등기임원",
+          "holdCnt": 965,
+          "changeCnt": 6,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "김종하",
+          "position": "경영자",
+          "regType": "비등기임원",
+          "holdCnt": 659,
+          "changeCnt": 300,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "심혜영",
+          "position": "경영자",
+          "regType": "비등기임원",
+          "holdCnt": 1257,
+          "changeCnt": 40,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "이창규",
+          "position": "경영자",
+          "regType": "비등기임원",
+          "holdCnt": 1813,
+          "changeCnt": 160,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "김경연",
+          "position": "경영자",
+          "regType": "비등기임원",
+          "holdCnt": 2570,
+          "changeCnt": 30,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 6837720,
+          "changeCnt": 238635,
+          "date": "2026-10-06"
+        },
         {
           "name": "정혜진",
           "position": "경영자",
@@ -369012,6 +369732,14 @@
       ],
       "insiderTrades": [
         {
+          "name": "정성엽",
+          "position": "부사장",
+          "regType": "비등기임원",
+          "holdCnt": 15000,
+          "changeCnt": -1200,
+          "date": "2026-10-06"
+        },
+        {
           "name": "국민연금공단",
           "position": "-",
           "regType": "-",
@@ -371840,6 +372568,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 4780857,
+          "changeCnt": 98135,
+          "date": "2026-10-06"
+        },
         {
           "name": "국민연금공단",
           "position": "-",
@@ -387851,6 +388587,14 @@
       ],
       "insiderTrades": [
         {
+          "name": "뤄즈펑",
+          "position": "사장",
+          "regType": "등기임원",
+          "holdCnt": 18898,
+          "changeCnt": 980,
+          "date": "2026-10-06"
+        },
+        {
           "name": "유태인",
           "position": "상무보",
           "regType": "비등기임원",
@@ -396769,6 +397513,30 @@
           "name": "국민연금공단",
           "position": "-",
           "regType": "-",
+          "holdCnt": 7307198,
+          "changeCnt": -49920,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 7347157,
+          "changeCnt": 7347157,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 7329248,
+          "changeCnt": -17909,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 7357118,
           "changeCnt": 7357118,
           "date": "2026-09-30"
@@ -400078,6 +400846,22 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "미래에셋자산운용",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 10027887,
+          "changeCnt": 25629,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "이지스자산운용",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 7494602,
+          "changeCnt": -206336,
+          "date": "2026-10-08"
+        },
         {
           "name": "미래에셋자산운용",
           "position": "-",
@@ -419283,6 +420067,22 @@
       ],
       "insiderTrades": [
         {
+          "name": "이장한",
+          "position": "회장",
+          "regType": "비등기임원",
+          "holdCnt": 0,
+          "changeCnt": -1318807,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "이주원",
+          "position": "상무",
+          "regType": "비등기임원",
+          "holdCnt": 733620,
+          "changeCnt": 528807,
+          "date": "2026-10-08"
+        },
+        {
           "name": "종근당홀딩스",
           "position": "-",
           "regType": "-",
@@ -419507,7 +420307,7 @@
           "trmendQy": "-"
         }
       ],
-      "insiderSignal": "buy"
+      "insiderSignal": "both"
     },
     {
       "id": "00390055",
@@ -435271,6 +436071,14 @@
           "name": "미래에셋자산운용",
           "position": "-",
           "regType": "-",
+          "holdCnt": 5645393,
+          "changeCnt": 8642,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "미래에셋자산운용",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 5636751,
           "changeCnt": 45469,
           "date": "2026-10-01"
@@ -436374,6 +437182,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "미래에셋자산운용",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 27898020,
+          "changeCnt": -4125,
+          "date": "2026-10-08"
+        },
         {
           "name": "미래에셋자산운용",
           "position": "-",
@@ -439342,6 +440158,14 @@
       ],
       "insiderTrades": [
         {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 1467667,
+          "changeCnt": 41559,
+          "date": "2026-10-06"
+        },
+        {
           "name": "김민수",
           "position": "본부장",
           "regType": "비등기임원",
@@ -441516,6 +442340,14 @@
       ],
       "insiderTrades": [
         {
+          "name": "제이케이(JK)신기술투자조합 제24호",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 2000000,
+          "changeCnt": 2000000,
+          "date": "2026-10-07"
+        },
+        {
           "name": "이원곤",
           "position": "사외이사",
           "regType": "등기임원",
@@ -443547,6 +444379,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 3897720,
+          "changeCnt": 610231,
+          "date": "2026-10-06"
+        },
         {
           "name": "국민연금공단",
           "position": "-",
@@ -448707,6 +449547,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 2672454,
+          "changeCnt": -384249,
+          "date": "2026-10-06"
+        },
         {
           "name": "윤태진",
           "position": "이사",
@@ -463713,6 +464561,22 @@
       ],
       "insiderTrades": [
         {
+          "name": "선주현",
+          "position": "실장",
+          "regType": "비등기임원",
+          "holdCnt": 241,
+          "changeCnt": 62,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "김성진",
+          "position": "본부장",
+          "regType": "등기임원",
+          "holdCnt": 162,
+          "changeCnt": 62,
+          "date": "2026-10-07"
+        },
+        {
           "name": "김무철",
           "position": "실장",
           "regType": "비등기임원",
@@ -474190,6 +475054,14 @@
           "name": "국민연금공단",
           "position": "-",
           "regType": "-",
+          "holdCnt": 6754280,
+          "changeCnt": -736395,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 7490675,
           "changeCnt": 83544,
           "date": "2026-07-02"
@@ -482515,6 +483387,14 @@
       ],
       "insiderTrades": [
         {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 2860565,
+          "changeCnt": -160054,
+          "date": "2026-10-06"
+        },
+        {
           "name": "한상근",
           "position": "부사장",
           "regType": "등기임원",
@@ -487600,6 +488480,14 @@
       "insiderTrades": [
         {
           "name": "곽동신",
+          "position": "한미반도체 회장",
+          "regType": "등기임원",
+          "holdCnt": 32050694,
+          "changeCnt": 2549,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "곽동신",
           "position": "대표이사 회장",
           "regType": "등기임원",
           "holdCnt": 32048145,
@@ -489590,6 +490478,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 1300405,
+          "changeCnt": 14263,
+          "date": "2026-10-06"
+        },
         {
           "name": "국민연금공단",
           "position": "-",
@@ -492953,6 +493849,14 @@
       ],
       "insiderTrades": [
         {
+          "name": "조영수",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 181113,
+          "changeCnt": 81179,
+          "date": "2026-10-06"
+        },
+        {
           "name": "임동환",
           "position": "대표이사",
           "regType": "등기임원",
@@ -495073,6 +495977,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 1192787,
+          "changeCnt": -11358,
+          "date": "2026-10-06"
+        },
         {
           "name": "국민연금공단",
           "position": "-",
@@ -499606,6 +500518,14 @@
           "name": "국민연금공단",
           "position": "-",
           "regType": "-",
+          "holdCnt": 5552260,
+          "changeCnt": -111725,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 5663985,
           "changeCnt": 415021,
           "date": "2026-07-02"
@@ -501981,6 +502901,14 @@
           "name": "박지훈",
           "position": "부사장",
           "regType": "등기임원",
+          "holdCnt": 9568,
+          "changeCnt": 909,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "박지훈",
+          "position": "부사장",
+          "regType": "등기임원",
           "holdCnt": 8659,
           "changeCnt": 1500,
           "date": "2026-09-22"
@@ -502833,6 +503761,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 4140023,
+          "changeCnt": 152349,
+          "date": "2026-10-06"
+        },
         {
           "name": "국민연금공단",
           "position": "-",
@@ -508410,6 +509346,14 @@
           "name": "미래에셋자산운용",
           "position": "-",
           "regType": "-",
+          "holdCnt": 46928306,
+          "changeCnt": -128420,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "미래에셋자산운용",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 47056726,
           "changeCnt": 394428,
           "date": "2026-10-01"
@@ -511077,6 +512021,22 @@
       ],
       "insiderTrades": [
         {
+          "name": "백제민",
+          "position": "상무",
+          "regType": "비등기임원",
+          "holdCnt": 500,
+          "changeCnt": 500,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "김종원",
+          "position": "상무",
+          "regType": "비등기임원",
+          "holdCnt": 1000,
+          "changeCnt": 1000,
+          "date": "2026-10-06"
+        },
+        {
           "name": "이림",
           "position": "상무",
           "regType": "비등기임원",
@@ -512756,6 +513716,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "허재오",
+          "position": "상무",
+          "regType": "비등기임원",
+          "holdCnt": 300,
+          "changeCnt": 300,
+          "date": "2026-10-08"
+        },
         {
           "name": "하진안",
           "position": "전무",
@@ -514636,6 +515604,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "황일중",
+          "position": "임원",
+          "regType": "비등기임원",
+          "holdCnt": 49,
+          "changeCnt": 49,
+          "date": "2026-10-07"
+        },
         {
           "name": "서성덕",
           "position": "담당",
@@ -521819,6 +522795,14 @@
       ],
       "insiderTrades": [
         {
+          "name": "윤우석",
+          "position": "담당",
+          "regType": "비등기임원",
+          "holdCnt": 170,
+          "changeCnt": 170,
+          "date": "2026-10-06"
+        },
+        {
           "name": "국민연금공단",
           "position": "-",
           "regType": "-",
@@ -523884,6 +524868,22 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "임원영",
+          "position": "상무",
+          "regType": "비등기임원",
+          "holdCnt": 5260,
+          "changeCnt": 4900,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "안병렬",
+          "position": "상무",
+          "regType": "비등기임원",
+          "holdCnt": 2000,
+          "changeCnt": 2000,
+          "date": "2026-10-07"
+        },
         {
           "name": "윤치호",
           "position": "상무",
@@ -526544,6 +527544,30 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "김진홍",
+          "position": "상무",
+          "regType": "비등기임원",
+          "holdCnt": 335,
+          "changeCnt": 10,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "이형석",
+          "position": "전무",
+          "regType": "등기임원",
+          "holdCnt": 3230,
+          "changeCnt": 90,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 11872385,
+          "changeCnt": 405154,
+          "date": "2026-10-06"
+        },
         {
           "name": "이형석",
           "position": "전무",
@@ -532611,6 +533635,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 2222312,
+          "changeCnt": -686532,
+          "date": "2026-10-06"
+        },
         {
           "name": "현대지에프홀딩스",
           "position": "-",
@@ -545454,6 +546486,14 @@
           "name": "국민연금공단",
           "position": "-",
           "regType": "-",
+          "holdCnt": 10545010,
+          "changeCnt": 1896481,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 8648529,
           "changeCnt": 8648529,
           "date": "2026-07-13"
@@ -556021,6 +557061,14 @@
           "name": "국민연금공단",
           "position": "-",
           "regType": "-",
+          "holdCnt": 458722,
+          "changeCnt": 18741,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 439981,
           "changeCnt": -15944,
           "date": "2026-09-01"
@@ -565848,6 +566896,22 @@
           "name": "지앤비조합",
           "position": "-",
           "regType": "-",
+          "holdCnt": 5197462,
+          "changeCnt": -21469205,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "더에프피조합",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 3849435,
+          "changeCnt": -13293422,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "지앤비조합",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 26666667,
           "changeCnt": 17142857,
           "date": "2026-03-31"
@@ -572520,6 +573584,16 @@
           "cause": "122,000주매도"
         }
       ],
+      "insiderTrades": [
+        {
+          "name": "KIM HEEBUM",
+          "position": "전무",
+          "regType": "비등기임원",
+          "holdCnt": 534,
+          "changeCnt": 534,
+          "date": "2026-10-07"
+        }
+      ],
       "treasuryShares": [
         {
           "stockKnd": "-",
@@ -572647,7 +573721,8 @@
           "dsps": "-",
           "trmendQy": "-"
         }
-      ]
+      ],
+      "insiderSignal": "buy"
     },
     {
       "id": "01170962",
@@ -609382,6 +610457,30 @@
           "name": "김태우",
           "position": "이사",
           "regType": "비등기임원",
+          "holdCnt": 6342,
+          "changeCnt": 3572,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "박경원",
+          "position": "전무이사",
+          "regType": "비등기임원",
+          "holdCnt": 58259,
+          "changeCnt": 19345,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "강상연",
+          "position": "이사",
+          "regType": "비등기임원",
+          "holdCnt": 39983,
+          "changeCnt": 13276,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "김태우",
+          "position": "이사",
+          "regType": "비등기임원",
           "holdCnt": 2770,
           "changeCnt": -4337,
           "date": "2024-07-17"
@@ -619041,6 +620140,14 @@
           "name": "김호선",
           "position": "대표이사",
           "regType": "등기임원",
+          "holdCnt": 22739000,
+          "changeCnt": 119000,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "김호선",
+          "position": "대표이사",
+          "regType": "등기임원",
           "holdCnt": 22620000,
           "changeCnt": 209000,
           "date": "2026-09-07"
@@ -622215,6 +623322,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "류덕희",
+          "position": "명예회장",
+          "regType": "비등기임원",
+          "holdCnt": 418999,
+          "changeCnt": 3900,
+          "date": "2026-10-08"
+        },
         {
           "name": "류 기 성",
           "position": "대표이사",
@@ -643014,6 +644129,14 @@
       ],
       "insiderTrades": [
         {
+          "name": "유일혁",
+          "position": "상무이사",
+          "regType": "비등기임원",
+          "holdCnt": 0,
+          "changeCnt": -41000,
+          "date": "2026-10-08"
+        },
+        {
           "name": "박상준",
           "position": "감사",
           "regType": "비등기임원",
@@ -652211,6 +653334,14 @@
       ],
       "insiderTrades": [
         {
+          "name": "이준우",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 19608,
+          "changeCnt": 19608,
+          "date": "2026-10-06"
+        },
+        {
           "name": "아시아홀딩컴퍼니",
           "position": "-",
           "regType": "-",
@@ -656038,6 +657169,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "글로벌씨앤디",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 10431401,
+          "changeCnt": 2019386,
+          "date": "2026-10-07"
+        },
         {
           "name": "글로벌씨앤디",
           "position": "-",
@@ -673947,6 +675086,46 @@
       ],
       "insiderTrades": [
         {
+          "name": "다산벤처스",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 218667,
+          "changeCnt": -1968008,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "안상헌",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 1000,
+          "changeCnt": -9000,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "다산모바일",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 347499,
+          "changeCnt": -3127494,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "김상훈",
+          "position": "상무",
+          "regType": "비등기임원",
+          "holdCnt": 500,
+          "changeCnt": -4500,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "다산인베스트",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 576136,
+          "changeCnt": -5185228,
+          "date": "2026-10-08"
+        },
+        {
           "name": "다산모바일",
           "position": "-",
           "regType": "-",
@@ -680952,6 +682131,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "장영석",
+          "position": "이사",
+          "regType": "비등기임원",
+          "holdCnt": 7553,
+          "changeCnt": 6553,
+          "date": "2026-10-07"
+        },
         {
           "name": "최호형",
           "position": "공동대표이사",
@@ -688329,6 +689516,14 @@
           "name": "이윤우",
           "position": "회장",
           "regType": "등기임원",
+          "holdCnt": 1499504,
+          "changeCnt": 861,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "이윤우",
+          "position": "회장",
+          "regType": "등기임원",
           "holdCnt": 1498643,
           "changeCnt": 834,
           "date": "2026-09-30"
@@ -690585,6 +691780,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "박영준",
+          "position": "대표이사(CEO)",
+          "regType": "등기임원",
+          "holdCnt": 3304364,
+          "changeCnt": 5000,
+          "date": "2026-10-07"
+        },
         {
           "name": "박범준",
           "position": "부사장(COO)",
@@ -702432,6 +703635,14 @@
           "name": "김영환",
           "position": "전무",
           "regType": "등기임원",
+          "holdCnt": 4840,
+          "changeCnt": 1000,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "김영환",
+          "position": "전무",
+          "regType": "등기임원",
           "holdCnt": 3840,
           "changeCnt": 3189,
           "date": "2026-09-18"
@@ -708830,6 +710041,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "아침해",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 10859254,
+          "changeCnt": 12828,
+          "date": "2026-10-07"
+        },
         {
           "name": "아침해",
           "position": "-",
@@ -740644,6 +741863,14 @@
       ],
       "insiderTrades": [
         {
+          "name": "표윤석",
+          "position": "부사장",
+          "regType": "비등기임원",
+          "holdCnt": 4000,
+          "changeCnt": 4000,
+          "date": "2026-10-06"
+        },
+        {
           "name": "김병수",
           "position": "대표이사",
           "regType": "등기임원",
@@ -747674,6 +748901,14 @@
           "name": "신은숙",
           "position": "사내이사",
           "regType": "등기임원",
+          "holdCnt": 674885,
+          "changeCnt": 34638,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "신은숙",
+          "position": "사내이사",
+          "regType": "등기임원",
           "holdCnt": 640247,
           "changeCnt": 23657,
           "date": "2026-09-18"
@@ -753674,6 +754909,14 @@
           "name": "에셋플러스자산운용",
           "position": "-",
           "regType": "-",
+          "holdCnt": 947935,
+          "changeCnt": 21111,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "에셋플러스자산운용",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 926824,
           "changeCnt": -229078,
           "date": "2026-07-10"
@@ -758054,6 +759297,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "최용진",
+          "position": "전무",
+          "regType": "비등기임원",
+          "holdCnt": 3515,
+          "changeCnt": -800,
+          "date": "2026-10-08"
+        },
         {
           "name": "김록훈",
           "position": "전무",
@@ -777985,6 +779236,14 @@
           "name": "TheMiriStrategicEmergingMarketsFundLP",
           "position": "-",
           "regType": "-",
+          "holdCnt": 4597861,
+          "changeCnt": 119000,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "TheMiriStrategicEmergingMarketsFundLP",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 4478861,
           "changeCnt": 73000,
           "date": "2026-09-11"
@@ -789411,6 +790670,14 @@
       ],
       "insiderTrades": [
         {
+          "name": "이경조",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 1901736,
+          "changeCnt": 1500,
+          "date": "2026-10-06"
+        },
+        {
           "name": "이은중",
           "position": "대표이사",
           "regType": "등기임원",
@@ -790785,6 +792052,30 @@
       ],
       "insiderTrades": [
         {
+          "name": "신동범",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 150000,
+          "changeCnt": 150000,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "라미쿠스",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 0,
+          "changeCnt": -4552496,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "정집훈",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 0,
+          "changeCnt": -230000,
+          "date": "2026-10-06"
+        },
+        {
           "name": "아크로 신기술조합 제241호",
           "position": "-",
           "regType": "-",
@@ -790921,7 +792212,7 @@
           "trmendQy": "-"
         }
       ],
-      "insiderSignal": "buy"
+      "insiderSignal": "both"
     },
     {
       "id": "00267906",
@@ -801425,6 +802716,54 @@
       ],
       "insiderTrades": [
         {
+          "name": "최승원",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 1061562,
+          "changeCnt": -4246250,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "홍민기",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 290109,
+          "changeCnt": -28558,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "배용준",
+          "position": "기타비상무이사",
+          "regType": "등기임원",
+          "holdCnt": 860375,
+          "changeCnt": -3441501,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "홍민기",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 318667,
+          "changeCnt": -1274674,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "배성웅",
+          "position": "의장",
+          "regType": "등기임원",
+          "holdCnt": 1459655,
+          "changeCnt": -5838624,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "권혁철",
+          "position": "이사",
+          "regType": "등기임원",
+          "holdCnt": 1061562,
+          "changeCnt": -4246250,
+          "date": "2026-10-07"
+        },
+        {
           "name": "배용준",
           "position": "이사",
           "regType": "등기임원",
@@ -801561,7 +802900,7 @@
           "trmendQy": "-"
         }
       ],
-      "insiderSignal": "buy"
+      "insiderSignal": "both"
     },
     {
       "id": "00563518",
@@ -809864,6 +811203,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "트러스트앤에쿼티투자조합",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 7123404,
+          "changeCnt": 123404,
+          "date": "2026-10-07"
+        },
         {
           "name": "트러스트앤에쿼티투자조합",
           "position": "-",
@@ -825609,6 +826956,22 @@
       ],
       "insiderTrades": [
         {
+          "name": "변동준",
+          "position": "기타비상무이사",
+          "regType": "등기임원",
+          "holdCnt": 1057643,
+          "changeCnt": 48263,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "서정환",
+          "position": "이사",
+          "regType": "비등기임원",
+          "holdCnt": 10286,
+          "changeCnt": 1265,
+          "date": "2026-10-07"
+        },
+        {
           "name": "백남준",
           "position": "전무이사",
           "regType": "등기임원",
@@ -833184,6 +834547,14 @@
           "name": "레이노코리아",
           "position": "-",
           "regType": "-",
+          "holdCnt": 2097518,
+          "changeCnt": 132566,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "레이노코리아",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 1964952,
           "changeCnt": 96482,
           "date": "2026-09-29"
@@ -838257,6 +839628,22 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "성승용",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 1049534,
+          "changeCnt": -4198136,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "김도선",
+          "position": "부사장",
+          "regType": "비등기임원",
+          "holdCnt": 3700,
+          "changeCnt": -14800,
+          "date": "2026-10-07"
+        },
         {
           "name": "성승용",
           "position": "대표이사",
@@ -854627,6 +856014,14 @@
           "name": "우태재",
           "position": "상무이사",
           "regType": "비등기임원",
+          "holdCnt": 8088,
+          "changeCnt": 4000,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "우태재",
+          "position": "상무이사",
+          "regType": "비등기임원",
           "holdCnt": 4088,
           "changeCnt": 1000,
           "date": "2026-07-30"
@@ -857331,6 +858726,40 @@
           "cause": "RCPS신주발행"
         }
       ],
+      "insiderTrades": [
+        {
+          "name": "박순규",
+          "position": "이사",
+          "regType": "등기임원",
+          "holdCnt": 81409,
+          "changeCnt": -325640,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "정광임",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 610574,
+          "changeCnt": -2442298,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "나성인",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 610574,
+          "changeCnt": -2442298,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "나상수",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 1953838,
+          "changeCnt": -7815354,
+          "date": "2026-10-08"
+        }
+      ],
       "treasuryShares": [
         {
           "stockKnd": "-",
@@ -857458,7 +858887,8 @@
           "dsps": "-",
           "trmendQy": "-"
         }
-      ]
+      ],
+      "insiderSignal": "sell"
     },
     {
       "id": "00133751",
@@ -859370,6 +860800,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "박태원",
+          "position": "사외이사",
+          "regType": "등기임원",
+          "holdCnt": 15000,
+          "changeCnt": 5000,
+          "date": "2026-10-08"
+        },
         {
           "name": "이영식",
           "position": "상무이사",
@@ -875036,6 +876474,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "김재은",
+          "position": "상무",
+          "regType": "비등기임원",
+          "holdCnt": 1363,
+          "changeCnt": 1363,
+          "date": "2026-10-07"
+        },
         {
           "name": "정용일",
           "position": "부사장",
@@ -895728,6 +897174,22 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "김은식",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 3954104,
+          "changeCnt": 1356,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "김은주",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 2464569,
+          "changeCnt": 5000,
+          "date": "2026-10-08"
+        },
         {
           "name": "김은주",
           "position": "대표이사",
@@ -916753,6 +918215,14 @@
           "name": "정인용",
           "position": "대표이사",
           "regType": "등기임원",
+          "holdCnt": 7464413,
+          "changeCnt": -50000,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "정인용",
+          "position": "대표이사",
+          "regType": "등기임원",
           "holdCnt": 7514413,
           "changeCnt": -100000,
           "date": "2026-06-12"
@@ -917704,6 +919174,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "랑시코리아",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 11091707,
+          "changeCnt": 613690,
+          "date": "2026-10-07"
+        },
         {
           "name": "랑시코리아",
           "position": "-",
@@ -936656,6 +938134,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "최동철",
+          "position": "사내이사",
+          "regType": "등기임원",
+          "holdCnt": 282828,
+          "changeCnt": 100,
+          "date": "2026-10-08"
+        },
         {
           "name": "최동철",
           "position": "사내이사",
@@ -956421,6 +957907,30 @@
       ],
       "insiderTrades": [
         {
+          "name": "한승렬",
+          "position": "이사",
+          "regType": "등기임원",
+          "holdCnt": 95800,
+          "changeCnt": 45800,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "홍성우",
+          "position": "부사장",
+          "regType": "등기임원",
+          "holdCnt": 162935,
+          "changeCnt": 12935,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "임종선",
+          "position": "이사",
+          "regType": "등기임원",
+          "holdCnt": 76000,
+          "changeCnt": 25384,
+          "date": "2026-10-08"
+        },
+        {
           "name": "이성욱",
           "position": "대표이사",
           "regType": "등기임원",
@@ -965033,6 +966543,14 @@
       ],
       "insiderTrades": [
         {
+          "name": "뉴머티리얼즈 신기술투자조합1호",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 1500000,
+          "changeCnt": 1500000,
+          "date": "2026-10-06"
+        },
+        {
           "name": "비투엔",
           "position": "-",
           "regType": "-",
@@ -973259,6 +974777,22 @@
       ],
       "insiderTrades": [
         {
+          "name": "전순옥",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 44742,
+          "changeCnt": -402685,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "최경덕",
+          "position": "사내이사",
+          "regType": "등기임원",
+          "holdCnt": 2311480,
+          "changeCnt": -20803328,
+          "date": "2026-10-06"
+        },
+        {
           "name": "최경덕",
           "position": "사내이사",
           "regType": "등기임원",
@@ -973395,7 +974929,7 @@
           "trmendQy": "-"
         }
       ],
-      "insiderSignal": "buy"
+      "insiderSignal": "both"
     },
     {
       "id": "00137012",
@@ -984179,6 +985713,14 @@
           "name": "이대원",
           "position": "사내이사 (부사장)",
           "regType": "등기임원",
+          "holdCnt": 31000,
+          "changeCnt": 1000,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "이대원",
+          "position": "사내이사 (부사장)",
+          "regType": "등기임원",
           "holdCnt": 30000,
           "changeCnt": 2000,
           "date": "2026-06-30"
@@ -993970,6 +995512,38 @@
       ],
       "insiderTrades": [
         {
+          "name": "이영휘",
+          "position": "이사",
+          "regType": "비등기임원",
+          "holdCnt": 1620,
+          "changeCnt": -7380,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "장기룡",
+          "position": "부사장",
+          "regType": "비등기임원",
+          "holdCnt": 13115,
+          "changeCnt": -52464,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "우성윤",
+          "position": "부사장",
+          "regType": "등기임원",
+          "holdCnt": 41370,
+          "changeCnt": -165481,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "신영기",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 422857,
+          "changeCnt": -1691430,
+          "date": "2026-10-08"
+        },
+        {
           "name": "우성윤",
           "position": "부사장",
           "regType": "등기임원",
@@ -997931,6 +999505,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "천성민",
+          "position": "상무이사",
+          "regType": "비등기임원",
+          "holdCnt": 291000,
+          "changeCnt": 210000,
+          "date": "2026-10-08"
+        },
         {
           "name": "천병태",
           "position": "대표이사",
@@ -1004193,6 +1005775,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "김상욱",
+          "position": "전무",
+          "regType": "비등기임원",
+          "holdCnt": 198,
+          "changeCnt": 198,
+          "date": "2026-10-06"
+        },
         {
           "name": "조용준",
           "position": "이사",
@@ -1015302,6 +1016892,38 @@
       ],
       "insiderTrades": [
         {
+          "name": "윤인호",
+          "position": "상무",
+          "regType": "비등기임원",
+          "holdCnt": 1829,
+          "changeCnt": -162,
+          "date": "2026-10-12"
+        },
+        {
+          "name": "이완표",
+          "position": "수석",
+          "regType": "등기임원",
+          "holdCnt": 2000,
+          "changeCnt": -182,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "최윤영",
+          "position": "부사장",
+          "regType": "비등기임원",
+          "holdCnt": 2188,
+          "changeCnt": 164,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "조병일",
+          "position": "전문가(상무대우)",
+          "regType": "비등기임원",
+          "holdCnt": 273,
+          "changeCnt": -24,
+          "date": "2026-10-08"
+        },
+        {
           "name": "최윤영",
           "position": "부사장",
           "regType": "비등기임원",
@@ -1025505,6 +1027127,14 @@
           "name": "이지나",
           "position": "팀장",
           "regType": "비등기임원",
+          "holdCnt": 126263,
+          "changeCnt": 3000,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "이지나",
+          "position": "팀장",
+          "regType": "비등기임원",
           "holdCnt": 123263,
           "changeCnt": 1000,
           "date": "2026-09-03"
@@ -1033479,6 +1035109,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "정남진",
+          "position": "상무이사",
+          "regType": "비등기임원",
+          "holdCnt": 6000,
+          "changeCnt": 1400,
+          "date": "2026-10-06"
+        },
         {
           "name": "김정준",
           "position": "대표이사",
@@ -1047731,6 +1049369,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "조이현",
+          "position": "상무",
+          "regType": "비등기임원",
+          "holdCnt": 0,
+          "changeCnt": -3900,
+          "date": "2026-10-06"
+        },
         {
           "name": "김영범",
           "position": "상무",
@@ -1064572,6 +1066218,14 @@
           "name": "바이오스마트",
           "position": "-",
           "regType": "-",
+          "holdCnt": 4021453,
+          "changeCnt": -16085816,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "바이오스마트",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 20107269,
           "changeCnt": 1210003,
           "date": "2026-08-18"
@@ -1064761,7 +1066415,7 @@
           "trmendQy": "-"
         }
       ],
-      "insiderSignal": "buy"
+      "insiderSignal": "both"
     },
     {
       "id": "00831428",
@@ -1065501,6 +1067155,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "CHOI SANG HO",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 330185,
+          "changeCnt": 252100,
+          "date": "2026-10-06"
+        },
         {
           "name": "홍창일",
           "position": "기획실장",
@@ -1093998,6 +1095660,14 @@
           "name": "웰킵스홀딩스",
           "position": "-",
           "regType": "-",
+          "holdCnt": 6771180,
+          "changeCnt": 6776,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "웰킵스홀딩스",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 6764404,
           "changeCnt": 58808,
           "date": "2026-09-29"
@@ -1094787,6 +1096457,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "김병관",
+          "position": "사내이사 (이사회 의장)",
+          "regType": "등기임원",
+          "holdCnt": 10520000,
+          "changeCnt": 320000,
+          "date": "2026-10-08"
+        },
         {
           "name": "김병관",
           "position": "사내이사 (이사회 의장)",
@@ -1099363,6 +1101041,14 @@
           "name": "이제동",
           "position": "대표이사",
           "regType": "등기임원",
+          "holdCnt": 98022,
+          "changeCnt": 2022,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "이제동",
+          "position": "대표이사",
+          "regType": "등기임원",
           "holdCnt": 96000,
           "changeCnt": 2000,
           "date": "2026-09-14"
@@ -1103094,6 +1104780,14 @@
           "name": "KIMYUNGHWAN",
           "position": "-",
           "regType": "-",
+          "holdCnt": 394958,
+          "changeCnt": -27823,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "KIMYUNGHWAN",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 422781,
           "changeCnt": -1691125,
           "date": "2026-09-28"
@@ -1103626,6 +1105320,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "WANG XIAN TAO",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 2154509,
+          "changeCnt": 131743,
+          "date": "2026-10-07"
+        },
         {
           "name": "WANG TING FENG",
           "position": "이사",
@@ -1108462,6 +1110164,30 @@
       ],
       "insiderTrades": [
         {
+          "name": "권태일",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 94226,
+          "changeCnt": 700,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "조준희",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 656780,
+          "changeCnt": 3000,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "유웅진",
+          "position": "기획관리부문장",
+          "regType": "등기임원",
+          "holdCnt": 3210,
+          "changeCnt": 500,
+          "date": "2026-10-08"
+        },
+        {
           "name": "조준희",
           "position": "대표이사",
           "regType": "등기임원",
@@ -1110801,6 +1112527,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "아주IB투자",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 415303,
+          "changeCnt": -1661212,
+          "date": "2026-10-06"
+        },
         {
           "name": "임재환",
           "position": "대표이사",
@@ -1117774,6 +1119508,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "시만",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 10385900,
+          "changeCnt": -1005500,
+          "date": "2026-10-08"
+        },
         {
           "name": "시만",
           "position": "-",
@@ -1133379,6 +1135121,16 @@
           "cause": "주식양수도 계약"
         }
       ],
+      "insiderTrades": [
+        {
+          "name": "넥스턴앤롤코리아",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 1806667,
+          "changeCnt": -8502609,
+          "date": "2026-10-08"
+        }
+      ],
       "treasuryShares": [
         {
           "stockKnd": "보통주",
@@ -1133506,7 +1135258,8 @@
           "dsps": "-",
           "trmendQy": "-"
         }
-      ]
+      ],
+      "insiderSignal": "sell"
     },
     {
       "id": "01135640",
@@ -1138295,6 +1140048,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "이재혁",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 2173870,
+          "changeCnt": 14598,
+          "date": "2026-10-06"
+        },
         {
           "name": "이재혁",
           "position": "대표이사",
@@ -1174386,6 +1176147,14 @@
       ],
       "insiderTrades": [
         {
+          "name": "김정민",
+          "position": "상무보",
+          "regType": "비등기임원",
+          "holdCnt": 501,
+          "changeCnt": -200,
+          "date": "2026-10-07"
+        },
+        {
           "name": "김상욱",
           "position": "대표이사",
           "regType": "등기임원",
@@ -1174610,7 +1176379,7 @@
           "trmendQy": "-"
         }
       ],
-      "insiderSignal": "buy"
+      "insiderSignal": "both"
     },
     {
       "id": "00148531",
@@ -1190490,6 +1192259,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "광무",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 1606609,
+          "changeCnt": -14459487,
+          "date": "2026-10-08"
+        },
         {
           "name": "아틀라스팔천",
           "position": "-",
@@ -1216892,6 +1218669,22 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "권현진",
+          "position": "회장 / 대표이사",
+          "regType": "등기임원",
+          "holdCnt": 1127824,
+          "changeCnt": -4511296,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "김상학",
+          "position": "부사장",
+          "regType": "비등기임원",
+          "holdCnt": 3000,
+          "changeCnt": -12000,
+          "date": "2026-10-08"
+        },
         {
           "name": "김상학",
           "position": "부사장",
@@ -1246016,6 +1247809,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "국민연금공단",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 1164858,
+          "changeCnt": -209792,
+          "date": "2026-10-06"
+        },
         {
           "name": "차영권",
           "position": "상무이사",
@@ -1296119,6 +1297920,14 @@
           "name": "유비벨록스",
           "position": "-",
           "regType": "-",
+          "holdCnt": 4754016,
+          "changeCnt": 32937,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "유비벨록스",
+          "position": "-",
+          "regType": "-",
           "holdCnt": 4721079,
           "changeCnt": 70326,
           "date": "2026-09-28"
@@ -1305947,6 +1307756,22 @@
       ],
       "insiderTrades": [
         {
+          "name": "오르비텍",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 4533057,
+          "changeCnt": -2304572,
+          "date": "2026-10-08"
+        },
+        {
+          "name": "성진홀딩스",
+          "position": "-",
+          "regType": "-",
+          "holdCnt": 5005050,
+          "changeCnt": 865050,
+          "date": "2026-10-08"
+        },
+        {
           "name": "성진홀딩스",
           "position": "-",
           "regType": "-",
@@ -1308169,6 +1309994,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "김종구",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 9333642,
+          "changeCnt": 19641,
+          "date": "2026-10-07"
+        },
         {
           "name": "김종구",
           "position": "대표이사",
@@ -1326112,6 +1327945,14 @@
           "name": "김재영",
           "position": "상무",
           "regType": "등기임원",
+          "holdCnt": 85000,
+          "changeCnt": 50000,
+          "date": "2026-10-07"
+        },
+        {
+          "name": "김재영",
+          "position": "상무",
+          "regType": "등기임원",
           "holdCnt": 35000,
           "changeCnt": -15000,
           "date": "2026-08-26"
@@ -1326889,6 +1328730,22 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "원연경",
+          "position": "이사",
+          "regType": "등기임원",
+          "holdCnt": 1417800,
+          "changeCnt": 500000,
+          "date": "2026-10-06"
+        },
+        {
+          "name": "원재희",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 908865,
+          "changeCnt": -500000,
+          "date": "2026-10-06"
+        },
         {
           "name": "원연경",
           "position": "이사",
@@ -1355248,6 +1357105,14 @@
       ],
       "insiderTrades": [
         {
+          "name": "김병부",
+          "position": "본부장",
+          "regType": "비등기임원",
+          "holdCnt": 49910,
+          "changeCnt": 2914,
+          "date": "2026-10-06"
+        },
+        {
           "name": "문현철",
           "position": "상무",
           "regType": "비등기임원",
@@ -1372815,6 +1374680,14 @@
         }
       ],
       "insiderTrades": [
+        {
+          "name": "박인래",
+          "position": "대표이사",
+          "regType": "등기임원",
+          "holdCnt": 29500,
+          "changeCnt": 5000,
+          "date": "2026-10-08"
+        },
         {
           "name": "박인래",
           "position": "대표이사",
@@ -1419724,7 +1421597,8 @@
       "label": "남영우",
       "isCompany": false,
       "isListed": false,
-      "market": "NONE"
+      "market": "NONE",
+      "position": "-"
     },
     {
       "id": "김성규",
@@ -1493540,14 +1495414,16 @@
       "label": "정광임",
       "isCompany": false,
       "isListed": false,
-      "market": "NONE"
+      "market": "NONE",
+      "position": "-"
     },
     {
       "id": "나성인",
       "label": "나성인",
       "isCompany": false,
       "isListed": false,
-      "market": "NONE"
+      "market": "NONE",
+      "position": "-"
     },
     {
       "id": "나민성",
@@ -1558947,6 +1560823,13 @@
       "market": "NONE"
     },
     {
+      "id": "그린앤그레이",
+      "label": "그린앤그레이",
+      "isCompany": true,
+      "isListed": false,
+      "market": "NONE"
+    },
+    {
       "id": "이모코그",
       "label": "이모코그",
       "isCompany": true,
@@ -1558963,13 +1560846,6 @@
     {
       "id": "픽셀리티게임즈",
       "label": "픽셀리티게임즈",
-      "isCompany": true,
-      "isListed": false,
-      "market": "NONE"
-    },
-    {
-      "id": "그린앤그레이",
-      "label": "그린앤그레이",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
@@ -1559283,6 +1561159,13 @@
       "market": "NONE"
     },
     {
+      "id": "포자랩스",
+      "label": "포자랩스",
+      "isCompany": true,
+      "isListed": false,
+      "market": "NONE"
+    },
+    {
       "id": "가지랩",
       "label": "가지랩",
       "isCompany": true,
@@ -1559299,13 +1561182,6 @@
     {
       "id": "라플라스테크놀로지스",
       "label": "라플라스테크놀로지스",
-      "isCompany": true,
-      "isListed": false,
-      "market": "NONE"
-    },
-    {
-      "id": "포자랩스",
-      "label": "포자랩스",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
@@ -1559752,13 +1561628,6 @@
       "market": "NONE"
     },
     {
-      "id": "미스틱스토리",
-      "label": "미스틱스토리",
-      "isCompany": true,
-      "isListed": false,
-      "market": "NONE"
-    },
-    {
       "id": "위버스컴퍼니",
       "label": "주식회사위버스컴퍼니",
       "isCompany": true,
@@ -1559766,15 +1561635,22 @@
       "market": "NONE"
     },
     {
-      "id": "Patreon",
-      "label": "Patreon",
+      "id": "퓨처이노베이션제삼호사모투자합자회사",
+      "label": "퓨처이노베이션제삼호사모투자합자회사",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
     },
     {
-      "id": "퓨처이노베이션제삼호사모투자합자회사",
-      "label": "퓨처이노베이션제삼호사모투자합자회사",
+      "id": "미스틱스토리",
+      "label": "미스틱스토리",
+      "isCompany": true,
+      "isListed": false,
+      "market": "NONE"
+    },
+    {
+      "id": "Patreon",
+      "label": "Patreon",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
@@ -1561152,13 +1563028,6 @@
       "market": "NONE"
     },
     {
-      "id": "천안성성9지구(우선주)",
-      "label": "천안성성9지구(우선주)",
-      "isCompany": true,
-      "isListed": false,
-      "market": "NONE"
-    },
-    {
       "id": "경산물류센터개발(우선주)",
       "label": "경산물류센터개발(우선주)",
       "isCompany": true,
@@ -1561175,6 +1563044,13 @@
     {
       "id": "천안성성8지구(우선주)",
       "label": "천안성성8지구(우선주)",
+      "isCompany": true,
+      "isListed": false,
+      "market": "NONE"
+    },
+    {
+      "id": "천안성성9지구(우선주)",
+      "label": "천안성성9지구(우선주)",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
@@ -1561418,20 +1563294,6 @@
       "market": "NONE"
     },
     {
-      "id": "트루벤글로벌헬스케어사모투자합자회사",
-      "label": "트루벤글로벌헬스케어사모투자합자회사",
-      "isCompany": true,
-      "isListed": false,
-      "market": "NONE"
-    },
-    {
-      "id": "홈플러스해운대점개발사업PFV(2종종류주)",
-      "label": "홈플러스해운대점개발사업PFV(2종종류주)",
-      "isCompany": true,
-      "isListed": false,
-      "market": "NONE"
-    },
-    {
       "id": "이천사동리도시개발사업SPC",
       "label": "이천사동리도시개발사업SPC",
       "isCompany": true,
@@ -1561446,8 +1563308,22 @@
       "market": "NONE"
     },
     {
+      "id": "트루벤글로벌헬스케어사모투자합자회사",
+      "label": "트루벤글로벌헬스케어사모투자합자회사",
+      "isCompany": true,
+      "isListed": false,
+      "market": "NONE"
+    },
+    {
       "id": "홈플러스해운대점개발사업PFV(1종종류주)",
       "label": "홈플러스해운대점개발사업PFV(1종종류주)",
+      "isCompany": true,
+      "isListed": false,
+      "market": "NONE"
+    },
+    {
+      "id": "홈플러스해운대점개발사업PFV(2종종류주)",
+      "label": "홈플러스해운대점개발사업PFV(2종종류주)",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
@@ -1561712,13 +1563588,6 @@
       "market": "NONE"
     },
     {
-      "id": "맥쿼리코리아오퍼튜니티즈사모투자전문회사제3호",
-      "label": "맥쿼리코리아오퍼튜니티즈사모투자전문회사제3호",
-      "isCompany": true,
-      "isListed": false,
-      "market": "NONE"
-    },
-    {
       "id": "올릭스3CPS",
       "label": "올릭스3CPS",
       "isCompany": true,
@@ -1561735,6 +1563604,13 @@
     {
       "id": "센트럴허브PFV(우선주)",
       "label": "센트럴허브PFV(우선주)",
+      "isCompany": true,
+      "isListed": false,
+      "market": "NONE"
+    },
+    {
+      "id": "맥쿼리코리아오퍼튜니티즈사모투자전문회사제3호",
+      "label": "맥쿼리코리아오퍼튜니티즈사모투자전문회사제3호",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
@@ -1561922,15 +1563798,15 @@
       "market": "NONE"
     },
     {
-      "id": "스타셋-디에이밸류헬스케어투자조합2호",
-      "label": "스타셋-디에이밸류헬스케어투자조합2호",
+      "id": "유진토르사모투자합자회사",
+      "label": "유진토르사모투자합자회사",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
     },
     {
-      "id": "유진토르사모투자합자회사",
-      "label": "유진토르사모투자합자회사",
+      "id": "스타셋-디에이밸류헬스케어투자조합2호",
+      "label": "스타셋-디에이밸류헬스케어투자조합2호",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
@@ -1562300,13 +1564176,6 @@
       "market": "NONE"
     },
     {
-      "id": "엔에이치-디엑스오픈이노베이션펀드",
-      "label": "엔에이치-디엑스오픈이노베이션펀드",
-      "isCompany": true,
-      "isListed": false,
-      "market": "NONE"
-    },
-    {
       "id": "코엔트리비엔케이메타버스신기술투자조합",
       "label": "코엔트리비엔케이메타버스신기술투자조합",
       "isCompany": true,
@@ -1562323,6 +1564192,13 @@
     {
       "id": "수인베스트먼트동북지역뉴딜투자조합",
       "label": "수인베스트먼트동북지역뉴딜투자조합",
+      "isCompany": true,
+      "isListed": false,
+      "market": "NONE"
+    },
+    {
+      "id": "엔에이치-디엑스오픈이노베이션펀드",
+      "label": "엔에이치-디엑스오픈이노베이션펀드",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
@@ -1562531,20 +1564407,6 @@
       "market": "NONE"
     },
     {
-      "id": "스마일게이트베트남카이로스1호사모투자합자회사",
-      "label": "스마일게이트베트남카이로스1호사모투자합자회사",
-      "isCompany": true,
-      "isListed": false,
-      "market": "NONE"
-    },
-    {
-      "id": "대신-스카이워크신기술투자조합",
-      "label": "대신-스카이워크신기술투자조합",
-      "isCompany": true,
-      "isListed": false,
-      "market": "NONE"
-    },
-    {
       "id": "에스지2022사모투자합자회사",
       "label": "에스지2022사모투자합자회사",
       "isCompany": true,
@@ -1562559,8 +1564421,22 @@
       "market": "NONE"
     },
     {
+      "id": "스마일게이트베트남카이로스1호사모투자합자회사",
+      "label": "스마일게이트베트남카이로스1호사모투자합자회사",
+      "isCompany": true,
+      "isListed": false,
+      "market": "NONE"
+    },
+    {
       "id": "덴티스트리홀딩스2023사모투자합자회사",
       "label": "덴티스트리홀딩스2023사모투자합자회사",
+      "isCompany": true,
+      "isListed": false,
+      "market": "NONE"
+    },
+    {
+      "id": "대신-스카이워크신기술투자조합",
+      "label": "대신-스카이워크신기술투자조합",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
@@ -1562776,13 +1564652,6 @@
       "market": "NONE"
     },
     {
-      "id": "제이앤허큘리스사모투자합자회사",
-      "label": "제이앤허큘리스사모투자합자회사",
-      "isCompany": true,
-      "isListed": false,
-      "market": "NONE"
-    },
-    {
       "id": "케이와이글로벌셀앤진사모투자합자회사제2호",
       "label": "케이와이글로벌셀앤진사모투자합자회사제2호",
       "isCompany": true,
@@ -1562792,6 +1564661,13 @@
     {
       "id": "한앤컴퍼니제4의4호사모투자합자회사",
       "label": "한앤컴퍼니제4의4호사모투자합자회사",
+      "isCompany": true,
+      "isListed": false,
+      "market": "NONE"
+    },
+    {
+      "id": "제이앤허큘리스사모투자합자회사",
+      "label": "제이앤허큘리스사모투자합자회사",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
@@ -1563007,20 +1564883,6 @@
       "market": "NONE"
     },
     {
-      "id": "레이크브릿지-삼성증권성장기업1호신기술사업투자조합",
-      "label": "레이크브릿지-삼성증권성장기업1호신기술사업투자조합",
-      "isCompany": true,
-      "isListed": false,
-      "market": "NONE"
-    },
-    {
-      "id": "케이앤티-키움첨단소재제2호신기술사업투자조합",
-      "label": "케이앤티-키움첨단소재제2호신기술사업투자조합",
-      "isCompany": true,
-      "isListed": false,
-      "market": "NONE"
-    },
-    {
       "id": "포휴먼라이프웰빙1호사모투자합자회사",
       "label": "포휴먼라이프웰빙1호사모투자합자회사",
       "isCompany": true,
@@ -1563030,6 +1564892,20 @@
     {
       "id": "글랜우드크레딧공동투자제일호사모투자합자회사",
       "label": "글랜우드크레딧공동투자제일호사모투자합자회사",
+      "isCompany": true,
+      "isListed": false,
+      "market": "NONE"
+    },
+    {
+      "id": "레이크브릿지-삼성증권성장기업1호신기술사업투자조합",
+      "label": "레이크브릿지-삼성증권성장기업1호신기술사업투자조합",
+      "isCompany": true,
+      "isListed": false,
+      "market": "NONE"
+    },
+    {
+      "id": "케이앤티-키움첨단소재제2호신기술사업투자조합",
+      "label": "케이앤티-키움첨단소재제2호신기술사업투자조합",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
@@ -1578155,15 +1580031,15 @@
       "market": "NONE"
     },
     {
-      "id": "위메이드커넥트",
-      "label": "위메이드커넥트",
+      "id": "화해글로벌(구,버드뷰)",
+      "label": "화해글로벌(구,버드뷰)",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
     },
     {
-      "id": "화해글로벌(구,버드뷰)",
-      "label": "화해글로벌(구,버드뷰)",
+      "id": "위메이드커넥트",
+      "label": "위메이드커넥트",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
@@ -1587388,13 +1589264,6 @@
       "market": "NONE"
     },
     {
-      "id": "광주누문미래에셋피에프브이",
-      "label": "광주누문미래에셋피에프브이",
-      "isCompany": true,
-      "isListed": false,
-      "market": "NONE"
-    },
-    {
       "id": "수서역환승센터복합개발",
       "label": "수서역환승센터복합개발",
       "isCompany": true,
@@ -1587411,6 +1589280,13 @@
     {
       "id": "리건인베스트먼트피에프브이",
       "label": "리건인베스트먼트피에프브이",
+      "isCompany": true,
+      "isListed": false,
+      "market": "NONE"
+    },
+    {
+      "id": "광주누문미래에셋피에프브이",
+      "label": "광주누문미래에셋피에프브이",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
@@ -1587696,13 +1589572,6 @@
       "market": "NONE"
     },
     {
-      "id": "NewFronteraHoldings,LLC",
-      "label": "NewFronteraHoldings,LLC",
-      "isCompany": true,
-      "isListed": false,
-      "market": "NONE"
-    },
-    {
       "id": "안성승두3지구공동주택개발사업(보통주)",
       "label": "안성승두3지구공동주택개발사업(보통주)",
       "isCompany": true,
@@ -1587719,6 +1589588,13 @@
     {
       "id": "오산운암뜰도시개발사업",
       "label": "오산운암뜰도시개발사업",
+      "isCompany": true,
+      "isListed": false,
+      "market": "NONE"
+    },
+    {
+      "id": "NewFronteraHoldings,LLC",
+      "label": "NewFronteraHoldings,LLC",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
@@ -1587913,13 +1589789,6 @@
       "market": "NONE"
     },
     {
-      "id": "미래에셋청년창업투자조합3호",
-      "label": "미래에셋청년창업투자조합3호",
-      "isCompany": true,
-      "isListed": false,
-      "market": "NONE"
-    },
-    {
       "id": "미래에셋파트너스제9호사모투자합자회사",
       "label": "미래에셋파트너스제9호사모투자합자회사",
       "isCompany": true,
@@ -1587929,6 +1589798,13 @@
     {
       "id": "미래에셋파트너스5호사모투자전문회사",
       "label": "미래에셋파트너스5호사모투자전문회사",
+      "isCompany": true,
+      "isListed": false,
+      "market": "NONE"
+    },
+    {
+      "id": "미래에셋청년창업투자조합3호",
+      "label": "미래에셋청년창업투자조합3호",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
@@ -1588144,13 +1590020,6 @@
       "market": "NONE"
     },
     {
-      "id": "미래에셋제트투자조합2호",
-      "label": "미래에셋제트투자조합2호",
-      "isCompany": true,
-      "isListed": false,
-      "market": "NONE"
-    },
-    {
       "id": "제이케이엘이에스지미래모빌리티밸류체인사모투자합자회사",
       "label": "제이케이엘이에스지미래모빌리티밸류체인사모투자합자회사",
       "isCompany": true,
@@ -1588160,6 +1590029,13 @@
     {
       "id": "미래에셋파트너스제11호사모투자합자회사",
       "label": "미래에셋파트너스제11호사모투자합자회사",
+      "isCompany": true,
+      "isListed": false,
+      "market": "NONE"
+    },
+    {
+      "id": "미래에셋제트투자조합2호",
+      "label": "미래에셋제트투자조합2호",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
@@ -1588319,13 +1590195,6 @@
       "market": "NONE"
     },
     {
-      "id": "펙투스-IBKC신기술투자조합제1호(서울옥션)",
-      "label": "펙투스-IBKC신기술투자조합제1호(서울옥션)",
-      "isCompany": true,
-      "isListed": false,
-      "market": "NONE"
-    },
-    {
       "id": "피라인모터스보통주구주",
       "label": "㈜피라인모터스보통주구주",
       "isCompany": true,
@@ -1588335,6 +1590204,13 @@
     {
       "id": "신한메자닌신기술투자조합제2호(에코프로비엠)",
       "label": "신한메자닌신기술투자조합제2호(에코프로비엠)",
+      "isCompany": true,
+      "isListed": false,
+      "market": "NONE"
+    },
+    {
+      "id": "펙투스-IBKC신기술투자조합제1호(서울옥션)",
+      "label": "펙투스-IBKC신기술투자조합제1호(서울옥션)",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
@@ -1614562,6 +1616438,13 @@
       "market": "NONE"
     },
     {
+      "id": "OVERDARE,Inc.",
+      "label": "OVERDARE,Inc.",
+      "isCompany": true,
+      "isListed": false,
+      "market": "NONE"
+    },
+    {
       "id": "EleventhHourGames,Inc.",
       "label": "EleventhHourGames,Inc.",
       "isCompany": true,
@@ -1614578,13 +1616461,6 @@
     {
       "id": "CRAFT.AI,INC.",
       "label": "CRAFT.AI,INC.",
-      "isCompany": true,
-      "isListed": false,
-      "market": "NONE"
-    },
-    {
-      "id": "OVERDARE,Inc.",
-      "label": "OVERDARE,Inc.",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
@@ -1625727,6 +1627603,13 @@
       "market": "NONE"
     },
     {
+      "id": "한화기회추구전문투자형사모투자부동산투자신탁1호",
+      "label": "한화기회추구전문투자형사모투자부동산투자신탁1호",
+      "isCompany": true,
+      "isListed": false,
+      "market": "NONE"
+    },
+    {
       "id": "서울역북부역세권개발",
       "label": "㈜서울역북부역세권개발",
       "isCompany": true,
@@ -1625743,13 +1627626,6 @@
     {
       "id": "대전역세권개발피에프브이",
       "label": "㈜대전역세권개발피에프브이",
-      "isCompany": true,
-      "isListed": false,
-      "market": "NONE"
-    },
-    {
-      "id": "한화기회추구전문투자형사모투자부동산투자신탁1호",
-      "label": "한화기회추구전문투자형사모투자부동산투자신탁1호",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
@@ -1632559,6 +1634435,13 @@
       "market": "NONE"
     },
     {
+      "id": "ICGSENIORDEBTPARTNERSFUND",
+      "label": "ICGSENIORDEBTPARTNERSFUND",
+      "isCompany": true,
+      "isListed": false,
+      "market": "NONE"
+    },
+    {
       "id": "GOLDPOINTMEZZANINEPARTNERSIV",
       "label": "GOLDPOINTMEZZANINEPARTNERSIV",
       "isCompany": true,
@@ -1632575,13 +1634458,6 @@
     {
       "id": "HARBOURVESTGLOBALFUND",
       "label": "HARBOURVESTGLOBALFUND",
-      "isCompany": true,
-      "isListed": false,
-      "market": "NONE"
-    },
-    {
-      "id": "ICGSENIORDEBTPARTNERSFUND",
-      "label": "ICGSENIORDEBTPARTNERSFUND",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
@@ -1690218,13 +1692094,6 @@
       "market": "NONE"
     },
     {
-      "id": "마크구조화5호",
-      "label": "마크구조화5호",
-      "isCompany": true,
-      "isListed": false,
-      "market": "NONE"
-    },
-    {
       "id": "푸른하이일드일반사모투자신탁제11호",
       "label": "푸른하이일드일반사모투자신탁제11호",
       "isCompany": true,
@@ -1690241,6 +1692110,13 @@
     {
       "id": "메테우스SS제1호",
       "label": "메테우스SS제1호",
+      "isCompany": true,
+      "isListed": false,
+      "market": "NONE"
+    },
+    {
+      "id": "마크구조화5호",
+      "label": "마크구조화5호",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
@@ -1693235,15 +1695111,15 @@
       "market": "NONE"
     },
     {
-      "id": "옐로씨티앤케이리퍼비시\n사모투자합자회사",
-      "label": "옐로씨티앤케이리퍼비시\n사모투자합자회사",
+      "id": "케이프제일호우주항공\n신기술사업투자조합",
+      "label": "케이프제일호우주항공\n신기술사업투자조합",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
     },
     {
-      "id": "케이프제일호우주항공\n신기술사업투자조합",
-      "label": "케이프제일호우주항공\n신기술사업투자조합",
+      "id": "옐로씨티앤케이리퍼비시\n사모투자합자회사",
+      "label": "옐로씨티앤케이리퍼비시\n사모투자합자회사",
       "isCompany": true,
       "isListed": false,
       "market": "NONE"
@@ -1827794,6 +1829670,14 @@
     },
     {
       "source": "00266961",
+      "target": "그린앤그레이",
+      "value": 8.25,
+      "shares_count": 1000,
+      "label": "[국내 스타트업 직접투자] 8.25%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00266961",
       "target": "이모코그",
       "value": 2.1,
       "shares_count": 10257,
@@ -1827814,14 +1829698,6 @@
       "value": 3.55,
       "shares_count": 12500,
       "label": "[기술 스타트업 직접투자] 3.55%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00266961",
-      "target": "그린앤그레이",
-      "value": 8.25,
-      "shares_count": 1000,
-      "label": "[국내 스타트업 직접투자] 8.25%",
       "isSubsidiary": true
     },
     {
@@ -1828210,6 +1830086,14 @@
     },
     {
       "source": "00266961",
+      "target": "포자랩스",
+      "value": 7.22,
+      "shares_count": 6561,
+      "label": "[기술 스타트업 직접투자] 7.22%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00266961",
       "target": "가지랩",
       "value": 6.68,
       "shares_count": 9205,
@@ -1828230,14 +1830114,6 @@
       "value": 1.66,
       "shares_count": 639,
       "label": "[기술 스타트업 직접투자] 1.66%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00266961",
-      "target": "포자랩스",
-      "value": 7.22,
-      "shares_count": 6561,
-      "label": "[기술 스타트업 직접투자] 7.22%",
       "isSubsidiary": true
     },
     {
@@ -1828802,6 +1830678,22 @@
     },
     {
       "source": "00266961",
+      "target": "위버스컴퍼니",
+      "value": 44.42,
+      "shares_count": 3485801,
+      "label": "[온라인 팬 커뮤니티 플랫폼 운영] 44.42%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00266961",
+      "target": "퓨처이노베이션제삼호사모투자합자회사",
+      "value": 25.38,
+      "shares_count": 0,
+      "label": "[국내외 스타트업 간접투자] 25.38%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00266961",
       "target": "스노우",
       "value": 90.0,
       "shares_count": 1738998,
@@ -1828818,26 +1830710,10 @@
     },
     {
       "source": "00266961",
-      "target": "위버스컴퍼니",
-      "value": 44.42,
-      "shares_count": 3485801,
-      "label": "[온라인 팬 커뮤니티 플랫폼 운영] 44.42%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00266961",
       "target": "Patreon",
       "value": 0.51,
       "shares_count": 476191,
       "label": "[글로벌 팬쉽 후원 플랫폼 투자] 0.51%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00266961",
-      "target": "퓨처이노베이션제삼호사모투자합자회사",
-      "value": 25.38,
-      "shares_count": 0,
-      "label": "[국내외 스타트업 간접투자] 25.38%",
       "isSubsidiary": true
     },
     {
@@ -1830570,14 +1832446,6 @@
     },
     {
       "source": "00120182",
-      "target": "천안성성9지구(우선주)",
-      "value": 10.0,
-      "shares_count": 6000,
-      "label": "[단순투자] 10.0%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00120182",
       "target": "경산물류센터개발(우선주)",
       "value": 19.0,
       "shares_count": 20000,
@@ -1830595,6 +1832463,14 @@
     {
       "source": "00120182",
       "target": "천안성성8지구(우선주)",
+      "value": 10.0,
+      "shares_count": 6000,
+      "label": "[단순투자] 10.0%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00120182",
+      "target": "천안성성9지구(우선주)",
       "value": 10.0,
       "shares_count": 6000,
       "label": "[단순투자] 10.0%",
@@ -1830898,22 +1832774,6 @@
     },
     {
       "source": "00120182",
-      "target": "트루벤글로벌헬스케어사모투자합자회사",
-      "value": 39.41,
-      "shares_count": 2000000000,
-      "label": "[일반투자] 39.41%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00120182",
-      "target": "홈플러스해운대점개발사업PFV(2종종류주)",
-      "value": 20.0,
-      "shares_count": 500000,
-      "label": "[단순투자] 20.0%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00120182",
       "target": "이천사동리도시개발사업SPC",
       "value": 8.33,
       "shares_count": 5000,
@@ -1830930,7 +1832790,23 @@
     },
     {
       "source": "00120182",
+      "target": "트루벤글로벌헬스케어사모투자합자회사",
+      "value": 39.41,
+      "shares_count": 2000000000,
+      "label": "[일반투자] 39.41%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00120182",
       "target": "홈플러스해운대점개발사업PFV(1종종류주)",
+      "value": 20.0,
+      "shares_count": 500000,
+      "label": "[단순투자] 20.0%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00120182",
+      "target": "홈플러스해운대점개발사업PFV(2종종류주)",
       "value": 20.0,
       "shares_count": 500000,
       "label": "[단순투자] 20.0%",
@@ -1831242,14 +1833118,6 @@
     },
     {
       "source": "00120182",
-      "target": "맥쿼리코리아오퍼튜니티즈사모투자전문회사제3호",
-      "value": 1.34,
-      "shares_count": 346000,
-      "label": "[단순투자] 1.34%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00120182",
       "target": "올릭스3CPS",
       "value": 0.39,
       "shares_count": 86000,
@@ -1831270,6 +1833138,14 @@
       "value": 5.0,
       "shares_count": 50000,
       "label": "[단순투자] 5.0%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00120182",
+      "target": "맥쿼리코리아오퍼튜니티즈사모투자전문회사제3호",
+      "value": 1.34,
+      "shares_count": 346000,
+      "label": "[단순투자] 1.34%",
       "isSubsidiary": true
     },
     {
@@ -1831490,22 +1833366,6 @@
     },
     {
       "source": "00120182",
-      "target": "스타셋-디에이밸류헬스케어투자조합2호",
-      "value": 32.05,
-      "shares_count": 1000,
-      "label": "[일반투자] 32.05%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00120182",
-      "target": "르네사모투자합자회사",
-      "value": 4.21,
-      "shares_count": 200000,
-      "label": "[단순투자] 4.21%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00120182",
       "target": "유진토르사모투자합자회사",
       "value": 5.41,
       "shares_count": 958344000,
@@ -1831518,6 +1833378,22 @@
       "value": 6.9,
       "shares_count": 868966000,
       "label": "[단순투자] 6.9%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00120182",
+      "target": "스타셋-디에이밸류헬스케어투자조합2호",
+      "value": 32.05,
+      "shares_count": 1000,
+      "label": "[일반투자] 32.05%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00120182",
+      "target": "르네사모투자합자회사",
+      "value": 4.21,
+      "shares_count": 200000,
+      "label": "[단순투자] 4.21%",
       "isSubsidiary": true
     },
     {
@@ -1831954,14 +1833830,6 @@
     },
     {
       "source": "00120182",
-      "target": "엔에이치-디엑스오픈이노베이션펀드",
-      "value": 8.7,
-      "shares_count": 2000000000,
-      "label": "[단순투자] 8.7%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00120182",
       "target": "코엔트리비엔케이메타버스신기술투자조합",
       "value": 20.0,
       "shares_count": 2000000000,
@@ -1831982,6 +1833850,14 @@
       "value": 10.0,
       "shares_count": 1000000000,
       "label": "[단순투자] 10.0%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00120182",
+      "target": "엔에이치-디엑스오픈이노베이션펀드",
+      "value": 8.7,
+      "shares_count": 2000000000,
+      "label": "[단순투자] 8.7%",
       "isSubsidiary": true
     },
     {
@@ -1832226,22 +1834102,6 @@
     },
     {
       "source": "00120182",
-      "target": "스마일게이트베트남카이로스1호사모투자합자회사",
-      "value": 20.0,
-      "shares_count": 2000000000,
-      "label": "[일반투자] 20.0%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00120182",
-      "target": "대신-스카이워크신기술투자조합",
-      "value": 5.71,
-      "shares_count": 1565714000,
-      "label": "[단순투자] 5.71%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00120182",
       "target": "에스지2022사모투자합자회사",
       "value": 3.73,
       "shares_count": 5756840000,
@@ -1832258,10 +1834118,26 @@
     },
     {
       "source": "00120182",
+      "target": "스마일게이트베트남카이로스1호사모투자합자회사",
+      "value": 20.0,
+      "shares_count": 2000000000,
+      "label": "[일반투자] 20.0%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00120182",
       "target": "덴티스트리홀딩스2023사모투자합자회사",
       "value": 12.89,
       "shares_count": 18025790000,
       "label": "[단순투자] 12.89%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00120182",
+      "target": "대신-스카이워크신기술투자조합",
+      "value": 5.71,
+      "shares_count": 1565714000,
+      "label": "[단순투자] 5.71%",
       "isSubsidiary": true
     },
     {
@@ -1832514,14 +1834390,6 @@
     },
     {
       "source": "00120182",
-      "target": "제이앤허큘리스사모투자합자회사",
-      "value": 17.91,
-      "shares_count": 6300000000,
-      "label": "[단순투자] 17.91%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00120182",
       "target": "케이와이글로벌셀앤진사모투자합자회사제2호",
       "value": 2.73,
       "shares_count": 9597070000,
@@ -1832534,6 +1834402,14 @@
       "value": 3.13,
       "shares_count": 5035141000,
       "label": "[단순투자] 3.13%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00120182",
+      "target": "제이앤허큘리스사모투자합자회사",
+      "value": 17.91,
+      "shares_count": 6300000000,
+      "label": "[단순투자] 17.91%",
       "isSubsidiary": true
     },
     {
@@ -1832794,22 +1834670,6 @@
     },
     {
       "source": "00120182",
-      "target": "레이크브릿지-삼성증권성장기업1호신기술사업투자조합",
-      "value": 33.28,
-      "shares_count": 2000000000,
-      "label": "[일반투자] 33.28%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00120182",
-      "target": "케이앤티-키움첨단소재제2호신기술사업투자조합",
-      "value": 10.24,
-      "shares_count": 2000000000,
-      "label": "[단순투자] 10.24%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00120182",
       "target": "포휴먼라이프웰빙1호사모투자합자회사",
       "value": 12.99,
       "shares_count": 1600000000,
@@ -1832822,6 +1834682,22 @@
       "value": 14.49,
       "shares_count": 3000000000,
       "label": "[단순투자] 14.49%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00120182",
+      "target": "레이크브릿지-삼성증권성장기업1호신기술사업투자조합",
+      "value": 33.28,
+      "shares_count": 2000000000,
+      "label": "[일반투자] 33.28%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00120182",
+      "target": "케이앤티-키움첨단소재제2호신기술사업투자조합",
+      "value": 10.24,
+      "shares_count": 2000000000,
+      "label": "[단순투자] 10.24%",
       "isSubsidiary": true
     },
     {
@@ -1852394,18 +1854270,18 @@
     },
     {
       "source": "00110893",
-      "target": "위메이드커넥트",
-      "value": 1.0,
-      "shares_count": 16000,
-      "label": "[단순투자] 1.0%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00110893",
       "target": "화해글로벌(구,버드뷰)",
       "value": 2.0,
       "shares_count": 222000,
       "label": "[단순투자] 2.0%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00110893",
+      "target": "위메이드커넥트",
+      "value": 1.0,
+      "shares_count": 16000,
+      "label": "[단순투자] 1.0%",
       "isSubsidiary": true
     },
     {
@@ -1864810,14 +1866686,6 @@
     },
     {
       "source": "00111722",
-      "target": "광주누문미래에셋피에프브이",
-      "value": 4.78,
-      "shares_count": 212500,
-      "label": "[일반투자] 4.78%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00111722",
       "target": "수서역환승센터복합개발",
       "value": 3.56,
       "shares_count": 358000,
@@ -1864838,6 +1866706,14 @@
       "value": 5.0,
       "shares_count": 50000,
       "label": "[일반투자] 5.0%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00111722",
+      "target": "광주누문미래에셋피에프브이",
+      "value": 4.78,
+      "shares_count": 212500,
+      "label": "[일반투자] 4.78%",
       "isSubsidiary": true
     },
     {
@@ -1865162,14 +1867038,6 @@
     },
     {
       "source": "00111722",
-      "target": "NewFronteraHoldings,LLC",
-      "value": 4.68,
-      "shares_count": 233809,
-      "label": "[단순투자] 4.68%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00111722",
       "target": "안성승두3지구공동주택개발사업(보통주)",
       "value": 15.0,
       "shares_count": 300,
@@ -1865190,6 +1867058,14 @@
       "value": 3.0,
       "shares_count": 30000,
       "label": "[일반투자] 3.0%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00111722",
+      "target": "NewFronteraHoldings,LLC",
+      "value": 4.68,
+      "shares_count": 233809,
+      "label": "[단순투자] 4.68%",
       "isSubsidiary": true
     },
     {
@@ -1865506,14 +1867382,6 @@
     },
     {
       "source": "00111722",
-      "target": "미래에셋청년창업투자조합3호",
-      "value": 22.5,
-      "shares_count": 3837,
-      "label": "[단순투자] 22.5%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00111722",
       "target": "미래에셋파트너스제9호사모투자합자회사",
       "value": 14.53,
       "shares_count": 31006026783,
@@ -1865534,6 +1867402,14 @@
       "value": 21.57,
       "shares_count": 3397817135,
       "label": "[단순투자] 21.57%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00111722",
+      "target": "미래에셋청년창업투자조합3호",
+      "value": 22.5,
+      "shares_count": 3837,
+      "label": "[단순투자] 22.5%",
       "isSubsidiary": true
     },
     {
@@ -1865834,14 +1867710,6 @@
     },
     {
       "source": "00111722",
-      "target": "미래에셋제트투자조합2호",
-      "value": 57.97,
-      "shares_count": 20000000,
-      "label": "[단순투자] 57.97%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00111722",
       "target": "미래에셋케이티앤지신성장투자조합1호",
       "value": 45.0,
       "shares_count": 180,
@@ -1865862,6 +1867730,14 @@
       "value": 75.0,
       "shares_count": 222482970000,
       "label": "[단순투자] 75.0%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00111722",
+      "target": "미래에셋제트투자조합2호",
+      "value": 57.97,
+      "shares_count": 20000000,
+      "label": "[단순투자] 57.97%",
       "isSubsidiary": true
     },
     {
@@ -1866082,14 +1867958,6 @@
     },
     {
       "source": "00111722",
-      "target": "펙투스-IBKC신기술투자조합제1호(서울옥션)",
-      "value": 15.15,
-      "shares_count": 2000000000,
-      "label": "[단순투자] 15.15%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00111722",
       "target": "피라인모터스보통주구주",
       "value": 1.51,
       "shares_count": 95500,
@@ -1866102,6 +1867970,14 @@
       "value": 14.29,
       "shares_count": 3000000000,
       "label": "[단순투자] 14.29%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00111722",
+      "target": "펙투스-IBKC신기술투자조합제1호(서울옥션)",
+      "value": 15.15,
+      "shares_count": 2000000000,
+      "label": "[단순투자] 15.15%",
       "isSubsidiary": true
     },
     {
@@ -1891402,6 +1893278,14 @@
     },
     {
       "source": "00131054",
+      "target": "01472930",
+      "value": 0.51,
+      "shares_count": 20000,
+      "label": "[단순투자] 0.51%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00131054",
       "target": "VaroMoney시리즈D보통주",
       "value": 0.19,
       "shares_count": 546135,
@@ -1891422,14 +1893306,6 @@
       "value": 66.55,
       "shares_count": 1395,
       "label": "[단순투자] 66.55%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00131054",
-      "target": "01472930",
-      "value": 0.51,
-      "shares_count": 20000,
-      "label": "[단순투자] 0.51%",
       "isSubsidiary": true
     },
     {
@@ -1901546,6 +1903422,14 @@
     },
     {
       "source": "00760971",
+      "target": "OVERDARE,Inc.",
+      "value": 85.0,
+      "shares_count": 72250,
+      "label": "[경영참가] 85.0%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00760971",
       "target": "EleventhHourGames,Inc.",
       "value": 100.0,
       "shares_count": 1000,
@@ -1901566,14 +1903450,6 @@
       "value": 100.0,
       "shares_count": 0,
       "label": "[경영참가] 100.0%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00760971",
-      "target": "OVERDARE,Inc.",
-      "value": 85.0,
-      "shares_count": 72250,
-      "label": "[경영참가] 85.0%",
       "isSubsidiary": true
     },
     {
@@ -1916642,6 +1918518,14 @@
     },
     {
       "source": "00160588",
+      "target": "한화기회추구전문투자형사모투자부동산투자신탁1호",
+      "value": 40.0,
+      "shares_count": 7177125085,
+      "label": "[ 경영참여 ] 40.0%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00160588",
       "target": "서울역북부역세권개발",
       "value": 29.0,
       "shares_count": 5220000,
@@ -1916662,14 +1918546,6 @@
       "value": 50.0,
       "shares_count": 8500000,
       "label": "[ 경영참여 ] 50.0%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00160588",
-      "target": "한화기회추구전문투자형사모투자부동산투자신탁1호",
-      "value": 40.0,
-      "shares_count": 7177125085,
-      "label": "[ 경영참여 ] 40.0%",
       "isSubsidiary": true
     },
     {
@@ -1927410,6 +1929286,14 @@
     },
     {
       "source": "00164973",
+      "target": "ICGSENIORDEBTPARTNERSFUND",
+      "value": 3.0,
+      "shares_count": 0,
+      "label": "[ 단순투자 ] 3.0%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00164973",
       "target": "GOLDPOINTMEZZANINEPARTNERSIV",
       "value": 2.4,
       "shares_count": 0,
@@ -1927430,14 +1929314,6 @@
       "value": 1.0,
       "shares_count": 0,
       "label": "[ 단순투자 ] 1.0%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00164973",
-      "target": "ICGSENIORDEBTPARTNERSFUND",
-      "value": 3.0,
-      "shares_count": 0,
-      "label": "[ 단순투자 ] 3.0%",
       "isSubsidiary": true
     },
     {
@@ -2007570,14 +2009446,6 @@
     },
     {
       "source": "00124805",
-      "target": "마크구조화5호",
-      "value": 7.69,
-      "shares_count": 450471000,
-      "label": "[수익목적] 7.69%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00124805",
       "target": "푸른하이일드일반사모투자신탁제11호",
       "value": 16.95,
       "shares_count": 1000000000,
@@ -2007598,6 +2009466,14 @@
       "value": 17.44,
       "shares_count": 3000000000,
       "label": "[수익목적] 17.44%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00124805",
+      "target": "마크구조화5호",
+      "value": 7.69,
+      "shares_count": 450471000,
+      "label": "[수익목적] 7.69%",
       "isSubsidiary": true
     },
     {
@@ -2012090,14 +2013966,6 @@
     },
     {
       "source": "00149594",
-      "target": "옐로씨티앤케이리퍼비시\n사모투자합자회사",
-      "value": 10.26,
-      "shares_count": 2000000000,
-      "label": "[단순투자] 10.26%",
-      "isSubsidiary": true
-    },
-    {
-      "source": "00149594",
       "target": "비엔더블유리차지사모투자합자회사",
       "value": 23.47,
       "shares_count": 5000000000,
@@ -2012118,6 +2013986,14 @@
       "value": 11.11,
       "shares_count": 411824940,
       "label": "[단순투자] 11.11%",
+      "isSubsidiary": true
+    },
+    {
+      "source": "00149594",
+      "target": "옐로씨티앤케이리퍼비시\n사모투자합자회사",
+      "value": 10.26,
+      "shares_count": 2000000000,
+      "label": "[단순투자] 10.26%",
       "isSubsidiary": true
     },
     {
@@ -2016849,5 +2018725,5 @@
       "isSubsidiary": true
     }
   ],
-  "updated_at": "2026-10-09T15:32:00.659189"
+  "updated_at": "2026-10-12T00:24:04.383085"
 }
